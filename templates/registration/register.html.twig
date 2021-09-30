@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+
+{% block body %}
+
+	{% block stylesheets %}
+		<link rel="stylesheet" type="text/css" href=" {{asset ('assets/css/security/inscription.css')}}"/>
+
+	{% endblock %}
+
+	<div class="container">
+		{{ form_start(form) }}
+
+		<div class="table">
+			<div class="table-cell">
+				<div class="modal">
+					<div id="profile">
+						<div class="dashes"></div>
+						<label>Cliquez ou glissez votre image ici</label>
+					</div>
+
+					<div class="form-input">
+						<h2>Renseignez ici vos informations</h2>
+						<hr>
+
+						<div class="civilite">
+							{{ form_widget(form.firstName, {'attr': {'type': 'text', 'placeholder': 'Nom'}}) }}
+							{{ form_widget(form.lastName, {'attr': {'type':' text', 'placeholder': 'Prenom'}}) }}
+						</div>
+
+						<div class="adresse">
+							{{ form_widget(form.email, {'attr': {'type': 'email', 'placeholder': 'Email'}})}}
+							{{ form_widget(form.plainPassword.first, {'attr': {'type': 'password', 'placeholder': 'Mot de passe'}})}}
+							{{ form_widget(form.plainPassword.second, {'attr': {'type': 'password', 'placeholder': 'Confirmez le mot de passe'}})}}
+
+						</div>
+
+						<div class="sexe">
+							<h3>Genre
+							</h3>
+
+							{{ form_widget(form.sex, {'attr': {'type': 'radio', 'name': 'sexe', 'checked':'yes'}})}}
+							<br/>
+						</div>
+						<hr>
+						<h3>agreeTerms
+						</h3>
+						{{ form_widget(form.agreeTerms, {'attr': {'type': 'checkbox', 'name': 'horns', 'checked':'yes'}})}}
+
+						{{ form_widget(form.avatarFile, {'attr': {'type': 'file', 'id': 'mediaFile'}})}}
+						<button type="submit">
+							Validez
+						</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		{{ form_end(form) }}
+
+	</div>
+{% endblock %}
+{% block javascripts %}
+	<script src="jquery-3.5.1.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<script src="{{ asset ('assets/script/security/inscription.js')}}"></script>
+{% endblock %}

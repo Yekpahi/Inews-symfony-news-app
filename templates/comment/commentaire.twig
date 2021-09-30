@@ -1,0 +1,193 @@
+<link rel="stylesheet" type="text/css" href=" {{asset ('assets/css/comment/comment.css')}}"/>
+
+{% block comment %}
+	<div class="comment-container">
+		{% if app.user %}
+			<div class="comment-emoticone">
+				<ul>
+					<li>
+						50k
+						<i class="far fa-thumbs-up"></i>
+					</li>
+					<li>
+						2k
+						<i class="far fa-comment-alt"></i>
+						<span>Commenter</span>
+					</li>
+					<li>
+						600
+						<i class="fas fa-share"></i>
+						<span>partager</span>
+					</li>
+				</ul>
+			</div>
+			<div class="write-comment-input">
+
+
+				<img class="avatar-write-comment" src="{{ asset ('assets/images/profil.png')}}" alt="">
+				{{ form_start(commentForm ) }}
+				{{ form_widget(commentForm.content, {'attr' : {'type' : 'textarea'}}) }}
+				{{ form_end(commentForm ) }}
+
+			</div>
+		{% else %}
+			<div class="comment-emoticone">
+				<ul>
+					<li>
+						50k
+						<i class="far fa-thumbs-up"></i>
+					</li>
+					<li>
+						2k
+						<i class="far fa-comment-alt btn-join"></i>
+						<span>Commenter</span>
+					</li>
+					<li>
+						600
+						<i class="fas fa-share"></i>
+						<span>partager</span>
+					</li>
+				</ul>
+			</div>
+			<div class="overlay">
+				<div class="modal__locked">
+					<div class="modal-body">
+						<center>
+							<strong>Attention</strong>
+							<p>
+								Inscrivez-vous avant de commenter. Si vous êtes déjà inscrits, connectez vous avant de commenter.
+							</p>
+						</center>
+					</div>
+					<div class="modal-buttons">
+						<button class="annuler">
+							Annuler</button>
+						<button class="connectez">
+							<a href=" {{ path('app_login')}}">Se connecter</a>
+						</button>
+						<button class="inscrivez">
+							<a href="{{ path('app_register')}}">S'inscrire</a>
+						</button>
+					</div>
+				</div>
+			</div>
+		{% endif %}
+		<div
+			class="comment-reply-container">
+			<!-- One Comment Part-->
+			{% for comment in article.comments %}
+				{% if comment.parent == null %}
+					<div class="commentaire-conteneur">
+						<div class="comment-box">
+							<a href="{{ path ('user')}}">
+								<img class="avatar-of-commentator" src="{{ asset ('assets/images/profil.png')}}" alt="">
+							</a>
+							<div class="all-comment-info">
+								<h4 class="name-of-commentator">
+									<a href="{{ path ('user')}}">{{comment.user.firstName}}
+										{{comment.user.lastName}}
+										<span class="date-of-comment">{{comment.createdAt|date("d/m/Y H:i") }}</span>
+									</a>
+								</h4>
+								<p class="comment-body">
+									{{comment.content|raw}}
+								</p>
+							</div>
+						</div>
+						<!-- End One Comment Part-->
+						<ul class="ul-commentaire">
+							<li class="like-commentaire">
+								<i class="far fa-thumbs-up"></i>
+							</li>
+							<li class="dislike-commentaire">
+								<i class="far fa-thumbs-down"></i>
+							</li>
+							{% if app.user %}
+								<li class="reply-commentaire">
+									<button class="toggle" id="modal-trigger" data-reply data-id="{{comment.id}}">Répondre</button>
+								</li>
+							{% endif %}
+						</ul>
+						<div class="response-input" id="modal">
+
+
+							<textarea name=""></textarea>
+							<button id="close-modal">Annuler</button>
+							<button>Envoyer</button>
+
+							<img class="avatar-response-comment" src="{{ asset ('assets/images/profil.png')}}" alt="">
+						</div>
+					</div>
+					<!--Fin Comment -->
+
+					<!-- One Respone Part-->
+					{# On affiche les réponses #}
+						{% for reply in comment.replies %}
+							<div class="reponse-conteneur"> <div class="response-box">
+								<img class="avatar-of-responser" src="{{ asset ('assets/images/profil.png')}}" alt="">
+								<div class="all-response-info">
+									<h4 class="name-of-responser">
+										<a href="">{{reply.user.firstName}}
+											{{reply.user.lastName}}
+											<span class="date-of-response">{{reply.createdAt|date("d/m/Y H:i") }}</span>
+										</a>
+									</h4>
+									<p class="response-body">
+										{{reply.content|raw}}
+									</p>
+								</div>
+							</div>
+							<!-- End One response Part-->
+							<ul class="ul-response">
+								<li class="like-response">
+									<i class="far fa-thumbs-up"></i>
+								</li>
+								<li class="dislike-response">
+									<i class="far fa-thumbs-down"></i>
+								</li>
+								{% if app.user %}
+									<li class="reply-response">
+										<button class="toggle" data-reply data-id="{{comment.id}}" id="modal-trigger">Répondre</button>
+									</li>
+								{% endif %}
+							</ul>
+
+							<div class="response-input" id="modal">
+								<textarea name=""></textarea>
+								<button id="close-modal">Annuler</button>
+								<button>Envoyer</button>
+								<img class="avatar-response-response" src="{{ asset ('assets/images/profil.png')}}" alt="">
+							</div>
+						</div>
+					{% endfor %}
+					<!--Fin Reponse -->
+
+				{% endif %}
+			{% endfor %}
+		</div>
+		<!--Fin commentaire Reponse -->
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+	<script>
+		// button connectez vous avant de commenter const button = document.querySelector(" .btn-join");
+const modal = document.querySelector(" .overlay");
+const close = document.querySelector(" .annuler");
+button.addeventlistener(" click", function () {
+modal.style.display = " block"
+})
+close.addeventlistener(" click", function () {
+modal.style.display = " none"
+})
+
+document.body.addeventlistener(" click", function (e) {
+if (e.target.classList[0] == " overlay") {
+modal.style.display = " none"
+}
+});
+	</script>
+
+	<script src=" {{asset ('assets/script/comment/comment.js')}}"></script>
+
+{% endblock %}

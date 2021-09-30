@@ -1,0 +1,115 @@
+{% block stylesheets %}
+	<link
+	href="/your-path-to-fontawesome/css/all.css" rel="stylesheet">
+	<!--load all styles -->
+	<link rel="stylesheet" type="text/css" href=" {{asset ('assets/css/intermediaire/intermediaire.css')}}"/>
+	<link rel="stylesheet" type="text/css" href=" {{asset ('assets/css/home/homeCenter.css')}}"/>
+
+
+{% endblock %}
+{% block details %}
+
+	<article class="article article-center">
+		{% for image in article.images %}
+
+			<figure class="article-img">
+				<img src="{{asset(('uploads/images/articles/' ~ image.name)|imagine_filter('banniere')) }}" alt="{{ article.title }}">
+			</figure>
+
+		{% endfor %}
+		<button class="articleCategries">{{ article.categories.name}}</button>
+
+		{% if article.statut == 1 %}
+			<div class="urgent">
+
+				<span class='statut-urgent'>URGENT
+				</span>
+				<h2 class='leTexte'>
+					{{ article.title}}
+				</h2>
+			</div>
+		{% elseif article.statut == 2 %}
+			<div class="bonheur">
+
+				<span class='statut-bonheur'>BONHEUR
+				</span>
+				<h2 class='leTexte'>
+					{{ article.title}}
+				</h2>
+			</div>
+		{% elseif article.statut == 3 %}
+			<div class="triste">
+
+				<span class='statut-triste'>TRISTE
+				</span>
+				<h2 class='leTexte'>
+					{{ article.title}}
+				</h2>
+			</div>
+		{% else %}
+			<div class="post-title">
+				<h2>
+					{{ article.title}}
+				</h2>
+			</div>
+		{% endif %}
+
+		<h2 class="article-title article-title--medium article-title--medium-center">
+			<a href="#" class="article-link">{{ article.description}}</a>
+		</h2>
+		<div class="article-excerpt special-text">
+			<p>
+				{{ article.content}}
+			</p>
+		</div>
+		<button class="expand-button">
+			Continuez la lecture
+		</button>
+		<div class="article-author article-author-center">
+			<a href="{{ path('user', {id: article.id})}}">
+
+				<div class="article-author-img">
+					<img src="https://images.unsplash.com/photo-1484807352052-23338990c6c6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"/>
+				</div>
+				<div class="article-author-info ">
+					<dl>
+						<dt>{{ article.users.firstName}}
+							{{ article.users.lastName}}</dt>
+						<dd>Editor</dd>
+					</dl>
+				</div>
+			</a>
+		</div>
+		<!-- Espace commentaire-->
+		{% block comment %}
+			{% include "comment/comment.html.twig" %}
+		{% endblock %}
+		<!-- Fin Espace commentaire-->
+	</article>
+
+
+{% endblock %}
+{% block javascripts %}
+	<script>
+		// button connectez vous avant de commenter const button = document.querySelector(" .btn-join");
+const modal = document.querySelector(" .overlay");
+const close = document.querySelector(" .annuler");
+button.addeventlistener(" click", function () {
+modal.style.display = " block"
+})
+close.addeventlistener(" click", function () {
+modal.style.display = " none"
+})
+
+document.body.addeventlistener(" click", function (e) {
+if (e.target.classList[0] == " overlay") {
+modal.style.display = " none"
+}
+});
+	</script>
+
+
+	<script src="{{asset('assets/script/home/homeCenter.js')}}"></script>
+
+
+{% endblock %}

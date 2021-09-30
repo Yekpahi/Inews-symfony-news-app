@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une catégorie
+{% endblock %}
+
+{% block body %}
+	{% block header %}
+		{% include "header/header.html.twig" %}
+	{% endblock %}
+
+	<h1>
+		<a href="{{ path('admin_categories_home')}}">Retour sur page catégories</a>
+	</h1>
+	{{ form(form) }}{% endblock %}

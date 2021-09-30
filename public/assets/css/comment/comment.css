@@ -1,0 +1,467 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&display=swap");
+* {
+  box-sizing: border-box;
+}
+
+.comment-thread {
+  width: 700px;
+  max-width: 100%;
+  margin: auto;
+  padding: 0 30px;
+  background-color: #fbf1f1;
+  border: 1px solid transparent;
+  /* Removes margin collapse */
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Comment */
+.comment {
+  position: relative;
+  margin: 20px auto;
+}
+
+.comment-heading {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  font-size: 14px;
+}
+
+.comment-voting {
+  width: 20px;
+  height: 32px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.comment-voting button {
+  display: block;
+  width: 100%;
+  height: 50%;
+  padding: 0;
+  border: 0;
+  font-size: 10px;
+}
+
+.comment-info {
+  color: rgba(0, 0, 0, 0.5);
+  margin-left: 10px;
+}
+
+.comment-author {
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.comment-author:hover {
+  text-decoration: underline;
+}
+
+.replies {
+  margin-left: 20px;
+}
+
+/* Adjustments for the comment border links */
+.comment-border-link {
+  display: block;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 12px;
+  height: calc(100% - 50px);
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  background-color: rgba(0, 0, 0, 0.1);
+  background-clip: padding-box;
+}
+
+.comment-border-link:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.comment-body {
+  padding: 0 20px;
+  padding-left: 28px;
+}
+
+.replies {
+  margin-left: 28px;
+}
+
+/* Adjustments for toggleable comments */
+details.comment summary {
+  position: relative;
+  list-style: none;
+  cursor: pointer;
+}
+
+details.comment summary::-webkit-details-marker {
+  display: none;
+}
+
+details.comment:not([open]) .comment-heading {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.comment-heading::after {
+  display: inline-block;
+  position: absolute;
+  right: 5px;
+  align-self: center;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+details.comment[open] .comment-heading::after {
+  content: "Click to hide";
+}
+
+details.comment:not([open]) .comment-heading::after {
+  content: "Click to show";
+}
+
+/* Adjustment for Internet Explorer */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  /* Resets cursor, and removes prompt text on Internet Explorer */
+  .comment-heading {
+    cursor: default;
+  }
+
+  details.comment[open] .comment-heading::after,
+details.comment:not([open]) .comment-heading::after {
+    content: " ";
+  }
+}
+/* Styling the reply to comment form */
+.reply-form textarea {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
+  width: 100%;
+  max-width: 100%;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.d-none {
+  display: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat";
+}
+
+.join {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.overlay {
+  display: none;
+  background: rgba(0, 0, 0, 0.4);
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.overlay .modal__locked {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 450px;
+  height: 260px;
+  background: white;
+  border-radius: 20px;
+}
+
+.overlay .modal__locked .modal-body {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+}
+
+.overlay .modal__locked .modal-body center {
+  margin: 20px;
+}
+
+.overlay .modal__locked .modal-body center strong {
+  font-size: 25px;
+  position: relative;
+  top: -30px;
+}
+
+.overlay .modal__locked .modal-body center p {
+  position: relative;
+  top: -10px;
+  font-size: 13px;
+}
+
+.overlay .modal__locked .modal-buttons {
+  position: absolute;
+  bottom: 30px;
+  right: 10px;
+}
+
+.btn {
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 10px;
+  width: 145px;
+  height: 45px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+  margin: 0 10px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.overlay .modal__locked .modal-buttons button.btn-purple {
+  background: #9627ea;
+  color: white;
+}
+
+.inscrivez {
+  background-color: #4545cf;
+  color: white;
+  margin-left: 5px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+
+.connectez {
+  background-color: #2a9468;
+  color: white;
+  margin-left: 5px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+
+.annuler {
+  background-color: #fa0707;
+  color: white;
+  margin-right: 100px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+
+.comment-container {
+  position: relative;
+  bottom: 90px;
+}
+
+.commentaire-conteneur {
+  position: relative;
+}
+
+.comment-emoticone ul {
+  padding: 10px;
+  list-style-type: none;
+  display: block;
+  margin: auto;
+  text-align: center;
+}
+
+.comment-emoticone ul li {
+  display: inline-block;
+  margin-right: 50px;
+}
+
+.comment-emoticone {
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+.avatar-of-commentator {
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+}
+
+.avatar-write-comment {
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  position: relative;
+  left: -7%;
+  top: 30px;
+}
+
+.avatar-response-comment {
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  position: relative;
+  bottom: 35px;
+  left: -7%;
+}
+
+.all-comment-info {
+  background-color: aqua;
+  border-radius: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 100px;
+  margin-left: 10px;
+}
+
+.name-of-commentator {
+  position: relative;
+  margin-left: 27px;
+  margin-bottom: 10px;
+}
+
+.comment-body {
+  position: relative;
+}
+
+.comment-box {
+  display: flex;
+  padding-top: 10px;
+}
+
+.ul-commentaire {
+  padding: 10px;
+  list-style-type: none;
+  text-align: center;
+  position: relative;
+  bottom: 100px;
+  margin-left: 30px;
+}
+
+.reply-commentaire {
+  position: relative;
+}
+
+.ul-commentaire li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+#modal {
+  position: relative;
+  bottom: 100px;
+  padding: 10px;
+  width: 100%;
+  margin-left: 100px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+
+#modal textarea {
+  width: 80%;
+  border-radius: 30px;
+  height: 30px;
+}
+
+#modal button {
+  position: relative;
+  top: 20px;
+  right: 20%;
+  margin-top: 10px;
+  margin-left: 2px;
+  border-radius: 5px;
+  border: none;
+  background-color: green;
+  color: white;
+  padding: 2px;
+}
+
+#modal.is-visible {
+  /* show the modal window */
+  opacity: 1;
+  visibility: visible;
+}
+
+.write-comment-input {
+  margin-left: 40px;
+  margin-top: 5px;
+  width: 85%;
+}
+
+.write-comment-input textarea {
+  margin: 0;
+  width: 100%;
+  border-radius: 30px;
+  height: 30px;
+}
+
+.reponse-conteneur {
+  position: relative;
+  bottom: 100px;
+  width: 90%;
+}
+
+.response-box {
+  display: flex;
+  padding-top: 10px;
+}
+
+.response-body {
+  position: relative;
+}
+
+.ul-response {
+  padding: 10px;
+  list-style-type: none;
+  display: flex;
+  text-align: center;
+  margin-left: 30px;
+}
+
+.ul-response li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.avatar-of-responser {
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+}
+
+.avatar-response-response {
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  position: relative;
+  bottom: 35px;
+  left: -7%;
+}
+
+.all-response-info {
+  background-color: #777cc5;
+  border-radius: 10px;
+  padding-bottom: 10px;
+  margin-left: 10px;
+}
+
+.name-of-responser {
+  position: relative;
+  margin-left: 27px;
+  margin-bottom: 10px;
+}/*# sourceMappingURL=comment.css.map */

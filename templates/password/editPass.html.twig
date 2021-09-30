@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Changer le mot de passe
+{% endblock %}
+
+{% block body %}
+
+	{% block stylesheets %}
+		<link rel="stylesheet" type="text/css" href=" {{asset ('assets/css/user/motdepass.css')}}"/>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+
+	{% endblock %}
+
+	<div class="container">
+
+		<div class="parent">
+			<div>
+				<input type="password" placeholder="type old password" required>
+				<span>show</span>
+			</div>
+			<br>
+			<div>
+				<input type="password" placeholder="type new password" required>
+				<span>show</span>
+			</div>
+			<br>
+			<div>
+				<input type="password" placeholder="type again new password" required>
+				<span>show</span>
+			</div>
+		</div>
+
+
+	</div>
+
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{{ asset ('assets/script/user/motdepass.js')}}"></script>
+
+{% endblock %}

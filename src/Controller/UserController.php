@@ -1,0 +1,206 @@
+<?php
+
+namespace App\Controller;
+
+use App\Entity\Articles;
+use App\Entity\ChangePassword;
+use App\Entity\Images;
+use App\Form\ArticlesType;
+
+use App\Form\EditProfileType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use Symfony\Component\HttpFoundation\Response;
+
+class UserController extends AbstractController
+{
+    /**
+     * @Route("/user", name="user")
+     */
+    public function index()
+    {
+        return $this->render('user/user.html.twig');
+    }
+
+    /**
+     * @Route("/user/articles/ajout", name="user_articles_ajout")
+     */
+    public function ajoutArticle(Request $request)
+    {
+        $article = new Articles;
+
+        $form = $this->createForm(ArticlesType::class, $article);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $article->setUsers($this->getUser());
+            $article->setActive(false);
+            // On récupère les images transmises
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($article);
+            $em->flush();
+
+            return $this->redirectToRoute('user');
+        }
+
+        return $this->render('user/articles/ajouter-article.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/user/articles/edit/{id}", name="users_articles_edit")
+     */
+    public function editAnnonce(Articles $article, Request $request)
+    {
+        $this->denyAccessUnlessGranted('article_edit', $article);
+        $form = $this->createForm(ArticlesType::class, $article);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $article->setActive(false);
+            // On récupère les images transmises
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($article);
+            $em->flush();
+
+            return $this->redirectToRoute('users');
+        }
+
+        return $this->render('user/articles/ajout.html.twig', [
+            'form' => $form->createView(),
+            'annonce' => $article
+        ]);
+    }
+
+    /**
+     * @Route("/user/profil/modifier", name="user_profil_modifier")
+     */
+    public function editProfile(Request $request)
+    {
+        $user = $this->getUser();
+        $form = $this->createForm(EditProfileType::class, $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            $this->addFlash('message', 'Profil mis à jour');
+            return $this->redirectToRoute('user');
+        }
+
+        return $this->render('user/editprofile.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/user/pass/modifier", name="modifier_mot_de_passe")
+     */
+    public function edit(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        $changePassword = new ChangePassword();
+        // rattachement du formulaire avec la class changePassword
+        $form = $this->createForm('App\Form\ChangePasswordType', $changePassword);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $newpwd = $form->get('Password')['first']->getData();
+
+            $newEncodedPassword = $passwordEncoder->encodePassword($user, $newpwd);
+            $user->setPassword($newEncodedPassword);
+
+            $em->flush();
+            $this->addFlash('notice', 'Votre mot de passe à bien été changé !');
+
+            return $this->redirectToRoute('user');
+        }
+
+        return $this->render('password/index.html.twig', array(
+            'form' => $form->createView(),
+            'user' => $user
+        ));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * @Route("/user/pass/modifier", name="modifier_mot_de_passe")
+     */
+    /*  public function editPass(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    {
+        if ($request->isMethod('POST')) {
+            $em = $this->getDoctrine()->getManager();
+
+            $user = $this->getUser();
+
+            // On vérifie si les 2 mots de passe sont identiques
+            if ($request->request->get('pass') == $request->request->get('pass2')) {
+                $user->setPassword($passwordEncoder->encodePassword($user, $request->request->get('pass')));
+                $em->flush();
+                $this->addFlash('message', 'Mot de passe mis à jour avec succès');
+
+                return $this->redirectToRoute('users');
+            } else {
+                $this->addFlash('error', 'Les deux mots de passe ne sont pas identiques');
+            }
+        }
+
+        return $this->render('password/index.html.twig');
+    }
+*/
+    /**
+     * @Route("/supprime/image/{id}", name="articles_delete_image", methods={"DELETE"})
+     */
+    public function deleteImage(Images $image, Request $request)
+    {
+        $data = json_decode($request->getContent(), true);
+
+        // On vérifie si le token est valide
+        if ($this->isCsrfTokenValid('delete' . $image->getId(), $data['_token'])) {
+            // On récupère le nom de l'image
+            $nom = $image->getName();
+            // On supprime le fichier
+            unlink($this->getParameter('images_directory') . '/' . $nom);
+
+            // On supprime l'entrée de la base
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($image);
+            $em->flush();
+
+            // On répond en json
+            return new JsonResponse(['success' => 1]);
+        } else {
+            return new JsonResponse(['error' => 'Token Invalide'], 400);
+        }
+    }
+}

@@ -1,0 +1,198 @@
+<link rel="stylesheet" type="text/css" href=" {{asset ('assets/css/comment/commentBody.css')}}"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% block commentBody %}
+
+<!-- Poster -->
+
+<!-- Fin Poster -->
+
+<!-- One Comment Part-->
+	{% for comment in article.comments %}
+		{% if comment.parent == null %}
+			<ul id="commenttext"> <li id="commentbubble">
+				<div style="position: absolute; margin-left: -28px; overflow: hidden; width: 48px; height: 48px; border-radius: 50%; background-image:url('https://s1.postimg.org/39esn2s5lr/j_U1nlt4_J_normal.jpg')"></div>
+				<div id="commentwrap">
+					<div id="commentself">
+						<p id="messenger-bulle">I do like this comment system as it is very modern and beautiful. Complitely Facebook Messenger style!
+							<span id="bullemeta">{{comment.createdAt|date("d/m/Y H:i") }}</span>
+							<span id="like-holder">
+								<span class=" like-main" ="">
+									<span class="like-main-emo"></span>
+									<span class="like">Like</span>
+									<span class="likecount">1.2k</span>
+								</span>
+							</p>
+							<div id="reply-button">
+								<i class="fa fa-reply" style="color: #797c82;"></i>
+								<span class="tooltiptext">Reply</span>
+							</div>
+						</p>
+					</div>
+				</div>
+			</li>
+
+			<div id="reply">
+				<div id="reply-profpicture">
+					<iframe src="https://www.facebook.com/plugins/feedback.php?api_key=113869198637480&href=codepen.io&numposts=5&sdk=joey&version=v2.10&width=500" frameborder="0" style="position: absolute; width: 500px; height: 118px; margin-left: -8px; margin-top: -67px;" allowtransparency="true"></iframe>
+				</div>
+				<textarea minlenght="10" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" id="reply-comment" name="comment" rows='1' placeholder='Write a reply...' autofocus></textarea>
+				<button id="reply-send" disabled></button>
+				<div id="reply-logintopost">
+					<div id="reply-loginbtn">
+						<span class="fa-stack" style="font-size:16px;">
+							<i class="fa fa-circle-thin fa-stack-2x fa-inverse"></i>
+							<i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+						</span>
+						<p id="reply-logintext">Log in to post</p>
+					</div>
+				</div>
+				<ul id="replytext">
+					<li id="replybubble">
+						<div style="position: absolute; margin-left: -28px; margin-top: -6px; overflow: hidden; width: 48px; height: 48px; border-radius: 50%; transform: scale(0.75); background-image:url('https://s1.postimg.org/833nj7c7jj/image.jpg')"></div>
+						<div id="commentwrap">
+							<div id="commentself">
+								<p id="reply-messenger-bulle">You are true. It is very easy to use
+									<span id="bullemeta">39 minute ago</span>
+									<span id="like-holder">
+										<span class="like-main" ="" ="">
+											<span class="like-main-emo"></span>
+											<span class="like">Like</span>
+											<span class="likecount">511</span>
+										</span>
+									</span>
+								</p>
+							</div>
+						</div>
+					</li>
+					<li id="replybubble">
+						<div style="position: absolute; margin-left: -28px; margin-top: -6px; overflow: hidden; width: 48px; height: 48px; border-radius: 50%; transform: scale(0.75); background-image:url('https://s1.postimg.org/5bulb4qixb/image.jpg')"></div>
+						<div id="commentwrap">
+							<div id="commentself">
+								<p id="reply-messenger-bulle">Yeah. I think this way too dear 😋. That's why I recently commented that
+									<span id="bullemeta">Yesterday</span>
+									<span id="like-holder">
+										<span class="like-main" ="" ="">
+											<span class="like-main-emo"></span>
+											<span class="like">Like</span>
+											<span class="likecount">21</span>
+										</span>
+									</span>
+								</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+
+			</div>
+
+		</li>
+	</ul>
+{% endif %}{% endfor %}{% endblock %}{% block javascripts %}<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script>
+// Auto expand comment textarea
+jQuery('#comment').on('input', function () {
+$(this).height(1);
+var totalHeight = jQuery(this).prop('scrollHeight') - parseInt(jQuery(this).css('padding-top')) - parseInt(jQuery(this).css('padding-bottom'));
+jQuery(this).height(totalHeight);
+});
+
+// Facebook switch on label click
+jQuery('#alsopost').click(function () {
+jQuery('#fb-toggle').prop("checked", !jQuery('#fb-toggle').prop("checked"));
+});
+
+// Disable/enable post button
+var minLength = 10;
+jQuery('#comment').on('input', function () {
+var lengthi = jQuery(this).val().replace(/\s+/g, '').trim().length;
+var length = minLength - lengthi;
+$('#count').text(length + " more to");
+if (lengthi >= 10) {
+jQuery('#send').removeAttr('disabled');
+jQuery('#count').css("display", "none");
+} else {
+jQuery('#send').attr('disabled', 'disabled');
+jQuery('#count').css("display", "block");
+}
+if (lengthi === 0) {
+jQuery('#count').css("display", "none");
+}
+});
+
+// Submit
+jQuery("#send").click(function () {
+jQuery("#send").addClass("pro").html("");
+// Replace with your server function
+setTimeout(function () {
+jQuery('#send').addClass("finish");
+}, 2500);
+setTimeout(function () {
+jQuery("#send").removeClass("pro").removeClass("finish").html("<i class='fa fa-commenting' style='font-size: 17px;'></i> POST");
+}, 4500);
+});
+
+// Like button functionality
+jQuery('#like-holder').on('click', function () {
+jQuery('.like').toggleClass('like-text-like');
+jQuery('.like-main-emo').toggleClass('like-main-like');
+});
+
+// Auto expand reply comment textarea
+jQuery('#reply-comment').on('input', function () {
+$(this).height(1);
+var totalHeight = jQuery(this).prop('scrollHeight') - parseInt(jQuery(this).css('padding-top')) - parseInt(jQuery(this).css('padding-bottom'));
+jQuery(this).height(totalHeight);
+});
+
+// Disable/enable reply post button
+jQuery('#reply-comment').on('input', function () {
+var sigrdze = jQuery(this).val().replace(/\s+/g, '').trim().length;
+if (sigrdze >= 10) {
+jQuery('#reply-send').removeAttr('disabled');
+jQuery('#reply-comment').css('width', '280');
+} else {
+jQuery('#reply-send').attr('disabled', 'disabled');
+jQuery('#reply-comment').css('width', '315');
+}
+});
+
+// Reply button functionality
+jQuery('#reply-button').click(function () {
+jQuery('#reply').toggle();
+jQuery('#reply-comment').focus();
+});
+
+// Checkbox functionality
+jQuery('#send').click(function () {
+if (jQuery('#fb-toggle').is(':checked')) {
+window.open('https://www.facebook.com/sharer/sharer.php?quote=' + jQuery('#comment').val() + '&u=' + location.href, '_blank', 'width=626, height=436');
+}
+});
+
+// Log in to post for main comments
+jQuery('#comment').focus(function () {
+jQuery('#logintopost').stop(true, true).slideDown(500);
+});
+jQuery('#comment').blur(function () {
+jQuery('#logintopost').stop(true, true).slideUp(500);
+});
+
+// Prevent typing if not logged in
+jQuery('#comment').on('keydown', function () {
+jQuery('#logintopost').stop(true, true).fadeOut(100).fadeIn(100);
+return false;
+});
+
+// Log in to post for reply comments
+jQuery('#reply-comment').focus(function () {
+jQuery('#reply-logintopost').stop(true, true).slideDown(500);
+});
+jQuery('#reply-comment').blur(function () {
+jQuery('#reply-logintopost').stop(true, true).slideUp(500);
+});
+
+// Prevent typing if not logged in reply
+jQuery('#reply-comment').on('keydown', function () {
+jQuery('#reply-logintopost').stop(true, true).fadeOut(100).fadeIn(100);
+return false;
+});</script><script src=" {{asset ('assets/script/comment/comment.js')}} "></script>{% endblock %}</li>

@@ -1,0 +1,130 @@
+.table {
+  display: table;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+}
+
+.table-cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.modal {
+  width: 350px;
+  height: 500px;
+  margin: 0 auto;
+  background: #fff;
+  box-shadow: 2px 4px 4px 2px rgba(44, 99, 200, 0.35);
+  padding: 40px;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+button {
+  width: 100%;
+  -webkit-appearance: none;
+  line-height: 40px;
+  color: #fff;
+  border: none;
+  background-color: #4d75ca;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  position: relative;
+  bottom: 130px;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #8b71d1;
+}
+
+.form-input {
+  position: relative;
+  top: 70px;
+}
+
+.adresse input {
+  height: 25px;
+  border: 1px solid #e4dfd5;
+  background-color: #bfe3f3;
+  border-radius: 10px;
+  margin: 5px;
+  position: relative;
+  top: -125px;
+  left: 20%;
+}
+
+.adresse input:hover {
+  border: 2px solid #a8a9f7;
+  background-color: #8dd4e6;
+  color: white;
+}
+
+.google-facebook-icon {
+  position: relative;
+  top: 10%;
+}
+
+input::-moz-placeholder {
+  padding: 5px;
+}
+
+input:-ms-input-placeholder {
+  padding: 5px;
+}
+
+input::placeholder {
+  padding: 5px;
+}
+
+.google-facebook-icon {
+  position: relative;
+  top: -80px;
+}
+
+.google-facebook-icon img {
+  height: 30px;
+  width: 30px;
+  position: relative;
+  top: -45px;
+  left: 45%;
+  margin-left: 10px;
+}
+
+.connexionImgBG {
+  height: 40%;
+  width: 100%;
+  position: relative;
+}
+
+.form-input h2 {
+  opacity: 0.7;
+  background-color: #27272c;
+  position: relative;
+  top: -130px;
+  color: #f3f2f2;
+  text-align: center;
+}
+
+.mot-de-passe-oublie {
+  position: relative;
+  top: -90px;
+  text-align: center;
+}
+
+.mot-de-passe-oublie a {
+  text-decoration: none;
+  color: #8381da;
+}
+
+.rememberMe {
+  position: absolute;
+  top: 350px;
+}/*# sourceMappingURL=connexion.css.map */
