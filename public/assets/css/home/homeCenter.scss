@@ -288,11 +288,13 @@ img {
 
 // Page au milieu
 
-.articleCategries {
+.articleCategories {
   position: relative;
-  top: -150px;
+  top: -175px;
   margin: 15px;
-  background-color: rgb(207, 18, 18);
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: rgb(64, 51, 238);
   border: none;
   font-size: large;
   border-radius: 5px;

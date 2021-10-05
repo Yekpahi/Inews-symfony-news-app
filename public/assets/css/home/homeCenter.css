@@ -260,11 +260,13 @@ img {
   overflow-y: auto;
 }
 
-.articleCategries {
+.articleCategories {
   position: relative;
-  top: -150px;
+  top: -175px;
   margin: 15px;
-  background-color: #cf1212;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: #4033ee;
   border: none;
   font-size: large;
   border-radius: 5px;

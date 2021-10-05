@@ -2,7 +2,7 @@
 	<link
 	href="/your-path-to-fontawesome/css/all.css" rel="stylesheet">
 	<!--load all styles -->
-	<link rel="stylesheet" type="text/css" href=" {{asset ('assets/css/intermediaire/intermediaire.css')}}"/>
+
 	<link rel="stylesheet" type="text/css" href=" {{asset ('assets/css/home/homeCenter.css')}}"/>
 
 
@@ -17,7 +17,7 @@
 			</figure>
 
 		{% endfor %}
-		<button class="articleCategries">{{ article.categories.name}}</button>
+		<button class="articleCategories">{{ article.categories.name}}</button>
 
 		{% if article.statut == 1 %}
 			<div class="urgent">
