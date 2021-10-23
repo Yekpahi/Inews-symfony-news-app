@@ -156,9 +156,13 @@
 													</td>
 													<td>{{article.createdAt|date}}</td>
 													<td>
-														<a href="">
+														<a href="{{path('users_articles_delete',{id:article.id})}}">
 															<span class="g-action fa fa-trash"></span>
 														</a>
+														<a href="{{path('users_articles_edit',{id:article.id})}}">
+															<i class="fas fa-edit"></i>
+														</a>
+
 													</td>
 													<td>
 														{{ article.statut }}

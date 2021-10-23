@@ -57,7 +57,7 @@ class ArticlesController extends AbstractController
     }
 
     /**
-     * @Route("/details/{slug}", name="details")
+     * @Route("/details/{slug}", name="articles_details")
      */
     public function details($slug, ArticlesRepository $articlesRepo, Request $request)
     {

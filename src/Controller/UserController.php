@@ -7,6 +7,7 @@ use App\Entity\ChangePassword;
 use App\Entity\Images;
 use App\Form\ArticlesType;
 use App\Form\EditProfileType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -68,32 +69,46 @@ class UserController extends AbstractController
         ]);
     }
 
+
+
     /**
      * @Route("/user/articles/edit/{id}", name="users_articles_edit")
      */
-    public function editArticle(Articles $article, Request $request)
+    public function editarticle(Articles $article, Request $request, EntityManagerInterface $em)
     {
-        $this->denyAccessUnlessGranted('article_edit', $article);
         $form = $this->createForm(ArticlesType::class, $article);
-
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-            $article->setActive(false);
-            // On récupère les images transmises
-
-            $em = $this->getDoctrine()->getManager();
+            /** @var Articles $article */
+            $article = $form->getData();
             $em->persist($article);
             $em->flush();
-
-            return $this->redirectToRoute('user');
+            $this->addFlash('success', 'Article Created! Knowledge is power!');
+            return $this->redirectToRoute('user', [
+                'id' => $article->getId()
+            ]);
         }
-
-        return $this->render('user/articles/ajout.html.twig', [
-            'form' => $form->createView(),
-            'article' => $article
+        return $this->render('user/articles/ajouter-article.html.twig', [
+            'articleForm' => $form->createView(),
+            'form' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/user/articles/delete/{id}", name="users_articles_delete")
+     */
+    public function deleteArticle(int $id): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $article = $entityManager->getRepository(Articles::class)->find($id);
+        $entityManager->remove($article);
+        $entityManager->flush();
+
+        return $this->redirectToRoute("user");
+    }
+
+
+
 
     /**
      * @Route("/user/profil/modifier", name="user_profil_modifier")
