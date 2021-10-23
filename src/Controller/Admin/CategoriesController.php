@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategoriesController extends AbstractController
 {
     /**
-     * @Route("/", name="home")
+     * @Route("/home", name="home")
      */
     public function index(CategoriesRepository $catsRepo)
     {
@@ -36,7 +36,7 @@ class CategoriesController extends AbstractController
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($categorie);
             $em->flush();
@@ -58,7 +58,7 @@ class CategoriesController extends AbstractController
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($categorie);
             $em->flush();
@@ -70,5 +70,4 @@ class CategoriesController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-
 }

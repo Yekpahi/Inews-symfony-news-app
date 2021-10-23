@@ -6,15 +6,12 @@ use App\Entity\Articles;
 use App\Entity\ChangePassword;
 use App\Entity\Images;
 use App\Form\ArticlesType;
-
 use App\Form\EditProfileType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Dompdf\Dompdf;
-use Dompdf\Options;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends AbstractController
@@ -28,28 +25,45 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/user/articles/ajout", name="user_articles_ajout")
+     * @Route("/user/articles/ajout", name="user_articles_ajout", methods={"GET","POST"})
      */
-    public function ajoutArticle(Request $request)
+    public function ajoutarticle(Request $request): Response
     {
-        $article = new Articles;
-
-        $form = $this->createForm(ArticlesType::class, $article);
-
+        $article = new Articles();
+        $form = $this->createForm(articlesType::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // On récupère les images transmises
             $article->setUsers($this->getUser());
             $article->setActive(false);
-            // On récupère les images transmises
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($article);
-            $em->flush();
+            $images = $form->get('images')->getData();
+
+            // On boucle sur les images
+            foreach ($images as $image) {
+                // On génère un nouveau nom de fichier
+                $fichier = md5(uniqid()) . '.' . $image->guessExtension();
+
+                // On copie le fichier dans le dossier uploads
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $fichier
+                );
+
+                // On stocke l'image dans la base de données (son nom)
+                $img = new Images();
+                $img->setName($fichier);
+                $article->addImage($img);
+            }
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($article);
+            $entityManager->flush();
 
             return $this->redirectToRoute('user');
         }
-
         return $this->render('user/articles/ajouter-article.html.twig', [
+            'article' => $article,
             'form' => $form->createView(),
         ]);
     }
@@ -57,7 +71,7 @@ class UserController extends AbstractController
     /**
      * @Route("/user/articles/edit/{id}", name="users_articles_edit")
      */
-    public function editAnnonce(Articles $article, Request $request)
+    public function editArticle(Articles $article, Request $request)
     {
         $this->denyAccessUnlessGranted('article_edit', $article);
         $form = $this->createForm(ArticlesType::class, $article);
@@ -72,12 +86,12 @@ class UserController extends AbstractController
             $em->persist($article);
             $em->flush();
 
-            return $this->redirectToRoute('users');
+            return $this->redirectToRoute('user');
         }
 
         return $this->render('user/articles/ajout.html.twig', [
             'form' => $form->createView(),
-            'annonce' => $article
+            'article' => $article
         ]);
     }
 

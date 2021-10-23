@@ -48,32 +48,14 @@
 				<input type="text" placeholder="url ici ...">
 			</div>
 			<!--Charger fichier-->
-			<div class="charger-article">
-				<div>
-					<label for="myinput" class="btn btn-success">
-						Charger le(s) fichier(s)
-						{{ form_widget(form.images, {'attr' : {'type' : 'file',  "multiple":"multiple",  'id' : 'myinput', 'class' : 'form-input', 'placeholder' : "Redigez votre article",'data-rule-required':'true'}}) }}
-						<input id="myinput" type="file" onchange="myfun()" multiple="multiple">
-					</label>
-				</div>
 
-				<div id="showImg"></div>
-
-				<!-- modal for edit remark -->
-				<div id="showModelB4Del_removeImg" class="px-2 py-2">
-					<h4>Voulez-vous vraiment supprimer l'image?</h4>
-					<div class="d-flex">
-						<a href="javascript:void(0)" id="yesDelContact" class="btn btn-success mr-3">Yes</a>
-						<!-- <a href="javascript:void(0)" id='NoDelContact' class="btn btn-danger">No</a> -->
-					</div>
-					<span class="closModalMsg" id='closModalMsg'>X</span>
-				</div>
-			</div>
+			{{ form_row(form.images) }}
 			<!--Fin charger fichier-->
 			{{ form_widget(form.Valider, {'attr' : {'type' : 'submit', 'row': '4', 'style' : "height:auto", 'id' : 'article', 'class' : 'button-poster-article'}}) }}
 
 			{{ form_end(form) }}
 		</div>
+
 	</div>
 {% endblock %}
 {% block javascripts %}
