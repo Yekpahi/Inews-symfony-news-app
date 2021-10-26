@@ -2,368 +2,310 @@
 
 {% block stylesheets %}
 	<link rel="stylesheet" type="text/css" href=" {{asset ('assets/css/admin/admin.css')}}"/>
-	<link rel="stylesheet" type="text/css" href=" {{asset ('assets/css/admin/all-articles.css')}}"/>
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
 {% endblock %}
 
 {% block body %}
 
-	<aside>
-		<header>
-			<a href="{{ path ('user')}}">
-				<div><img class="profile-picture" src="{{asset(('uploads/images/avatar/' ~ app.user.avatar)|imagine_filter('avatar')) }}"/>
-					<p>
-						{{app.user.firstName}}
-						{{app.user.lastName}}
-					</p>
-				</div>
-			</a>
-		</header>
-		<nav class="side-navigation">
-			<ul>
-				<li class="active">
-					<a href="{{ path ('app_home')}}">
-						<i class="fa fa-home"></i>Accueil</a>
-				</li>
-				<li>
-					<a href=" {{ path ('admin_articles_home')}}">
-						<i class="fa fa-newspaper"></i>Tous les articles</a>
-				</li>
-				<li>
-					<a href="{{ path ('user')}}">
-						<i class="fa fa-user"></i>
-						{{app.user.firstName}}
-						{{app.user.lastName}}</a>
-				</li>
-				<li>
-					<a href="{{ path ('admin_categories_ajout')}}">
-						<i class="fa fa-comments"></i>Ajoute catégories</a>
-				</li>
-				<li>
-					<a href="{{ path ('admin_categories_home')}}">
-						<i class="fa fa-area-chart"></i>categorie Home</a>
-				</li>
-			</ul>
-		</nav>
-	</aside>
-	<main>
-		<header class="main-head">
-			<div class="icons">
-				<i class="fa fa-user-md"></i>
-				<i class="fa fa-comments-o"></i>
-				<i class="fa fa-bell-o">
-					<span class="number-alert">3</span>
-				</i>
-			</div>
-			<div class="logo">
-				<i class="fa fa-rocket"></i>
-			</div>
-			<div class="search">
-				<input type="text" name="search" placeholder="Type here to search..." autocomplete="off"/><i class="fa fa-search"></i>
-			</div>
-		</header>
-		<div class="container user">
-			<div class="user-card">
-				<a href="{{ path ('user')}}">
-					<figure><img src="{{asset(('uploads/images/avatar/' ~ app.user.avatar)|imagine_filter('avatar')) }}"/></figure>
 
+	<div class="page-wrapper chiller-theme toggled">
+		<a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+			<i class="fas fa-bars"></i>
+		</a>
+		<nav id="sidebar" class="sidebar-wrapper">
+			<div class="sidebar-content">
+				<div class="sidebar-brand">
+					<a href="{{ path ('app_home')}}">Accueil</a>
+					<div id="close-sidebar">
+						<i class="fas fa-times"></i>
+					</div>
+				</div>
+				<div class="sidebar-header">
+					<div class="user-pic">
+						<img class="img-responsive img-rounded" src="{{asset(('uploads/images/avatar/' ~ app.user.avatar)|imagine_filter('avatar')) }}" alt="User picture"/>
+					</div>
 					<div class="user-info">
-						<div class="name">
-							<span>{{app.user.firstName}}
-								{{app.user.lastName}}
-							</span>
+						<a href="{{ path ('user')}}" class="user-name">
+							{{app.user.firstName}}
+
+							<strong>
+								{{app.user.lastName}}</strong>
 						</a>
-						<i class="fa fa-star on"></i>
-						<i class="fa fa-star on"></i>
-						<i class="fa fa-star on"></i>
-						<i class="fa fa-star on"></i>
-						<i class="fa fa-star off"></i>
+						<span class="user-role">Administrator</span>
+						<span class="user-status">
+							<i class="fa fa-circle"></i>
+							<span>Online</span>
+						</span>
 					</div>
-					<div class="user-role">
-						Student &nbsp; &#8226;<a href="#">Learn more</a>
-					</div>
-					<div class="experience-points">
-						<i class="fa fa-coffee"></i>8,977 exp</div>
 				</div>
+				<!-- sidebar-header  -->
+				<div class="sidebar-search">
+					<div>
+						<div class="input-group">
+							<input type="text" class="form-control search-menu" placeholder="Search...">
+							<div class="input-group-append">
+								<span class="input-group-text">
+									<i class="fa fa-search" aria-hidden="true"></i>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- sidebar-search  -->
+				<div class="sidebar-menu">
+					<ul>
+						<li class="header-menu">
+							<span>General</span>
+						</li>
+						<li class="sidebar-dropdown">
+							<a href="#">
+								<i class="fa fa-tachometer-alt"></i>
+								<span>Dashboard</span>
+								<span class="badge badge-pill badge-warning">New</span>
+							</a>
+							<div class="sidebar-submenu">
+								<ul>
+									<li><a href="#">Dashboard 1<span class="badge badge-pill badge-success">Pro</span></a></li>
+									<li><a href="#">Dashboard 2</a></li>
+									<li><a href="#">Dashboard 3</a></li>
+								</ul>
+							</div>
+						</li>
+						<li class="sidebar-dropdown">
+							<a href="#">
+								<i class="fa fa-shopping-cart"></i>
+								<span>Articles</span>
+								<span class="badge badge-pill badge-danger">3</span>
+							</a>
+							<div class="sidebar-submenu">
+								<ul>
+									<li><a href=" {{ path ('admin_articles_home')}}">Listes des articles</a></li>
+									<li><a href=" {{ path ('admin_categories_home')}}">Products</a></li>
+									<li><a href=" {{ path ('admin_categories_ajout')}}">Orders</a></li>
+
+								</ul>
+							</div>
+						</li>
+						<li class="sidebar-dropdown">
+							<a href="#">
+								<i class="far fa-gem"></i>
+								<span>Components</span>
+							</a>
+							<div class="sidebar-submenu">
+								<ul>
+									<li><a href="#">General</a></li>
+									<li><a href="#">Panels</a></li>
+									<li><a href="#">Tables</a></li>
+									<li><a href="#">Icons</a></li>
+									<li><a href="#">Forms</a></li>
+								</ul>
+							</div>
+						</li>
+						<li class="sidebar-dropdown">
+							<a href="#">
+								<i class="fa fa-chart-line"></i>
+								<span>Charts</span>
+							</a>
+							<div class="sidebar-submenu">
+								<ul>
+									<li><a href="#">Pie chart</a></li>
+									<li><a href="#">Line chart</a></li>
+									<li><a href="#">Bar chart</a></li>
+									<li><a href="#">Histogram</a></li>
+								</ul>
+							</div>
+						</li>
+						<li class="sidebar-dropdown">
+							<a href="#">
+								<i class="fa fa-globe"></i>
+								<span>Maps</span>
+							</a>
+							<div class="sidebar-submenu">
+								<ul>
+									<li><a href="#">Google maps</a></li>
+									<li><a href="#">Open street map</a></li>
+								</ul>
+							</div>
+						</li>
+						<li class="header-menu">
+							<span>Extra</span>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa fa-book"></i>
+								<span>Documentation</span>
+								<span class="badge badge-pill badge-primary">Beta</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa fa-calendar"></i>
+								<span>Calendar</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa fa-folder"></i>
+								<span>Examples</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<!-- sidebar-menu  -->
 			</div>
-			<div class="action-links">
-				<ul>
-					<li><a href="#" data-title="Edit profile"><i class="fa fa-pencil"></i></a></li>
-					<li><a href="#" data-title="Sign out"><i class="fa fa-sign-out"></i></a></li>
-				</ul>
+			<!-- sidebar-content  -->
+			<div class="sidebar-footer">
+				<a href="#">
+					<i class="fa fa-bell"></i>
+					<span class="badge badge-pill badge-warning notification">3</span>
+				</a>
+				<a href="#">
+					<i class="fa fa-envelope"></i>
+					<span class="badge badge-pill badge-success notification">7</span>
+				</a>
+				<a href="#">
+					<i class="fa fa-cog"></i>
+					<span class="badge-sonar"></span>
+				</a>
+				<a href="#">
+					<i class="fa fa-power-off"></i>
+				</a>
 			</div>
-		</div>
-		<!-- main content-->
-		<div class="wrapper">
-			<ul class="category-navigation">
-				<li class="active">
-					<a href="#">Home</a>
-				</li>
-				<li>
-					<a href="#">Admins</a>
-				</li>
-				<li>
-					<a href="#">Knowledge board</a>
-				</li>
-				<li>
-					<a href="#">Forum</a>
-				</li>
-				<li>
-					<a href="#">Q&A</a>
-				</li>
-			</ul>
+		</nav>
+		<!-- sidebar-wrapper  -->
+		<main class="page-content">
 			<div class="container">
-				<div class="card orange">
-					<ul class="tabs">
-						<li class="active" data-tab="1">
-							<span>32</span>Tabs</li>
-						<li data-tab="2">
-							<span>4</span>Tabs</li>
-					</ul>
-					<div class="content visible" data-content="1">
-						<ul>
-							<li>Tab content 0</li>
-							<li>Tab content 1</li>
-							<li>Tab content 2</li>
-							<li>Tab content 3</li>
-							<li>Tab content 4</li>
-							<li>Tab content 5</li>
-							<ul class="hidden-content">
-								<li>More content</li>
-								<li>More content</li>
-								<li>More content</li>
-								<li>More content</li>
-							</ul>
-							<li class="show-more" data-less="Show less" data-more="Show more">
-								<span>Show more</span>
-								<i class="fa fa-chevron-down"></i>
-							</li>
-						</ul>
+				<h2>Pro Sidebar</h2>
+				<hr>
+				<div class="row">
+					<div class="form-group col-md-12">
+						<p>This is a responsive sidebar template with dropdown menu based on bootstrap 4 framework.</p>
+						<p>
+							You can find the complete code on
+							<a href="https://github.com/azouaoui-med/pro-sidebar-template" target="_blank">
+								Github</a>, it contains more themes and background image option</p>
 					</div>
-					<div class="content" data-content="2">
-						<ul>
-							<li>Tab content 5</li>
-							<li>Tab content 4</li>
-							<li>Tab content 3</li>
-							<li>Tab content 2</li>
-							<li>Tab content 1</li>
-							<li>Tab content 0</li>
-							<ul class="hidden-content">
-								<li>More content</li>
-								<li>More content</li>
-								<li>More content</li>
-								<li>More content</li>
-							</ul>
-							<li class="show-more" data-less="Show less" data-more="Show more">
-								<span>Show more</span>
-								<i class="fa fa-chevron-down"></i>
-							</li>
-						</ul>
+					<div class="form-group col-md-12">
+						<iframe src="https://ghbtns.com/github-btn.html?user=azouaoui-med&repo=pro-sidebar-template&type=star&count=true&size=small" frameborder="0" scrolling="0" width="90px" height="30px"></iframe>
+						<iframe src="https://ghbtns.com/github-btn.html?user=azouaoui-med&repo=pro-sidebar-template&type=fork&count=true&size=small" frameborder="0" scrolling="0" width="90px" height="30px"></iframe>
+					</div>
+					<div class="form-group col-md-12">
+						<div class="alert alert-success" role="alert">
+							<h4 class="alert-heading">New !</h4>
+							<p>New react pro sidebar library is now available on
+								<a href="https://www.npmjs.com/package/react-pro-sidebar" target="_blank">npm</a>
+								<a href="https://github.com/azouaoui-med/react-pro-sidebar" target="_blank">
+									<img alt="GitHub stars" src="https://img.shields.io/github/stars/azouaoui-med/react-pro-sidebar?style=social"/>
+								</a>
+							</p>
+							<a href="https://github.com/azouaoui-med/react-pro-sidebar" target="_blank" class="btn btn-sm btn-primary mr-2">
+								Github</a>
+							<a href="https://azouaoui-med.github.io/react-pro-sidebar" target="_blank" class="btn btn-sm btn-success">
+								Demo</a>
+
+						</div>
+
 					</div>
 				</div>
-				<div class="card purple">
-					<ul class="tabs">
-						<li class="active" data-tab="3">
-							<span>21</span>Tabs</li>
-						<li data-tab="4">
-							<span>4</span>Tabs</li>
-					</ul>
-					<div class="content visible" data-content="3">
-						<ul class="has-icon">
-							<li>
-								<div class="icon">
-									<i class="fa fa-comment-o"></i>
-									<span>11</span>
-								</div>Tab content 0
-							</li>
-							<li>
-								<div class="icon">
-									<i class="fa fa-comment-o"></i>
-									<span>1</span>
-								</div>Tab content 0
-							</li>
-							<li>
-								<div class="icon">
-									<i class="fa fa-comment-o"></i>
-									<span>9</span>
-								</div>Tab content 0
-							</li>
-							<li>
-								<div class="icon">
-									<i class="fa fa-comment-o"></i>
-									<span>5</span>
-								</div>Tab content 0
-							</li>
-							<li>
-								<div class="icon">
-									<i class="fa fa-comment-o"></i>
-									<span>1</span>
-								</div>Tab content 0
-							</li>
-							<li>
-								<div class="icon">
-									<i class="fa fa-comment-o"></i>
-									<span>9</span>
-								</div>Tab content 0
-							</li>
-							<ul class="hidden-content">
-								<li>
-									<div class="icon">
-										<i class="fa fa-comment-o"></i>
-										<span>9</span>
-									</div>Tab content 0
-								</li>
-								<li>
-									<div class="icon">
-										<i class="fa fa-comment-o"></i>
-										<span>1</span>
-									</div>Tab content 0
-								</li>
-								<li>
-									<div class="icon">
-										<i class="fa fa-comment-o"></i>
-										<span>0</span>
-									</div>Tab content 0
-								</li>
-								<li>
-									<div class="icon">
-										<i class="fa fa-comment-o"></i>
-										<span>0</span>
-									</div>Tab content 0
-								</li>
-							</ul>
-							<li class="show-more" data-less="Show less" data-more="Show more">
-								<span>Show more</span>
-								<i class="fa fa-chevron-down"></i>
-							</li>
-						</ul>
+				<h5>More templates</h5>
+				<hr>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+						<div class="card rounded-0 p-0 shadow-sm">
+							<img src="https://user-images.githubusercontent.com/25878302/58369568-a49b2480-7efc-11e9-9ca9-2be44afacda1.png" class="card-img-top rounded-0" alt="Angular pro sidebar">
+							<div class="card-body text-center">
+								<h6 class="card-title">Angular Pro Sidebar</h6>
+								<a href="https://github.com/azouaoui-med/angular-pro-sidebar" target="_blank" class="btn btn-primary btn-sm">Github</a>
+								<a href="https://azouaoui-med.github.io/angular-pro-sidebar/demo/" target="_blank" class="btn btn-success btn-sm">Demo</a>
+								<hr>
+								<a href="https://github.com/azouaoui-med/react-pro-sidebar" target="_blank">
+									<img alt="GitHub stars" src="https://img.shields.io/github/stars/azouaoui-med/angular-pro-sidebar?style=social"/>
+								</a>
+								<a href="https://github.com/azouaoui-med/react-pro-sidebar" target="_blank">
+									<img alt="GitHub stars" src="https://img.shields.io/github/forks/azouaoui-med/angular-pro-sidebar?style=social"/>
+								</a>
+
+							</div>
+
+						</div>
 					</div>
-					<div class="content" data-content="4">
-						<ul>
-							<li>Tab content 5</li>
-							<li>Tab content 4</li>
-							<li>Tab content 3</li>
-							<li>Tab content 2</li>
-							<li>Tab content 1</li>
-							<li>Tab content 0</li>
-							<ul class="hidden-content">
-								<li>More content</li>
-								<li>More content</li>
-								<li>More content</li>
-								<li>More content</li>
-							</ul>
-							<li class="show-more" data-less="Show less" data-more="Show more">
-								<span>Show more</span>
-								<i class="fa fa-chevron-down"></i>
-							</li>
-						</ul>
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+						<div class="card rounded-0 p-0 shadow-sm">
+							<img src="https://user-images.githubusercontent.com/25878302/58369258-33f20900-7ef8-11e9-8ff3-b277cb7ed7b4.PNG" class="card-img-top rounded-0" alt="Angular pro sidebar">
+							<div class="card-body text-center">
+								<h6 class="card-title">Angular Dashboard</h6>
+								<a href="https://github.com/azouaoui-med/lightning-admin-angular" target="_blank" class="btn btn-primary btn-sm">Github</a>
+								<a href="https://azouaoui-med.github.io/lightning-admin-angular/demo/" target="_blank" class="btn btn-success btn-sm">Demo</a>
+								<hr>
+								<a href="https://github.com/azouaoui-med/react-pro-sidebar" target="_blank">
+									<img alt="GitHub stars" src="https://img.shields.io/github/stars/azouaoui-med/lightning-admin-angular?style=social"/>
+								</a>
+								<a href="https://github.com/azouaoui-med/react-pro-sidebar" target="_blank">
+									<img alt="GitHub stars" src="https://img.shields.io/github/forks/azouaoui-med/lightning-admin-angular?style=social"/>
+								</a>
+							</div>
+						</div>
 					</div>
 				</div>
-				<div class="card green">
-					<ul class="tabs">
-						<li class="active" data-tab="5">
-							<span>8</span>Tabs</li>
-						<li data-tab="6">
-							<span>4</span>Tabs</li>
-					</ul>
-					<div class="content visible" data-content="5">
-						<ul class="has-icon">
-							<li>
-								<div class="graph" data-text="100%" data-value="100">
-									<span class="value"></span>
-									<span class="bar"></span>
-								</div>Tab Content 3
-							</li>
-							<li>
-								<div class="graph" data-text="83%" data-value="83">
-									<span class="value"></span>
-									<span class="bar"></span>
-								</div>Tab Content 3
-							</li>
-							<li>
-								<div class="graph" data-text="100%" data-value="100">
-									<span class="value"></span>
-									<span class="bar"></span>
-								</div>Tab Content 3
-							</li>
-							<li>
-								<div class="graph" data-text="65%" data-value="65">
-									<span class="value"></span>
-									<span class="bar"></span>
-								</div>Tab Content 3
-							</li>
-							<li>
-								<div class="graph" data-text="25%" data-value="25">
-									<span class="value"></span>
-									<span class="bar"></span>
-								</div>Tab Content 3
-							</li>
-							<li>
-								<div class="graph" data-text="40%" data-value="40">
-									<span class="value"></span>
-									<span class="bar"></span>
-								</div>Tab Content 3
-							</li>
-							<ul class="hidden-content">
-								<li>
-									<div class="graph" data-text="100%" data-value="100">
-										<span class="value"></span>
-										<span class="bar"></span>
-									</div>Tab Content 3
-								</li>
-								<li>
-									<div class="graph" data-text="100%" data-value="100">
-										<span class="value"></span>
-										<span class="bar"></span>
-									</div>Tab Content 3
-								</li>
-								<li>
-									<div class="graph" data-text="100%" data-value="100">
-										<span class="value"></span>
-										<span class="bar"></span>
-									</div>Tab Content 3
-								</li>
-								<li>
-									<div class="graph" data-text="100%" data-value="100">
-										<span class="value"></span>
-										<span class="bar"></span>
-									</div>Tab Content 3
-								</li>
-							</ul>
-							<li class="show-more" data-less="Show less" data-more="Show more">
-								<span>Show more</span>
-								<i class="fa fa-chevron-down"></i>
-							</li>
-						</ul>
+				<hr>
+
+				<footer class="text-center">
+					<div class="mb-2">
+						<small>
+							© 2020 made with
+							<i class="fa fa-heart" style="color:red"></i>
+							by -
+							<a target="_blank" rel="noopener noreferrer" href="https://azouaoui.netlify.com">
+								Mohamed Azouaoui
+							</a>
+						</small>
 					</div>
-					<div class="content" data-content="6">
-						<ul>
-							<li>Tab content 5</li>
-							<li>Tab content 4</li>
-							<li>Tab content 3</li>
-							<li>Tab content 2</li>
-							<li>Tab content 1</li>
-							<li>Tab content 0</li>
-							<ul class="hidden-content">
-								<li>More content</li>
-								<li>More content</li>
-								<li>More content</li>
-								<li>More content</li>
-							</ul>
-							<li class="show-more" data-less="Show less" data-more="Show more">
-								<span>Show more</span>
-								<i class="fa fa-chevron-down"></i>
-							</li>
-						</ul>
+
+					<div>
+						<a href="https://github.com/azouaoui-med" target="_blank">
+							<img alt="GitHub followers" src="https://img.shields.io/github/followers/azouaoui-med?label=github&style=social"/>
+						</a>
+						<a href="https://twitter.com/azouaoui_med" target="_blank">
+							<img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/azouaoui_med?label=twitter&style=social"/>
+						</a>
 					</div>
-				</div>
+				</footer>
+
 			</div>
-		</div>
 
+		</main>
+		<!-- page-content" -->
+	</div>
+	<!-- page-wrapper -->
 
-	</main>
 
 {% endblock %}
 {% block javascripts %}
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/esm/popper.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.js"></script>
+	<script>
+		$(".sidebar-dropdown > a").click(function () {
+$(".sidebar-submenu").slideUp(200);
+if ($(this).parent().hasClass("active")) {
+$(".sidebar-dropdown").removeClass("active");
+$(this).parent().removeClass("active");
+} else {
+$(".sidebar-dropdown").removeClass("active");
+$(this).next(".sidebar-submenu").slideDown(200);
+$(this).parent().addClass("active");
+}
+});
+
+$("#close-sidebar").click(function () {
+$(".page-wrapper").removeClass("toggled");
+});
+$("#show-sidebar").click(function () {
+$(".page-wrapper").addClass("toggled");
+});
+	</script>
+
 {% endblock %}

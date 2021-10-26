@@ -1,115 +1,165 @@
-{% block stylesheets %}
-	<link
-	href="/your-path-to-fontawesome/css/all.css" rel="stylesheet">
-	<!--load all styles -->
+{% extends 'base.html.twig' %}
 
-	<link rel="stylesheet" type="text/css" href=" {{asset ('assets/css/home/homeCenter.css')}}"/>
-
-
+{% block title %}Details page
 {% endblock %}
-{% block details %}
 
-	<article class="article article-center">
-		{% for image in article.images %}
+{% block body %}
 
-			<figure class="article-img">
-				<img src="{{asset(('uploads/images/articles/' ~ image.name)|imagine_filter('banniere')) }}" alt="{{ article.title }}">
-			</figure>
+	{% block stylesheets %}
+		<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+		<!--load all styles -->
+		<link rel="stylesheet" type="text/css" href=" {{asset ('assets/css/details/details.css')}}"/>
 
-		{% endfor %}
-		<button class="articleCategories">{{ article.categories.name}}</button>
 
-		{% if article.statut == 1 %}
-			<div class="urgent">
+	{% endblock %}
 
-				<span class='statut-urgent'>URGENT
-				</span>
-				<h2 class='leTexte'>
-					{{ article.title}}
-				</h2>
-			</div>
-		{% elseif article.statut == 2 %}
-			<div class="bonheur">
 
-				<span class='statut-bonheur'>BONHEUR
-				</span>
-				<h2 class='leTexte'>
-					{{ article.title}}
-				</h2>
-			</div>
-		{% elseif article.statut == 3 %}
-			<div class="triste">
+	<!-- Debut header-->
+	{% block header %}
+		{% include "header/header.html.twig" %}
+	{% endblock %}
 
-				<span class='statut-triste'>TRISTE
-				</span>
-				<h2 class='leTexte'>
-					{{ article.title}}
-				</h2>
-			</div>
-		{% else %}
-			<div class="post-title">
-				<h2>
-					{{ article.title}}
-				</h2>
-			</div>
-		{% endif %}
+	<br>
+	<br>
 
-		<h2 class="article-title article-title--medium article-title--medium-center">
-			<a href="#" class="article-link">{{ article.description}}</a>
-		</h2>
-		<div class="article-excerpt special-text">
-			<p>
-				{{ article.content}}
-			</p>
-		</div>
-		<button class="expand-button">
-			Continuez la lecture
-		</button>
-		<div class="article-author article-author-center">
-			<a href="{{ path('user', {id: article.id})}}">
+	<div class="section-news-detail">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
 
-				<div class="article-author-img">
-					<img src="https://images.unsplash.com/photo-1484807352052-23338990c6c6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"/>
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="#">Home</a>
+						</li>
+						<li class="breadcrumb-item active" aria-current="page">Library</li>
+					</ol>
+
+
+					<div class="news-block">
+						{% for image in article.images %}
+							<img src="{{asset(('uploads/images/articles/' ~ image.name)|imagine_filter('banniere')) }}" alt="{{ article.title }}">
+
+						{% endfor %}
+						<h3>
+							{{ article.title}}
+						</h3>
+						<p>16 sep 2020
+						</p>
+						<p>
+							{{ article.content}}</p>
+
+					</div>
+					<div class="clear"></div>
+
+					<div class="footer-news">
+						<div class="row"></div>
+						<p>Source link:
+							<a href="">Lorem ipsum dolor s</a>
+
+							<span class="pl-5">
+								Share :
+								<img src="https://pngimg.com/uploads/twitter/twitter_PNG29.png" alt="" class="sosmed">
+								<img src="https://pngimg.com/uploads/twitter/twitter_PNG29.png" alt="" class="sosmed">
+								<img src="https://pngimg.com/uploads/twitter/twitter_PNG29.png" alt="" class="sosmed">
+							</span>
+
+						</p>
+
+					</div>
+
+					<div class="related-new">
+						<h3>Related News</h3>
+					</div>
+
 				</div>
-				<div class="article-author-info ">
-					<dl>
-						<dt>{{ article.users.firstName}}
-							{{ article.users.lastName}}</dt>
-						<dd>Editor</dd>
-					</dl>
-				</div>
-			</a>
+			</div>
+
 		</div>
-		<!-- Espace commentaire-->
-		{% block comment %}
-			{% include "comment/comment.html.twig" %}
-		{% endblock %}
-		<!-- Fin Espace commentaire-->
-	</article>
+	</div>
 
+	<div class="section-related-news">
 
-{% endblock %}
-{% block javascripts %}
-	<script>
-		// button connectez vous avant de commenter const button = document.querySelector(" .btn-join");
-const modal = document.querySelector(" .overlay");
-const close = document.querySelector(" .annuler");
-button.addeventlistener(" click", function () {
-modal.style.display = " block"
-})
-close.addeventlistener(" click", function () {
-modal.style.display = " none"
-})
+		<div class="container mt-4">
+			<div class="row">
 
-document.body.addeventlistener(" click", function (e) {
-if (e.target.classList[0] == " overlay") {
-modal.style.display = " none"
-}
-});
-	</script>
+				<div class="col-lg-4 col-md-4 col-sm-12">
+					<div class="card">
+						<div class="card-body card-news">
+							<div class="row">
+								<div class="col-5">
+									<img src="https://www.iconfinder.com/data/icons/interface-elements-iv/512/Square-512.png" alt="">
+								</div>
+								<div class="col-7">
+									<h5>judul ebnwjehw hewj</h5>
+									<p>date</p>
+									<p>
+										tincidunt mauris ultricies justo feugiat, in ultricies sem venenatis. Etiam
+																																																		                                        sodales
+																																																		                                        leo
+																																																		                                        in
+																																																		                                        iaculis
+									</p>
+									<p>read more</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-12">
+					<div class="card">
+						<div class="card-body card-news">
+							<div class="row">
+								<div class="col-5">
+									<img src="https://www.iconfinder.com/data/icons/interface-elements-iv/512/Square-512.png" alt="">
+								</div>
+								<div class="col-7">
+									<h5>judul ebnwjehw hewj</h5>
+									<p>date</p>
+									<p>
+										tincidunt mauris ultricies justo feugiat, in ultricies sem venenatis. Etiam
+																																																		                                        sodales
+																																																		                                        leo
+																																																		                                        in
+																																																		                                        iaculis
+									</p>
+									<p>read more</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-12">
+					<div class="card">
+						<div class="card-body card-news">
+							<div class="row">
+								<div class="col-5">
+									<img src="https://www.iconfinder.com/data/icons/interface-elements-iv/512/Square-512.png" alt="">
+								</div>
+								<div class="col-7">
+									<h5>judul ebnwjehw hewj</h5>
+									<p>date</p>
+									<p>
+										tincidunt mauris ultricies justo feugiat, in ultricies sem venenatis. Etiam
+																																																		                                        sodales
+																																																		                                        leo
+																																																		                                        in
+																																																		                                        iaculis
+									</p>
+									<p>read more</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-
+	<br>
+	<br>
 	<script src="{{asset('assets/script/home/homeCenter.js')}}"></script>
 
+	<script src=" {{asset ('assets/script/comment/comment.js')}}"></script>
 
 {% endblock %}

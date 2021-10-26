@@ -1,0 +1,276 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un article!
+{% endblock %}
+
+{% block body %}
+
+	{% block stylesheets %}
+		<link
+		href="/your-path-to-fontawesome/css/all.css" rel="stylesheet">
+		<!--load all styles -->
+		<link rel="stylesheet" type="text/css" href=" {{asset ('assets/css/home/homeCenter.css')}}"/>
+
+
+	{% endblock %}
+
+
+	<!-- Debut header-->
+	{% block header %}
+		{% include "header/header.html.twig" %}
+	{% endblock %}
+
+
+	<!-- Page Gauche -->
+
+	<!-- Page intermediaire -->
+
+	<!-- Fin Page intermediaire -->
+
+	<!-- Main page -->
+
+		<main class="responsive-wrapper"> <div class="magazine-layout">
+			<div class="magazine-column"></div>
+			<!-- Debut Page de centre -->
+			<div class="magazine-column">
+				<!-- Debut details  -->
+
+				<!-- card du bas -->
+					<article class="article"> <div
+						class="cart-article-bas-container">
+						<!-- Debut 1 card-->
+						<a class="cardoArticle" href="">
+							<h3>
+								<button class="button_card_çategorie">
+									Catégorie</button>
+								Les ivoiriens vont bien et toujours bien</h3>
+							<img src="{{ asset ('assets/images/3.jpg')}}" class="image-post-bas" alt="">
+							<span class="posteur">
+								<img class="avatar-post-bas" src="{{ asset ('assets/images/profil.png')}}" alt="">
+								James Marsden</span>
+							<p class="post-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit...</p>
+						</a>
+						<!-- Fin 1 card-->
+						<!-- Debut 1 card-->
+						<a class="cardoArticle" href="">
+							<h3>
+								<button class="button_card_çategorie">
+									Catégorie</button>
+								Les ivoiriens vont bien et toujours bien</h3>
+							<img src="{{ asset ('assets/images/3.jpg')}}" class="image-post-bas" alt="">
+							<span class="posteur">
+								<img class="avatar-post-bas" src="{{ asset ('assets/images/profil.png')}}" alt="">
+								James Marsden</span>
+							<p class="post-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit...</p>
+						</a>
+						<!-- Fin 1 card-->
+						<!-- Debut 1 card-->
+						<a class="cardoArticle" href="">
+							<h3>
+								<button class="button_card_çategorie">
+									Catégorie</button>
+								Les ivoiriens vont bien et toujours bien</h3>
+							<img src="{{ asset ('assets/images/3.jpg')}}" class="image-post-bas" alt="">
+							<span class="posteur">
+								<img class="avatar-post-bas" src="{{ asset ('assets/images/profil.png')}}" alt="">
+								James Marsden</span>
+							<p class="post-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit...</p>
+						</a>
+						<!-- Fin 1 card-->
+						<!-- Debut 1 card-->
+						<a class="cardoArticle" href="">
+							<h3>
+								<button class="button_card_çategorie">
+									Catégorie</button>
+								Les ivoiriens vont bien et toujours bien</h3>
+							<img src="{{ asset ('assets/images/3.jpg')}}" class="image-post-bas" alt="">
+							<span class="posteur">
+								<img class="avatar-post-bas" src="{{ asset ('assets/images/profil.png')}}" alt="">
+								James Marsden</span>
+							<p class="post-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit...</p>
+						</a>
+						<!-- Fin 1 card-->
+
+						<!-- Debut 1 card-->
+						<a class="cardoArticle" href="">
+							<h3>
+								<button class="button_card_çategorie">
+									Catégorie</button>
+								Les ivoiriens vont bien et toujours bien</h3>
+							<img src="{{ asset ('assets/images/3.jpg')}}" class="image-post-bas" alt="">
+							<span class="posteur">
+								<img class="avatar-post-bas" src="{{ asset ('assets/images/profil.png')}}" alt="">
+								James Marsden</span>
+							<p class="post-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit...</p>
+						</a>
+						<!-- Fin 1 card-->
+
+						<!-- Debut 1 card-->
+						<a class="cardoArticle" href="">
+							<h3>
+								<button class="button_card_çategorie">
+									Catégorie</button>
+								Les ivoiriens vont bien et toujours bien</h3>
+							<img src="{{ asset ('assets/images/3.jpg')}}" class="image-post-bas" alt="">
+							<span class="posteur">
+								<img class="avatar-post-bas" src="{{ asset ('assets/images/profil.png')}}" alt="">
+								James Marsden</span>
+							<p class="post-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit...</p>
+						</a>
+						<!-- Fin 1 card-->
+						<!-- Debut 1 card-->
+						<a class="cardoArticle" href="">
+							<h3>
+								<button class="button_card_çategorie">
+									Catégorie</button>
+								Les ivoiriens vont bien et toujours bien</h3>
+							<img src="{{ asset ('assets/images/3.jpg')}}" class="image-post-bas" alt="">
+							<span class="posteur">
+								<img class="avatar-post-bas" src="{{ asset ('assets/images/profil.png')}}" alt="">
+								James Marsden</span>
+							<p class="post-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit...</p>
+						</a>
+						<!-- Fin 1 card-->
+					</div>
+				</article>
+			</div>
+			<!-- Fin Page de centre details -->
+			<div class="magazine-column">
+				<article class="article">
+					{% for article in articles %}
+						<figure class="snip1493">
+							<div class="image">
+								<img src="{{ asset('uploads/images/articles/' ~ article.images[0].name)|imagine_filter('square') }}" alt="{{ article.title }}">
+							</div>
+							<figcaption>
+								<div class="date">
+									<span class="day">28</span>
+									<span class="month">Oct</span>
+								</div>
+
+								<h3>
+									<a href="{{ path('articles_details', {slug: article.slug})}}">
+										{{ article.title }}
+									</a>
+								</h3>
+
+
+								<p>
+									{{ article.description|striptags|u.truncate(200, '...') }}
+								</p>
+								<footer>
+									<div class="views">
+										<i class="ion-eye"></i>2,907</div>
+									<div class="love">
+										<i class="ion-heart"></i>623</div>
+									<div class="comments">
+										<i class="ion-chatboxes"></i>23</div>
+								</footer>
+							</figcaption>
+
+						</figure>
+					{% endfor %}
+				</article>
+			</div>
+			<div class="magazine-column">
+				<article class="article">
+					<div class="info-urgent">
+						<div class="flashinfo">
+							<h2>FLASH INFOS</h2>
+						</div>
+						<div class="news-urgent">
+							<button>10:20</button>
+							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+						</div>
+						<div class="news-urgent">
+							<button>10:20</button>
+							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+						</div>
+						<div class="news-urgent">
+							<button>10:20</button>
+							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+						</div>
+						<div class="news-urgent">
+							<button>10:20</button>
+							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+						</div>
+						<div class="news-urgent">
+							<button>10:20</button>
+							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+						</div>
+						<div class="news-urgent">
+							<button>10:20</button>
+							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+						</div>
+						<div class="news-urgent">
+							<button>10:20</button>
+							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+						</div>
+					</div>
+				</article>
+				<article class="article">
+					<aside class="aside">
+
+						<a href="#" class="article-card">
+
+							<div class="article-card__thumbnail">
+								<img src="{{ asset ('assets/images/1.jpg')}}" class="particle-img" alt=""/>
+							</div>
+							<div class="article-card__lower-third">
+								<h2 class="article-card__header">March Madness 2019 Preview</h2>
+								<div class="article-card__subheader">
+									<div class="article-card__author">
+										<span>Written by Daniel Whalen</span>
+									</div>
+									<p class="article-card__description">
+										The tournament seeds are set; who's your pick?
+									</p>
+								</div>
+							</div>
+							<div class="article-card__tag-container">
+
+								<div class="article-card__tags">
+									<span class="tag">NCAA</span>
+									<span class="tag">Basketball</span>
+									<span class="tag">March Madness</span>
+									<span class="tag">Sports</span>
+									<span class="tag">College</span>
+								</div>
+							</div>
+						</a>
+					</aside>
+				</article>
+			</div>
+		</div>
+	</main>
+	<!-- Fin Page centre -->
+<!-- Debut Page droite -->
+	<!-- Fin Page de Droite -->
+	<!-- Debut Footer -->
+	<!-- Fin Footer -->
+{% endblock %}
+{% block javascripts %}
+	<script>
+		// button connectez vous avant de commenter const button = document.querySelector(" .btn-join");
+const modal = document.querySelector(" .overlay");
+const close = document.querySelector(" .annuler");
+button.addeventlistener(" click", function () {
+modal.style.display = " block"
+})
+close.addeventlistener(" click", function () {
+modal.style.display = " none"
+})
+
+document.body.addeventlistener(" click", function (e) {
+if (e.target.classList[0] == " overlay") {
+modal.style.display = " none"
+}
+});
+	</script>
+
+
+	<script src="{{asset('assets/script/home/homeCenter.js')}}"></script>
+
+	<script src=" {{asset ('assets/script/comment/comment.js')}}"></script>
+
+{% endblock %}

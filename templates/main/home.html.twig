@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter un article!
+{% block title %}Acceuil
 {% endblock %}
 
 {% block body %}
@@ -9,7 +9,7 @@
 		<link
 		href="/your-path-to-fontawesome/css/all.css" rel="stylesheet">
 		<!--load all styles -->
-		<link rel="stylesheet" type="text/css" href=" {{asset ('assets/css/home/homeCenter.css')}}"/>
+		<link rel="stylesheet" type="text/css" href=" {{asset ('assets/css/home/home.css')}}"/>
 
 
 	{% endblock %}
@@ -20,260 +20,311 @@
 		{% include "header/header.html.twig" %}
 	{% endblock %}
 
+	<header></header>
 
-	<!-- Page Gauche -->
+	<div class="todays-events"></div>
 
-	<!-- Page intermediaire -->
+	<div class="container">
 
-	<!-- Fin Page intermediaire -->
+		<div class="news">
 
-	<!-- Main page -->
+			<div class="main-stories">
 
-		<main class="responsive-wrapper"> <div class="magazine-layout">
-			<div class="magazine-column"></div>
-			<!-- Debut Page de centre -->
-			<div
-				class="magazine-column">
-				<!-- Debut details  -->
-				{% block details %}
-					{% include "articles/details.html.twig" %}
-				{% endblock %}
+				<div class="featured-post">
 
-				<!-- card du bas -->
-				<article class="article">
 					<div
-						class="cart-article-bas-container">
-						<!-- Debut 1 card-->
-						<a class="cardoArticle" href="">
-							<h3>
-								<button class="button_card_çategorie">
-									Catégorie</button>
-								Les ivoiriens vont bien et toujours bien</h3>
-							<img src="{{ asset ('assets/images/3.jpg')}}" class="image-post-bas" alt="">
-							<span class="posteur">
-								<img class="avatar-post-bas" src="{{ asset ('assets/images/profil.png')}}" alt="">
-								James Marsden</span>
-							<p class="post-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit...</p>
-						</a>
-						<!-- Fin 1 card-->
-						<!-- Debut 1 card-->
-						<a class="cardoArticle" href="">
-							<h3>
-								<button class="button_card_çategorie">
-									Catégorie</button>
-								Les ivoiriens vont bien et toujours bien</h3>
-							<img src="{{ asset ('assets/images/3.jpg')}}" class="image-post-bas" alt="">
-							<span class="posteur">
-								<img class="avatar-post-bas" src="{{ asset ('assets/images/profil.png')}}" alt="">
-								James Marsden</span>
-							<p class="post-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit...</p>
-						</a>
-						<!-- Fin 1 card-->
-						<!-- Debut 1 card-->
-						<a class="cardoArticle" href="">
-							<h3>
-								<button class="button_card_çategorie">
-									Catégorie</button>
-								Les ivoiriens vont bien et toujours bien</h3>
-							<img src="{{ asset ('assets/images/3.jpg')}}" class="image-post-bas" alt="">
-							<span class="posteur">
-								<img class="avatar-post-bas" src="{{ asset ('assets/images/profil.png')}}" alt="">
-								James Marsden</span>
-							<p class="post-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit...</p>
-						</a>
-						<!-- Fin 1 card-->
-						<!-- Debut 1 card-->
-						<a class="cardoArticle" href="">
-							<h3>
-								<button class="button_card_çategorie">
-									Catégorie</button>
-								Les ivoiriens vont bien et toujours bien</h3>
-							<img src="{{ asset ('assets/images/3.jpg')}}" class="image-post-bas" alt="">
-							<span class="posteur">
-								<img class="avatar-post-bas" src="{{ asset ('assets/images/profil.png')}}" alt="">
-								James Marsden</span>
-							<p class="post-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit...</p>
-						</a>
-						<!-- Fin 1 card-->
-
-						<!-- Debut 1 card-->
-						<a class="cardoArticle" href="">
-							<h3>
-								<button class="button_card_çategorie">
-									Catégorie</button>
-								Les ivoiriens vont bien et toujours bien</h3>
-							<img src="{{ asset ('assets/images/3.jpg')}}" class="image-post-bas" alt="">
-							<span class="posteur">
-								<img class="avatar-post-bas" src="{{ asset ('assets/images/profil.png')}}" alt="">
-								James Marsden</span>
-							<p class="post-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit...</p>
-						</a>
-						<!-- Fin 1 card-->
-
-						<!-- Debut 1 card-->
-						<a class="cardoArticle" href="">
-							<h3>
-								<button class="button_card_çategorie">
-									Catégorie</button>
-								Les ivoiriens vont bien et toujours bien</h3>
-							<img src="{{ asset ('assets/images/3.jpg')}}" class="image-post-bas" alt="">
-							<span class="posteur">
-								<img class="avatar-post-bas" src="{{ asset ('assets/images/profil.png')}}" alt="">
-								James Marsden</span>
-							<p class="post-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit...</p>
-						</a>
-						<!-- Fin 1 card-->
-						<!-- Debut 1 card-->
-						<a class="cardoArticle" href="">
-							<h3>
-								<button class="button_card_çategorie">
-									Catégorie</button>
-								Les ivoiriens vont bien et toujours bien</h3>
-							<img src="{{ asset ('assets/images/3.jpg')}}" class="image-post-bas" alt="">
-							<span class="posteur">
-								<img class="avatar-post-bas" src="{{ asset ('assets/images/profil.png')}}" alt="">
-								James Marsden</span>
-							<p class="post-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit...</p>
-						</a>
-						<!-- Fin 1 card-->
+						class="featured-image">
+						<!--  <img src="http://pbs.twimg.com/media/DOjzRiMUQAABOJ2.jpg">  -->
+						<img src="https://www.sofoot.com/IMG/img_580_380_center_articles-503858.jpg">
 					</div>
-				</article>
-			</div>
-			<!-- Fin Page de centre details -->
-			<div class="magazine-column">
-				<article class="article">
-					{% for article in articles %}
-						<figure class="snip1493">
-							<div class="image">
-								<img src="{{ asset('uploads/images/articles/' ~ article.images[0].name)|imagine_filter('square') }}" alt="{{ article.title }}">
-							</div>
-							<figcaption>
-								<div class="date">
-									<span class="day">28</span>
-									<span class="month">Oct</span>
-								</div>
 
-								<h3>
-									{{ article.title }}
-								</h3>
+					<div class="scoreboard">
 
+						<div class="tournament-title">2017 KHSAA 6A State Football Playoffs</div>
 
-								<p>
-									{{ article.description|striptags|u.truncate(200, '...') }}
-								</p>
-								<footer>
-									<div class="views">
-										<i class="ion-eye"></i>2,907</div>
-									<div class="love">
-										<i class="ion-heart"></i>623</div>
-									<div class="comments">
-										<i class="ion-chatboxes"></i>23</div>
-								</footer>
-							</figcaption>
-
-						</figure>
-					{% endfor %}
-				</article>
-			</div>
-			<div class="magazine-column">
-				<article class="article">
-					<div class="info-urgent">
-						<div class="flashinfo">
-							<h2>FLASH INFOS</h2>
-						</div>
-						<div class="news-urgent">
-							<button>10:20</button>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-						</div>
-						<div class="news-urgent">
-							<button>10:20</button>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-						</div>
-						<div class="news-urgent">
-							<button>10:20</button>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-						</div>
-						<div class="news-urgent">
-							<button>10:20</button>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-						</div>
-						<div class="news-urgent">
-							<button>10:20</button>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-						</div>
-						<div class="news-urgent">
-							<button>10:20</button>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-						</div>
-						<div class="news-urgent">
-							<button>10:20</button>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-						</div>
 					</div>
-				</article>
-				<article class="article">
-					<aside class="aside">
+					<!--  Scoreboard  -->
 
-						<a href="#" class="article-card">
+					<div class="featured-post-content">
 
-							<div class="article-card__thumbnail">
-								<img src="{{ asset ('assets/images/1.jpg')}}" class="particle-img" alt=""/>
-							</div>
-							<div class="article-card__lower-third">
-								<h2 class="article-card__header">March Madness 2019 Preview</h2>
-								<div class="article-card__subheader">
-									<div class="article-card__author">
-										<span>Written by Daniel Whalen</span>
-									</div>
-									<p class="article-card__description">
-										The tournament seeds are set; who's your pick?
-									</p>
-								</div>
-							</div>
-							<div class="article-card__tag-container">
+						<small>
+							<a href="">Category</a>
+						</small>
 
-								<div class="article-card__tags">
-									<span class="tag">NCAA</span>
-									<span class="tag">Basketball</span>
-									<span class="tag">March Madness</span>
-									<span class="tag">Sports</span>
-									<span class="tag">College</span>
-								</div>
-							</div>
-						</a>
-					</aside>
-				</article>
+						<h3>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper</h3>
+
+						<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+
+					</div>
+					<!--  Featured Post Content  -->
+
+				</div>
+				<!--  Featured Post  -->
+
+				<div class="recent-news">
+
+					<div class="stories">
+
+						<div class="recent-news-story">
+
+							<div class="recent-news-story-image"></div>
+
+							<h4>
+								<a href="" class="category">Category</a>
+								<a href="">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</a>
+							</h4>
+
+						</div>
+
+						<div class="recent-news-story">
+
+							<div class="recent-news-story-image"></div>
+
+							<h4>
+								<a href="" class="category">Category</a>
+								<a href="">SECOND ROUND PLAYOFF TICKETS</a>
+							</h4>
+
+						</div>
+
+						<div class="recent-news-story">
+
+							<div class="recent-news-story-image"></div>
+
+							<h4>
+								<a href="" class="category">Category</a>
+								<a href="">NORTHERN KENTUCKY TRACK AND CROSS COUNTRY COACHES ASSOCIATION ALL-REGION TEAM ANNOUCEMENT</a>
+							</h4>
+
+						</div>
+
+					</div>
+					<!--  Stories  -->
+
+				</div>
+				<!--  Recent News  -->
+
 			</div>
+			<!--  Main Stories  -->
+
+
+			<ul class="more-stories">
+				{% for article in articles %}
+					<li>
+						<div class="category"><img src="{{ asset('uploads/images/articles/' ~ article.images[0].name)|imagine_filter('square') }}" alt="{{ article.title }}"></div>
+						<div class="content">
+							<small>October 30th, 2017</small>
+							<a href="{{ path('articles_details', {slug: article.slug})}}">
+								{{ article.title }}
+							</a>
+						</div>
+					</li>
+				{% endfor %}
+			</ul>
+
 		</div>
-	</main>
-	<!-- Fin Page centre -->
-<!-- Debut Page droite -->
-	<!-- Fin Page de Droite -->
-	<!-- Debut Footer -->
-	<!-- Fin Footer -->
-{% endblock %}
-{% block javascripts %}
-	<script>
-		// button connectez vous avant de commenter const button = document.querySelector(" .btn-join");
-const modal = document.querySelector(" .overlay");
-const close = document.querySelector(" .annuler");
-button.addeventlistener(" click", function () {
-modal.style.display = " block"
-})
-close.addeventlistener(" click", function () {
-modal.style.display = " none"
-})
+		<!--  news  -->
 
-document.body.addeventlistener(" click", function (e) {
-if (e.target.classList[0] == " overlay") {
-modal.style.display = " none"
-}
-});
-	</script>
+	</div>
+	<!--  Container  -->
 
 
-	<script src="{{asset('assets/script/home/homeCenter.js')}}"></script>
+	<div class="records-box">
 
-	<script src=" {{asset ('assets/script/comment/comment.js')}}"></script>
+		<div class="container">
+
+			<h1>Section Title</h1>
+
+			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+
+			<div class="records-boxes">
+
+				<div class="box">
+
+					<h1>25</h1>
+
+					<h4>This Is A Sample</h4>
+
+				</div>
+
+				<div class="box">
+
+					<h1>25</h1>
+
+					<h4>This Is A Sample adskjfhas askljdhgf</h4>
+
+				</div>
+
+				<div class="box">
+
+					<h1>25</h1>
+
+					<h4>This Is A Sample</h4>
+
+				</div>
+
+				<div class="box">
+
+					<h1>25</h1>
+
+					<h4>This Is A Sample adskjfhas askljdhgf</h4>
+
+				</div>
+
+				<div class="box">
+
+					<h1>25</h1>
+
+					<h4>This Is A Sample adskjfhas askljdhgf</h4>
+
+				</div>
+
+			</div>
+			<!--  Record Boxes  -->
+
+		</div>
+
+	</div>
+	<!--  Records Box  -->
+
+	<div class="container">
+
+		<div class="home-page-columns">
+
+			<div class="column">
+
+				<h3>
+					<i class="fa fa-university fa-fw" aria-hidden="true"></i>
+					<a href="">Section Title</a>
+				</h3>
+
+				<p>Take a look at everyone who has been voted into the Campbell County High School Athletic Hall of Fame.</p>
+
+			</div>
+			<!--  Column  -->
+
+			<div class="column">
+
+				<h3>
+					<i class="fa fa-comments fa-fw" aria-hidden="true"></i>
+					<a href="">Section Title</a>
+				</h3>
+
+				<p>See contact information for all athletic department members as well as coaches.</p>
+
+			</div>
+			<!--  Column  -->
+
+			<div class="column">
+
+				<h3>
+					<i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>
+					<a href="">Section Title</a>
+				</h3>
+
+				<p>Headed to an away game? Don't get lost, visit the directions page.</p>
+
+			</div>
+
+		</div>
+		<!--  Home Page Columns  -->
+
+	</div>
+	<!--  Container  -->
+
+
+	<div class="social-media-section">
+
+		<div class="container">
+
+			<div class="instagram-feed">
+
+				<h1>
+					<em>
+						<span class="normal-font">#CAMEL</span>PRIDE</em>
+				</h1>
+
+				<h3>
+					<i class="fa fa-instagram" aria-hidden="true"></i>
+					Instagram Feed</h3>
+
+				<ul>
+					<li><a href=""><img src="https://www.officechairsonsale.com/product_images/migration/50158qltgry.jpg"></a></li>
+					<li><a href=""><img src="https://www.officechairsonsale.com/product_images/migration/50158qltgry.jpg"></a></li>
+					<li><a href=""><img src="https://www.officechairsonsale.com/product_images/migration/50158qltgry.jpg"></a></li>
+					<li><a href=""><img src="https://www.officechairsonsale.com/product_images/migration/50158qltgry.jpg"></a></li>
+				</ul>
+
+			</div>
+			<!--  Instagram Feed  -->
+
+			<div class="lower-social-media-section">
+
+				<div class="section">
+
+					<h3>
+						<i class="fa fa-twitter" aria-hidden="true"></i>
+						Twitter Feed</h3>
+
+					<div class="twitter-feed">
+
+						<ul>
+							<li><a href="">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam n</a></li>
+							<li><a href="">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam n</a></li>
+							<li><a href="">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam n</a></li>
+							<li><a href="">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam n</a></li>
+							<li><a href="">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam n</a></li>
+							<li><a href="">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam n</a></li>
+							<li><a href="">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam n</a></li>
+							<li><a href="">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam n</a></li>
+						</ul>
+
+					</div>
+					<!--  Twitter Feed  -->
+
+				</div>
+				<!--  Social Media Section  -->
+
+
+				<div class="section">
+
+					<h3>
+						<i class="fa fa-facebook" aria-hidden="true"></i>
+						Facebook Feed</h3>
+
+					<div class="facebook-feed">
+
+						<ul>
+							<li><a href="">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</a></li>
+							<li><a href="">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam n</a></li>
+							<li><a href="">ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod ti</a></li>
+							<li><a href="">consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt</a></li>
+							<li><a href="">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam n</a></li>
+							<li><a href="">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam n</a></li>
+							<li><a href="">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam n</a></li>
+							<li><a href="">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam n</a></li>
+						</ul>
+
+					</div>
+					<!--  Facebook Feed  -->
+
+				</div>
+				<!--  Social Media Section  -->
+
+			</div>
+			<!--  Lower Social Media Section  -->
+
+		</div>
+		<!--  Container  -->
+
+	</div>
+	<!--  Social Media Section  -->
+
+	<div class="email-signup"></div>
+	<!--  Email Signup  -->
+
+
+	<footer></footer>
+
 
 {% endblock %}

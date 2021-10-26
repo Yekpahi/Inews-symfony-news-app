@@ -57,7 +57,7 @@ class ArticlesController extends AbstractController
     }
 
     /**
-     * @Route("/details/{slug}", name="articles_details")
+     * @Route("/details/{slug}", name="details")
      */
     public function details($slug, ArticlesRepository $articlesRepo, Request $request)
     {
@@ -98,10 +98,10 @@ class ArticlesController extends AbstractController
             $em->flush();
 
             $this->addFlash('message', 'Votre commentaire a bien été envoyé');
-            return $this->redirectToRoute('app_home', ['slug' => $article->getSlug()]);
+            return $this->redirectToRoute('articles_details', ['slug' => $article->getSlug()]);
         }
 
-        return $this->render('main/home.html.twig', [
+        return $this->render('articles/details.html.twig', [
             'article' => $article,
             'commentForm' => $commentForm->createView()
         ]);
