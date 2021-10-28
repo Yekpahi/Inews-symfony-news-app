@@ -7,6 +7,7 @@ use App\Form\CategoriesType;
 use App\Repository\CategoriesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -69,5 +70,54 @@ class CategoriesController extends AbstractController
         return $this->render('admin/categories/ajout.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+
+    /**
+     * @Route("/delete/{id}", name="delete", requirements={"id" = "\d+"})
+     */
+    public function delete(Request $request, Categories $entity)
+    {
+        $form = $this->createFormBuilder()
+            ->setAction($this->generateUrl('admin_categories_delete', ['id' => $entity->getId()])) // action=""
+            ->setMethod('DELETE')
+            ->getForm();
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($entity);
+            $em->flush();
+
+            // Crée un message de confirmation
+            $t = $this->get('translator');
+            $this->addFlash('success', $t->trans('category.delete.success'));
+
+            return $this->redirectToRoute('admin_category_index');
+        }
+
+        return $this->render('admin/categories/index.html.twig', array(
+            'form' => $form->createView(), // Envoi le formulaire à la vue
+            'entity' => $entity,
+        ));
+    }
+
+
+
+
+
+    /**
+     * @Route("/delete/{id}", name="delete")
+     */
+    public function deletecategorie(Request $request, Categories $categorie): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $categorie->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($categorie);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute("admin_categories_home");
     }
 }

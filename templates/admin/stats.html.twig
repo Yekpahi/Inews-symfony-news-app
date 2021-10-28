@@ -1,13 +1,16 @@
-{% extends "base.html.twig" %}
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistiques
+{% endblock %}
 
 {% block stylesheets %}
 	<link rel="stylesheet" type="text/css" href=" {{asset ('assets/css/admin/admin.css')}}"/>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous">
 {% endblock %}
 
 {% block body %}
-
 
 	<div class="page-wrapper chiller-theme toggled">
 		<a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
@@ -176,77 +179,17 @@
 		<!-- sidebar-wrapper  -->
 		<main class="page-content">
 			<div class="container">
-				<h2>Pro Sidebar</h2>
+				<h2>Les Categories</h2>
 				<hr>
 				<div class="row">
-					<div class="form-group col-md-12">
-						<p>This is a responsive sidebar template with dropdown menu based on bootstrap 4 framework.</p>
-						<p>
-							You can find the complete code on
-							<a href="https://github.com/azouaoui-med/pro-sidebar-template" target="_blank">
-								Github</a>, it contains more themes and background image option</p>
-					</div>
-					<div class="form-group col-md-12">
-						<iframe src="https://ghbtns.com/github-btn.html?user=azouaoui-med&repo=pro-sidebar-template&type=star&count=true&size=small" frameborder="0" scrolling="0" width="90px" height="30px"></iframe>
-						<iframe src="https://ghbtns.com/github-btn.html?user=azouaoui-med&repo=pro-sidebar-template&type=fork&count=true&size=small" frameborder="0" scrolling="0" width="90px" height="30px"></iframe>
-					</div>
-					<div class="form-group col-md-12">
-						<div class="alert alert-success" role="alert">
-							<h4 class="alert-heading">New !</h4>
-							<p>New react pro sidebar library is now available on
-								<a href="https://www.npmjs.com/package/react-pro-sidebar" target="_blank">npm</a>
-								<a href="https://github.com/azouaoui-med/react-pro-sidebar" target="_blank">
-									<img alt="GitHub stars" src="https://img.shields.io/github/stars/azouaoui-med/react-pro-sidebar?style=social"/>
-								</a>
-							</p>
-							<a href="https://github.com/azouaoui-med/react-pro-sidebar" target="_blank" class="btn btn-sm btn-primary mr-2">
-								Github</a>
-							<a href="https://azouaoui-med.github.io/react-pro-sidebar" target="_blank" class="btn btn-sm btn-success">
-								Demo</a>
+					<canvas id="categories" width="400" height="100"></canvas>
 
-						</div>
 
-					</div>
 				</div>
-				<h5>More templates</h5>
+				<h5>Les articles</h5>
 				<hr>
 				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-						<div class="card rounded-0 p-0 shadow-sm">
-							<img src="https://user-images.githubusercontent.com/25878302/58369568-a49b2480-7efc-11e9-9ca9-2be44afacda1.png" class="card-img-top rounded-0" alt="Angular pro sidebar">
-							<div class="card-body text-center">
-								<h6 class="card-title">Angular Pro Sidebar</h6>
-								<a href="https://github.com/azouaoui-med/angular-pro-sidebar" target="_blank" class="btn btn-primary btn-sm">Github</a>
-								<a href="https://azouaoui-med.github.io/angular-pro-sidebar/demo/" target="_blank" class="btn btn-success btn-sm">Demo</a>
-								<hr>
-								<a href="https://github.com/azouaoui-med/react-pro-sidebar" target="_blank">
-									<img alt="GitHub stars" src="https://img.shields.io/github/stars/azouaoui-med/angular-pro-sidebar?style=social"/>
-								</a>
-								<a href="https://github.com/azouaoui-med/react-pro-sidebar" target="_blank">
-									<img alt="GitHub stars" src="https://img.shields.io/github/forks/azouaoui-med/angular-pro-sidebar?style=social"/>
-								</a>
-
-							</div>
-
-						</div>
-					</div>
-					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-						<div class="card rounded-0 p-0 shadow-sm">
-							<img src="https://user-images.githubusercontent.com/25878302/58369258-33f20900-7ef8-11e9-8ff3-b277cb7ed7b4.PNG" class="card-img-top rounded-0" alt="Angular pro sidebar">
-							<div class="card-body text-center">
-								<h6 class="card-title">Angular Dashboard</h6>
-								<a href="https://github.com/azouaoui-med/lightning-admin-angular" target="_blank" class="btn btn-primary btn-sm">Github</a>
-								<a href="https://azouaoui-med.github.io/lightning-admin-angular/demo/" target="_blank" class="btn btn-success btn-sm">Demo</a>
-								<hr>
-								<a href="https://github.com/azouaoui-med/react-pro-sidebar" target="_blank">
-									<img alt="GitHub stars" src="https://img.shields.io/github/stars/azouaoui-med/lightning-admin-angular?style=social"/>
-								</a>
-								<a href="https://github.com/azouaoui-med/react-pro-sidebar" target="_blank">
-									<img alt="GitHub stars" src="https://img.shields.io/github/forks/azouaoui-med/lightning-admin-angular?style=social"/>
-								</a>
-							</div>
-						</div>
-					</div>
+					<canvas id="articles" width="400" height="100"></canvas>
 				</div>
 				<hr>
 
@@ -278,11 +221,50 @@
 		<!-- page-content" -->
 	</div>
 	<!-- page-wrapper -->
-
-
 {% endblock %}
-{% block javascripts %}
 
+{% block javascripts %}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+	<script>
+		let categories = document.querySelector("#categories")
+let categGraph = new Chart(categories, {
+type: "bar",
+data: {
+labels: {{ categNom|raw }},
+datasets: [
+{
+label: "Répartition des catégories",
+data: {{ categCount|raw }},
+backgroundColor: {{ categColor|raw }}
+}
+]
+}
+})
+let articles = document.querySelector("#articles")
+let artGraph = new Chart(articles, {
+type: "bar",
+data: {
+labels: {{ dates|raw }},
+datasets: [
+{
+label: "Nombre d'articles",
+data: {{ articlesCount|raw }}
+}
+]
+},
+options: {
+scales: {
+yAxes: [
+{
+ticks: {
+beginAtZero: true
+}
+}
+]
+}
+}
+})
+	</script>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/esm/popper.js"></script>
@@ -307,5 +289,4 @@ $("#show-sidebar").click(function () {
 $(".page-wrapper").addClass("toggled");
 });
 	</script>
-
 {% endblock %}

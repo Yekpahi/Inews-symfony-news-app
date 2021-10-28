@@ -49,4 +49,44 @@ class AdminController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/stats", name="stats")
+     */
+    public function statistiques(CategoriesRepository $categRepo, ArticlesRepository $artRepo)
+    {
+        // On va chercher toutes les catégories
+        $categories = $categRepo->findAll();
+
+        $categNom = [];
+        $categColor = [];
+        $categCount = [];
+
+        // On "démonte" les données pour les séparer tel qu'attendu par ChartJS
+        foreach ($categories as $categorie) {
+            $categNom[] = $categorie->getName();
+            $categColor[] = $categorie->getColor();
+            $categCount[] = count($categorie->getArticles());
+        }
+
+        // On va chercher le nombre d'articles publiées par date
+        $articles = $artRepo->countByDate();
+
+        $dates = [];
+        $articlesCount = [];
+
+        // On "démonte" les données pour les séparer tel qu'attendu par ChartJS
+        foreach ($articles as $article) {
+            $dates[] = $article['dateArticles'];
+            $articlesCount[] = $article['count'];
+        }
+
+        return $this->render('admin/stats.html.twig', [
+            'categNom' => json_encode($categNom),
+            'categColor' => json_encode($categColor),
+            'categCount' => json_encode($categCount),
+            'dates' => json_encode($dates),
+            'articlesCount' => json_encode($articlesCount),
+        ]);
+    }
 }

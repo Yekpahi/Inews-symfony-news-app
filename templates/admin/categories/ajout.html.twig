@@ -36,7 +36,15 @@
 			</div>
 		</div>
 
+		<div class="form-group">
+			<div class="form-select js-form-select">
+				<label class="form-select__label">Choisir une couleur Couleur</label>
 
+				{{ form_widget(form.color, {'attr': {'class': 'form-select__select'}}) }}
+
+
+			</div>
+		</div>
 		<div class="form-group">
 			{{ form_widget(form.Valider, {'attr': {'type': 'submit', 'class': 'btn'}}) }}
 		</div>

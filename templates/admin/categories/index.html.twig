@@ -31,6 +31,7 @@
 							<th>Nom
 							</th>
 							<th>Parents</th>
+							<th>Couleur</th>
 							<th>Actions</th>
 						</tr>
 					</thead>
@@ -42,7 +43,7 @@
 								<td>{{categorie.id}}</td>
 								<td>{{categorie.name}}</td>
 								<td>{{categorie.parent}}</td>
-
+								<td>{{categorie.color}}</td>
 
 								<td data-searchable="false">
 									<div class="btn-group btn-group-sm" role="group">
@@ -54,9 +55,13 @@
 										</button>
 
 										<!-- Supprimer button-->
-										<button type="button" class="btn btn-outline-dark modal-trigger" id="btn-confirm" data-target="modal-delete" data-id="{{categorie.id}}" data-titre="{{categorie.name}}">
-											<i class="fas fa-trash"></i>
-										</button>
+
+										<form method="post" action="{{ path('admin_categories_delete', {'id': categorie.id}) }}" onsubmit="return confirm('Etes-vous certain(e) de vouloir supprimer cette catégorie ?');">
+											<input type="hidden" name="_method" value="DELETE">
+											<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ categorie.id) }}">
+											<button class="btn btn-danger btn-sm mt-1">Sup.</button>
+										</form>
+
 
 										<!-- Fin Supprimer button-->
 									</div>

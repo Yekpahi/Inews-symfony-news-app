@@ -38,6 +38,22 @@ class ArticlesRepository extends ServiceEntityRepository
         }
         return $query->getQuery()->getResult();
     }
+    /**
+     * Returns number of "Articles" per day
+     * @return void 
+     */
+    public function countByDate()
+    {
+        // $query = $this->createQueryBuilder('a')
+        //     ->select('SUBSTRING(a.created_at, 1, 10) as dateArticles, COUNT(a) as count')
+        //     ->groupBy('dateArticles')
+        // ;
+        // return $query->getQuery()->getResult();
+        $query = $this->getEntityManager()->createQuery("
+            SELECT SUBSTRING(a.created_at, 1, 10) as dateArticles, COUNT(a) as count FROM App\Entity\Articles a GROUP BY dateArticles
+        ");
+        return $query->getResult();
+    }
 
 
     // /**

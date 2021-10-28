@@ -4,11 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Articles;
 use App\Entity\Comments;
-use App\Entity\User;
+
 use App\Form\CommentsType;
 use App\Repository\ArticlesRepository;
 use App\Repository\CategoriesRepository;
-use App\Service\SendMailService;
+
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
