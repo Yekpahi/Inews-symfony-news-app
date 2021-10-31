@@ -6,6 +6,7 @@ use App\Entity\Comments;
 use App\Form\CommentsType;
 use App\Form\SearchArticleType;
 use App\Repository\ArticlesRepository;
+use App\Repository\LauneRepository;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,10 +18,12 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="app_home")
      */
-    public function index(ArticlesRepository $articlesRepo, Request $request)
+    public function index(ArticlesRepository $articlesRepo, LauneRepository $launeRepo, Request $request)
     {
         $articles = $articlesRepo->findBy(['active' => true], ['created_at' => 'desc'], 5);
+        $laune = $launeRepo->findBy(['active' => true], ['created_at' => 'desc'], 5);
         $article = $articlesRepo->findOneBy([]);
+        $une = $launeRepo->findOneBy([]);
         $form = $this->createForm(SearchArticleType::class);
         $search = $form->handleRequest($request);
 
@@ -36,6 +39,7 @@ class MainController extends AbstractController
         if (!$article) {
             throw new NotFoundHttpException('Pas d\'article trouvé');
         }
+
         // Partie commentaires
         // On crée le commentaire "vierge"
         $comment = new Comments;
@@ -73,6 +77,8 @@ class MainController extends AbstractController
             'commentForm' => $commentForm->createView(),
             'article' => $article,
             'articles' => $articles,
+            'laune' => $laune,
+            'une' => $une,
             'form' => $form->createView()
         ]);
     }

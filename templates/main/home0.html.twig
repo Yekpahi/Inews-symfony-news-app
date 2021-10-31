@@ -1,0 +1,328 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Acceuil
+{% endblock %}
+
+{% block body %}
+
+	{% block stylesheets %}
+
+		<link rel="stylesheet" type="text/css" href=" {{asset ('assets/css/home/homeCenter.css')}}"/>
+
+	{% endblock %}
+
+	<header>
+		<div class="nav nav1st">
+			<ul>
+				<li><img src="https://www.bbc.co.uk" width="84" height="24" alt="BBC"></li>
+				<li>
+					<a href="https://account.bbc.com/signin"><img src="assets/002-user.svg" width="20px" height="20px" alt="">
+						Sign in&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+				</li>
+				<li><img src="assets/bell.png" id="bell" alt="bell"></li>
+				<li>
+					<a href="http://www.bbc.co.uk/news/0">News</a>
+				</li>
+				<li>
+					<a href="http://www.bbc.co.uk/sport">Sport</a>
+				</li>
+				<li>
+					<a href="http://www.bbc.co.uk/weather/">Weather</a>
+				</li>
+				<li>
+					<a href="http://www.bbc.co.uk/iplayer">iPlayer</a>
+				</li>
+				<li>
+					<a href="http://www.bbc.co.uk/tv">Tv</a>
+				</li>
+				<li>
+					<a href="http://www.bbc.co.uk/radio">Radio</a>
+				</li>
+				<li>More &#9662;</li>
+				<li><input type="text" id="search" name="search" value="" placeholder="Search&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"></li>
+
+			</ul>
+
+		</div>
+		<div class="banner">
+			<div class="container_full">
+
+				<img id="maintitle" src="assets/news-light.png" alt="news">
+
+
+				<button type="button" name="button">Find Local News<img src="assets/pin.png" alt=""></button>
+			</div>
+		</div>
+		<div class="nav nav2nd">
+			<ul>
+				<li>
+					<a href="http://www.bbc.co.uk/news/0">Home</a>
+				</li>
+				<li>
+					<a href="http://www.bbc.co.uk/news/uk">UK</a>
+				</li>
+				<li>
+					<a href="http://www.bbc.co.uk/news/world">World</a>
+				</li>
+				<li>
+					<a href="http://www.bbc.co.uk/news/business">Business</a>
+				</li>
+				<li>
+					<a href="http://www.bbc.co.uk/news/election/2017">Election 2017</a>
+				</li>
+				<li>
+					<a href="http://www.bbc.co.uk/news/technology">Tech</a>
+				</li>
+				<li>
+					<a href="http://www.bbc.co.uk/news/science_and_environment">Science</a>
+				</li>
+				<li>
+					<a href="http://www.bbc.co.uk/news/health">Health</a>
+				</li>
+				<li>
+					<a href="http://www.bbc.co.uk/news/education">Education</a>
+				</li>
+				<li>
+					<a href="http://www.bbc.co.uk/news/entertainment_and_arts">Entertainment &amp; Arts</a>
+				</li>
+				<li>
+					<a href="http://www.bbc.co.uk/news/video_and_audio/headlines/39945901/protesters-injured-outside-turkish-embassy-in-washington">Video &amp; Audio</a>
+				</li>
+				<li>More &#9662;</li>
+			</ul>
+
+		</div>
+
+	</header>
+	<main>
+		<div>
+			<div class="title">
+				Technology
+			</div>
+
+		</div>
+		<div class="col2of3">
+
+
+			<div class="headline">
+
+				<div id="headtitle">
+
+					<a href="{{ path('admin_laune_details', {slug: une.slug})}}">
+						<h1>{{ une.title|striptags|u.truncate(50, '...') }}</h1>
+					</a>
+				</div>
+				<div id="headlabel">
+
+
+					<p class="story">{{ une.title|striptags|u.truncate(100, '...') }}</p>
+					<div class="timesection">
+						<h4>&#128339;&nbsp;&nbsp;&nbsp;31 minutes ago</h4>
+						<a href="http://www.bbc.co.uk/news/technology">Technology</a>
+					</div>
+					<a class="questions" href="http://www.bbc.co.uk/news/technology-39301901">
+						<h3>{{ une.description|striptags|u.truncate(50, '...') }}</h3>
+					</a>
+					<a class="questions" href="http://www.bbc.co.uk/news/technology-37439221">
+						<h3>Should patients trust Google with data?</h3>
+					</a>
+				</div>
+
+				<div id="headimg">
+
+
+					<a href="{{ path('admin_laune_details', {slug: une.slug})}}"><img src="{{ asset('uploads/images/articles/' ~ une.images[0].name)|imagine_filter('squareUne') }}" alt="{{ une.title }}"></a>
+
+
+				</div>
+
+			</div>
+
+
+			<div class="secondary-stories">
+				<div class="seconds" id="oneof3">
+					<a href="http://www.bbc.co.uk/news/technology-39931635"><img src="https://ichef-1.bbci.co.uk/news/560/cpsprodpb/907A/production/_96068963_istock-488808075.jpg" alt="Virus alert handprint"></a>
+					<a href="http://www.bbc.co.uk/news/technology-39931635">
+						<h2>N Korea link suspected in cyber-attack</h2>
+					</a>
+					<p class="story">Experts see apparent similarities between Wanncry and earlier hacks by a suspected North Korea-linked group.</p>
+					<div class="reporter">
+						<p>
+							<strong>Dave Lee</strong><br>
+							North America technology reporter</p>
+					</div>
+					<img src="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAK1AAAAJGU2NDgxMTZmLWVkOWMtNDNkMi1hZGJhLTBmNDEwODc5OWRmNg.jpg" id="davelee" alt="Portrait of Dave Lee the reporter">
+					<div class="timesection">
+
+
+						<h4>&#128339; &nbsp;&nbsp;&nbsp;3 hours ago</h4>
+						<a href="http://www.bbc.co.uk/news/technology">Technology</a>
+					</div>
+					<div class="questions">
+
+
+						<a href="http://www.bbc.co.uk/news/technology-39924318">Global manhunt for WannCry creators</a><br>
+						<a href="http://www.bbc.co.uk/newsround/39896362">Your questions on the hack answered</a>
+					</div>
+				</div>
+				<div class="seconds" id="twoof3">
+					<a href="http://www.bbc.co.uk/news/technology-39928456"><img src=""></a>
+					<a href="http://www.bbc.co.uk/news/technology-39928456">
+						<h2>WannCry and the malware hall of fame</h2>
+					</a>
+					<a href="http://www.bbc.co.uk/news/technology-39928456">How does WannCry compare with other big malware infections?</a>
+					<div class="timesection">
+						<h4>&#128339; &nbsp;&nbsp;&nbsp;38 minutes ago</h4>
+						<a href="http://www.bbc.co.uk/news/technology">Technology</a>
+					</div>
+					<div class="questions">
+						<a href="http://www.bbc.co.uk/news/technology-39920269">Should you pay the WannaCry ransom?</a>
+					</div>
+
+				</div>
+
+				<div id="threeof3">
+					{% for une in laune %}
+						<div class="smaller2nds">
+							<a href="{{ path('admin_laune_details', {slug: une.slug})}}">
+								<h5>{{ une.title|striptags|u.truncate(50, '...') }}</h5>
+							</a>
+
+							<div class="timesection">
+								<h4>&#128339; &nbsp;&nbsp;&nbsp;5 hours ago</h4>
+								<a href="http://www.bbc.co.uk/news/technology">Technology</a>
+							</div>
+						</div>
+
+					{% endfor %}
+				</div>
+
+
+			</div>
+			<div class="tertiary-stories">
+				<div id="TS1of2">
+
+
+					<div>
+						<a href="http://www.bbc.co.uk/news/world-asia-39931816">
+							<h3>Thailand backs off Faceboook ban threat</h3>
+						</a>
+						<div class="timesection">
+							<h4>&#128339; &nbsp;&nbsp;&nbsp;41 minutes ago</h4>
+							<a href="http://www.bbc.co.uk/news/asia">Asia</a>
+						</div>
+					</div>
+					<div>
+						<a href="http://www.bbc.co.uk/news/technology-39920269">
+							<h3>Should you pay the WannaCry ransom?</h3>
+						</a>
+						<div class="timesection">
+							<h4>&#128339; &nbsp;&nbsp;&nbsp;2 hours ago</h4>
+							<a href="http://www.bbc.co.uk/news/technology">Technology</a>
+						</div>
+					</div>
+					<div>
+						<a href="http://www.bbc.co.uk/news/uk-39918426">
+							<h3>No 'second spike' in NHS cyber-attack</h3>
+						</a>
+						<div class="timesection">
+							<h4>&#128339; &nbsp;&nbsp;&nbsp;7 hours ago</h4>
+							<a href="http://www.bbc.co.uk/news/uk">UK</a>
+
+						</div>
+					</div>
+				</div>
+				<div id="TS2of2">
+
+
+					<div>
+						<a href="http://www.bbc.co.uk/news/technology-39924318">
+							<h3>Global manhunt for WannCry creators</h3>
+						</a>
+						<div class="timesection">
+							<h4>&#128339; &nbsp;&nbsp;&nbsp;3 hours ago</h4>
+							<a href="http://www.bbc.co.uk/news/technology">Technology</a>
+						</div>
+					</div>
+					<div>
+						<a href="http://www.bbc.co.uk/news/technology-39896389">
+							<h3>Virtual memorial for WW2 code-cracker</h3>
+						</a>
+						<div class="timesection">
+							<h4>&#128339; &nbsp;&nbsp;&nbsp;10 hours ago</h4>
+							<a href="http://www.bbc.co.uk/news/technology">Technology</a>
+						</div>
+					</div>
+					<div>
+						<a href="http://www.bbc.co.uk/news/business-39930132">
+							<h3>Uber must return 'pilfered' files to Waymo</h3>
+						</a>
+						<div class="timesection">
+							<h4>&#128339; &nbsp;&nbsp;&nbsp;8 hours ago</h4>
+							<a href="http://www.bbc.co.uk/news/business">Business</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+		<div class="aside">
+			<div class="videos">
+				<p class="asidetitle">Watch/Listen</p>
+				{% for article in articles %}
+					<div class="film">
+
+						<a href="{{ path('articles_details', {slug: article.slug})}}"><img src="{{ asset('uploads/images/articles/' ~ article.images[0].name)|imagine_filter('square') }}" alt="{{ article.title }}"></a>
+
+						<div class="filmlabel">
+
+
+							<a href="{{ path('articles_details', {slug: article.slug})}}">{{ article.description|striptags|u.truncate(50, '...') }}</a>
+
+							<div class="timesection">
+								<h4>&#128339; &nbsp;&nbsp;&nbsp;15 May 2017</h4>
+								<a href="http://www.bbc.co.uk/news/world/asia/india">India</a>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+
+
+		</div>
+		<div class="shares">
+			<a class="asidetitle" href="http://www.bbc.co.uk/news/have_your_say">Share with BBC News</a>
+			<ul>
+				<li><img src="assets/smartphone.png" alt="Mobile Phone">
+					Send an SMS or MMS to 61124</li>
+				<li><img src="assets/envelope.png" alt="Envelope icon">
+					Email us at
+					<strong>haveyoursay@bbc.co.uk</strong>
+				</li>
+				<li><img src="assets/birdy.png" alt="Twitter symbol">
+					Follow Have Your Say on
+					<strong>Twitter</strong>
+				</li>
+			</ul>
+
+		</div>
+		<div class="social-media">
+			<p class="asidetitle">Follow Us</p>
+			<button type="button" name="button" id="fb">Facebook</button>
+			<button type="button" name="button" id="twt">Twitter</button>
+			<button type="button" name="button" id="rss">RSS News Feed</button>
+
+		</div>
+		<div class="elsewhere">
+			<p class="asidetitle">Elsewhere on the BBC</p>
+			<p>
+				<a href="http://www.bbc.co.uk/programmes/p0529xvr?intc_type=promo&intc_location=news&intc_campaign=clusterheadaches&intc_linkname=bbcone_fac_vidclip"><img src="https://ichef.bbci.co.uk/images/ic/480x270/p0529cpq.jpg" alt="A Doctor"></a>
+				<a href="http://www.bbc.co.uk/programmes/p0529xvr?intc_type=promo&intc_location=news&intc_campaign=clusterheadaches&intc_linkname=bbcone_fac_vidclip">Cluster Headaches</a>
+			</p>
+			<p>The Doctor in the house tries to help a sufferer</p>
+
+		</div>
+
+	</div>
+</body></html></main><footer></footer></body></html>{% endblock %}

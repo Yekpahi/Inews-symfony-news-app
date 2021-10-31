@@ -1,0 +1,194 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gérer les articles
+{% endblock %}
+
+{% block body %}
+
+	{% block stylesheet %}
+		<link rel="stylesheet" href="{{ asset('assets/css/admin/all-articles.css')}}">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+	{% endblock %}
+	{% block sidebar %}
+		{% include "sidebar/sidebar.html.twig" %}
+	{% endblock %}
+
+	<div class="container">
+		<div class="card shadow my-5">
+			<h4 class="card-header">Table</h4>
+			<div class="card-body">
+				<form class="mb-3">
+					<label for="searchBox">Search table</label>
+					<input type="text" id="searchBox" name="searchBox" class="form-control">
+					<small class="form-text feedback"></small>
+				</form>
+				<table class="table table-searchable table-striped table-bordered table-hover table-responsive">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Publié par
+							</th>
+							<th>Titre</th>
+							<th>Date</th>
+							<th>Active</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for une in laune %}
+							<tr>
+								<td>{{une.id}}</td>
+								<td>{{une.users.firstName}}
+									{{une.users.lastName}}</td>
+								<td>{{une.title}}</td>
+								<td>{{une.createdAt|date}}</td>
+								<!-- Activation-->
+								<td>
+									<!-- Activation-->
+									<div class="form-check form-switch">
+										<input type="checkbox" {{ (une.active) ? 'checked' : ''}} data-id="{{une.id}}" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+									</div>
+								</td>
+
+								<td data-searchable="false">
+									<div class="btn-group btn-group-sm" role="group">
+
+										<a href="{{path('admin_laune_edit',{id:une.id})}}" type="button" class="btn btn-outline-dark">
+											<i class="fas fa-pen"></i>
+										</a>
+
+										<!-- Supprimer button-->
+										<a href="{{path('admin_laune_delete',{id:une.id})}}" type="button" class="btn btn-outline-dark modal-trigger" id="btn-confirm" data-target="modal-delete" data-id="{{une.id}}" data-titre="{{une.title}}">
+											<i class="fas fa-trash"></i>
+										</a>
+
+										<!-- Fin Supprimer button-->
+									</div>
+								</td>
+							</tr>
+							{% for une in laune %}
+
+
+								<div class="headline">
+
+									<div id="headtitle">
+
+										<a href="{{ path('admin_laune_details', {slug: une.slug})}}">
+											<h1>{{ une.title|striptags|u.truncate(50, '...') }}</h1>
+										</a>
+									</div>
+									<div id="headlabel">
+
+
+										<p class="story">{{ une.title|striptags|u.truncate(100, '...') }}</p>
+										<div class="timesection">
+											<h4>&#128339;&nbsp;&nbsp;&nbsp;31 minutes ago</h4>
+											<a href="http://www.bbc.co.uk/news/technology">Technology</a>
+										</div>
+										<a class="questions" href="http://www.bbc.co.uk/news/technology-39301901">
+											<h3>{{ une.description|striptags|u.truncate(50, '...') }}</h3>
+										</a>
+										<a class="questions" href="http://www.bbc.co.uk/news/technology-37439221">
+											<h3>Should patients trust Google with data?</h3>
+										</a>
+									</div>
+
+									<div id="headimg">
+
+
+										<a href="{{ path('admin_laune_details', {slug: une.slug})}}"><img src="{{ asset('uploads/images/articles/' ~ une.images[0].name)|imagine_filter('squareUne') }}" alt="{{ une.title }}"></a>
+
+
+									</div>
+
+								</div>
+							{% endfor %}
+						{% endfor %}
+					</tbody>
+				</tbody>
+			</table>
+		</div>
+		<div class="card-footer"></div>
+	</div>
+</div>{% endblock %}{% block javascripts %}
+<script src="{{ asset ('assets/script/admin.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script>
+	const [form] = document.forms;
+const feedback = document.querySelector('.feedback');
+const table = document.querySelector('table');
+const tbodyRows = [... table.tBodies[0].rows];
+
+const getCellValue = cell => {
+return cell.innerText || cell.textContent;
+}
+
+form.searchBox.addEventListener('input', e => {
+const term = e.target.value.toLowerCase();
+const hasValue = !!e.target.value.length;
+let resultCount = 0;
+
+tbodyRows.forEach(row => {
+const cells = row.querySelectorAll('td:not([data-searchable="false"])');
+let isFound = false;
+
+cells.forEach(cell => {
+const value = getCellValue(cell).toLowerCase();
+const isMatch = value.includes(term);
+
+if (isMatch) {
+isFound = true;
+}
+
+cell.classList.toggle('is-match', hasValue && isMatch);
+});
+
+row.classList.toggle('is-hidden', ! isFound);
+resultCount += isFound ? 1 : 0;
+});
+
+feedback.textContent = hasValue ? resultCount === 1 ? 'Showing 1 result' : `Showing ${resultCount} results` : null;
+});
+</script>
+
+<script>
+
+	var modalConfirm = function (callback) {
+$("#btn-confirm").on("click", function () {
+$("#mi-modal").modal("show");
+});
+
+$("#modal-btn-si").on("click", function () {
+callback(true);
+$("#mi-modal").modal("hide");
+});
+
+$("#modal-btn-no").on("click", function () {
+callback(false);
+$("#mi-modal").modal("hide");
+});
+};
+
+modalConfirm(function (confirm) {
+if (confirm) { // Acciones si el usuario confirma
+$("#result").html("CONFIRMADO");
+} else { // Acciones si el usuario no confirma
+$("#result").html("NO CONFIRMADO");
+}
+});
+
+let activer = document.querySelectorAll("[type=checkbox]")
+for (let bouton of activer) {
+bouton.addEventListener("click", function () {
+let xmlhttp = new XMLHttpRequest;
+xmlhttp.open("get", `/admin/laune/activer/${
+this.dataset.id
+}`)
+xmlhttp.send()
+})
+}
+</script>{% endblock %}

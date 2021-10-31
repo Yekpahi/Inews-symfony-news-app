@@ -112,6 +112,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $avatarFile;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Laune::class, mappedBy="users", orphanRemoval=true)
+     */
+    private $launes;
+
     public function __toString()
     {
         return $this->lastName . $this->firstName;
@@ -124,6 +129,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->updatedAt = new \DateTime();
         $this->comments = new ArrayCollection();
         $this->likes = new ArrayCollection();
+        $this->launes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -431,5 +437,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getAvatar()
     {
         return $this->avatar;
+    }
+
+    /**
+     * @return Collection|Laune[]
+     */
+    public function getLaunes(): Collection
+    {
+        return $this->launes;
+    }
+
+    public function addLaune(Laune $laune): self
+    {
+        if (!$this->launes->contains($laune)) {
+            $this->launes[] = $laune;
+            $laune->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLaune(Laune $laune): self
+    {
+        if ($this->launes->removeElement($laune)) {
+            // set the owning side to null (unless already changed)
+            if ($laune->getUsers() === $this) {
+                $laune->setUsers(null);
+            }
+        }
+
+        return $this;
     }
 }

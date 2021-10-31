@@ -153,8 +153,6 @@ input {
 .date-label > span {
   color: #fff;
   padding: 2px 15px;
-  height: -webkit-min-content;
-  height: -moz-min-content;
   height: min-content;
   font-size: 1.5em;
   font-weight: 350;
@@ -227,8 +225,6 @@ a:hover {
 .subscribe-label {
   background-color: #fff;
   padding: 2px 15px;
-  height: -webkit-min-content;
-  height: -moz-min-content;
   height: min-content;
 }
 
@@ -287,8 +283,6 @@ a:hover {
 }
 
 .min-content-height {
-  height: -webkit-min-content;
-  height: -moz-min-content;
   height: min-content;
 }
 
@@ -700,8 +694,6 @@ a:hover {
 
 .culture-travel-tag {
   background-color: #c2d4d7;
-  width: -webkit-min-content;
-  width: -moz-min-content;
   width: min-content;
   color: #000;
 }
@@ -817,47 +809,3 @@ section h1 {
 a:hover {
   text-decoration: none !important;
 }
-
-.nav-search {
-  display: flex;
-  min-width: 300px;
-}
-
-.nav-search input {
-  min-width: 300px;
-}
-
-.user-navbar {
-  background-color: transparent;
-}
-
-.user-nav {
-  font-size: 18px;
-}
-
-@media only screen and (max-width: 768px) {
-  .navbar-form {
-    border: 0px solid transparent;
-  }
-
-  .nav-search {
-    min-width: auto;
-  }
-
-  .nav-search input {
-    min-width: auto;
-    max-width: 100%;
-  }
-
-  .user-nav > li {
-    display: inline-block;
-  }
-
-  .user-nav {
-    display: inline-block;
-  }
-
-  .user-greeting {
-    display: inline-block;
-  }
-}/*# sourceMappingURL=homeCenter.css.map */

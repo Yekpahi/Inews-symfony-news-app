@@ -51,10 +51,16 @@ class Categories
      */
     private $color;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Laune::class, mappedBy="categories", orphanRemoval=true)
+     */
+    private $launes;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->articles = new ArrayCollection();
+        $this->launes = new ArrayCollection();
     }
 
     public function __toString()
@@ -172,6 +178,36 @@ class Categories
     public function setColor(?string $color): self
     {
         $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Laune[]
+     */
+    public function getLaunes(): Collection
+    {
+        return $this->launes;
+    }
+
+    public function addLaune(Laune $laune): self
+    {
+        if (!$this->launes->contains($laune)) {
+            $this->launes[] = $laune;
+            $laune->setCategories($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLaune(Laune $laune): self
+    {
+        if ($this->launes->removeElement($laune)) {
+            // set the owning side to null (unless already changed)
+            if ($laune->getCategories() === $this) {
+                $laune->setCategories(null);
+            }
+        }
 
         return $this;
     }

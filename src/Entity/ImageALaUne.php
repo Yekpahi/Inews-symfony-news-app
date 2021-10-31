@@ -2,16 +2,17 @@
 
 namespace App\Entity;
 
+use App\Repository\ImageALaUneRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ImagesRepository")
+ * @ORM\Entity(repositoryClass=ImageALaUneRepository::class)
  */
-class Images
+class ImageALaUne
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
+     * @ORM\Id
+     * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -22,10 +23,11 @@ class Images
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Articles::class, inversedBy="images")
+     * @ORM\ManyToOne(targetEntity=Laune::class, inversedBy="images")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $articles;
+    private $launes;
+
 
 
     public function getId(): ?int
@@ -45,14 +47,14 @@ class Images
         return $this;
     }
 
-    public function getArticles(): ?Articles
+    public function getLaunes(): ?Laune
     {
-        return $this->articles;
+        return $this->launes;
     }
 
-    public function setArticles(?Articles $articles): self
+    public function setLaunes(?Laune $launes): self
     {
-        $this->articles = $articles;
+        $this->launes = $launes;
 
         return $this;
     }

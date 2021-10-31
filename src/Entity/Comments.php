@@ -64,6 +64,12 @@ class Comments
      */
     private $rgpd;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Laune::class, inversedBy="comments")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $launes;
+
 
 
     public function __construct()
@@ -186,6 +192,18 @@ class Comments
     public function setRgpd(bool $rgpd): self
     {
         $this->rgpd = $rgpd;
+
+        return $this;
+    }
+
+    public function getLaunes(): ?Laune
+    {
+        return $this->launes;
+    }
+
+    public function setLaunes(?Laune $launes): self
+    {
+        $this->launes = $launes;
 
         return $this;
     }
