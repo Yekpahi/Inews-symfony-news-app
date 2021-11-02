@@ -1,149 +1,169 @@
-{% block stylesheets %}
-
-	<link rel="stylesheet" type="text/css" href=" {{ asset('assets/css/header/header.css') }}"/>
-	<link rel="stylesheet" href="https://unpkg.com/tachyons@4.7.0/css/tachyons.min.css">
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-{% endblock %}
 {% block header %}
-	<header class="ph3 flex items-center f5">
-		<div class="logo mr3 flex items-center">
-			<svg width="15px" height="33px" viewbox="0 0 15 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-				<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-					<g id="Artboard" transform="translate(-18.000000, -13.000000)" fill="#FFFFFF">
-						<g id="Group-3" transform="translate(18.000000, 13.000000)">
-							<polygon id="Fill-15" points="3.734 24.2226 3.734 4.4836 0 2.3526 0 26.5746 10.381 32.4976 10.381 28.0276 3.734 24.2326"></polygon>
-							<polygon id="Fill-17" points="3.734 0 3.734 4.443 10.381 8.238 10.381 8.276 10.381 28.016 14.115 30.145 14.115 5.925"></polygon>
-						</g>
-					</g>
-				</g>
-			</svg>
-			<div class="f4 dn dib-ns white ml2 truncate mw5">Towbook</div>
+	{% block stylesheets %}
+		<link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href=" {{ asset('assets/css/header/header2.css') }}"/>
+
+
+	{% endblock %}
+	<nav class="navbar navbar-inverse navbar-expand-xl navbar-dark">
+		<div class="navbar-header d-flex col">
+			<a class="navbar-brand" href="#">
+				<i class="fa fa-cube"></i>CodeWith<b>Coders</b>
+			</a>
+			<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle navbar-toggler ml-auto">
+				<span class="navbar-toggler-icon"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
 		</div>
-		<ul class="list pa0 nav--main f6 dn flex-l">
-			<li class="list dib mr3">
-				<a href="{{ path('app_home') }}" class="link white-60 hover-white">Home</a>
-			</li>
-			<li class="list dib mr3">
-				<a href="#" class="link white hover-white">Dispatching</a>
-			</li>
-			<li class="list dib mr3">
-				<a href="#" class="link white-60 hover-white">Map</a>
-			</li>
-			<li class="list dib mr3">
-				<a href="#" class="link white-60 hover-white">Stickering</a>
-			</li>
-			<li class="list dib mr3">
-				<a href="#" class="link white-60 hover-white">Impounds</a>
-			</li>
-			<li class="list dib mr3">
-				<a href="#" class="link white-60 hover-white">Accounts</a>
-			</li>
-			<li class="list dib mr3">
-				<a href="#" class="link white-60 hover-white">Reports</a>
-			</li>
-			<li class="list dib mr3">
-				<a href="#" class="link white-60 hover-white">Settings</a>
-			</li>
-		</ul>
-		<select class="tb-select pa0 dn-l">
-			<option class="list dib mr2">
-				<a href="#" class="link white-60 hover-white">Dashboard</a>
-			</option>
-			<option class="list dib mr2">
-				<a href="#" class="link white hover-white">Dispatching</a>
-			</option>
-			<option class="list dib mr2">
-				<a href="#" class="link white-60 hover-white">Map</a>
-			</option>
-			<option class="list dib mr2">
-				<a href="#" class="link white-60 hover-white">Stickering</a>
-			</option>
-			<option class="list dib mr2">
-				<a href="#" class="link white-60 hover-white">Impounds</a>
-			</option>
-			<option class="list dib mr2">
-				<a href="#" class="link white-60 hover-white">Accounts</a>
-			</option>
-			<option class="list dib mr2">
-				<a href="#" class="link white-60 hover-white">Reports</a>
-			</option>
-			<option class="list dib mr2">
-				<a href="#" class="link white-60 hover-white">Settings</a>
-			</option>
-		</optioption>
-	</select>
-	<div class="flex-auto"></div>
+		<!-- Collection of nav links, forms, and other content for toggling -->
+		<div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
+			<form class="navbar-form form-inline">
+				<div class="input-group search-box">
+					<input type="text" id="search" class="form-control" placeholder="Search here...">
+					<span class="input-group-addon">
+						<i class="material-icons">&#xE8B6;</i>
+					</span>
+				</div>
+			</form>
+			<ul class="nav navbar-nav navbar-right ml-auto">
+				<li class="nav-item active">
+					<a href="{{ path ('app_home')}}" class="nav-link">
+						<i class="fa fa-home"></i>
+						<span>Home</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link">
+						<i class="fa fa-gears"></i>
+						<span>Projects</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link">
+						<i class="fa fa-users"></i>
+						<span>Team</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link">
+						<i class="fa fa-pie-chart"></i>
+						<span>Reports</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link">
+						<i class="fa fa-briefcase"></i>
+						<span>Careers</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link">
+						<i class="fa fa-envelope"></i>
+						<span>Messages</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="#" class="nav-link">
+						<i class="fa fa-bell"></i>
+						<span>Notifications</span>
+					</a>
+				</li>
+				{% if is_granted('ROLE_ADMIN') %}
+					<li class="nav-item dropdown">
+						<a href="{{ path('user') }}" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"><img src="{{asset(('uploads/images/avatar/' ~ app.user.avatar)|imagine_filter('avatar')) }}" class="avatar" alt="photo de {{ app.user.firstName }} {{ app.user.firstName }}">
+							{{ app.user.firstName }}
+							{{ app.user.lastName }}
+							<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="{{ path('user') }}" class="dropdown-item">
+									<i class="fa fa-user-o"></i>
+									Profile</a>
+							</li>
+							<li>
+								<a href="{{ path ('admin_home')}}" class="dropdown-item">
+									<i class="fa fa-calendar-o"></i>
+									Admin</a>
+							</li>
 
-	<ul class="list pa0 nav--main f6 flex items-center">
-		{% if app.user %}
-			<li class="list ml2">
-				<a href="{{ path('user') }}" class="link h2 w2 white flex flex-column f6 relative user--nav">
-					<div class="flex-auto"></div>
-					<div>
-						<img class="br-pill" alt="photo de {{ app.user.firstName }} {{ app.user.firstName }}" src="{{asset(('uploads/images/avatar/' ~ app.user.avatar)|imagine_filter('avatar')) }}">
-					</div>
-					<div class="flex-auto"></div>
+							<li>
+								<a href="#" class="dropdown-item">
+									<i class="fa fa-sliders"></i>
+									Settings</a>
+							</li>
+							<li class="divider dropdown-divider"></li>
+							<li>
+								<a href="{{ path('app_logout') }}" class="dropdown-item">
+									<i class="material-icons">&#xE8AC;</i>
+									Logout</a>
+							</li>
+						</ul>
+					</li>
+				{% elseif app.user %}
 
-					<ul class="user--settings br1 absolute bg-white shadow-2 pa0 top-1 right-0 gray f7 lh-copy">
-						<li class="bb b--light-gray dib w-100 hover-dark-gray flex pa3">
-							<img class="br-pill h3 w3 mr3" alt="photo de {{ app.user.firstName }} {{ app.user.firstName }}" src="{{asset(('uploads/images/avatar/' ~ app.user.avatar)|imagine_filter('avatar')) }}">
+					<li class="nav-item dropdown">
+						<a href="{{ path('user') }}" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"><img src="{{asset(('uploads/images/avatar/' ~ app.user.avatar)|imagine_filter('avatar')) }}" class="avatar" alt="photo de {{ app.user.firstName }} {{ app.user.firstName }}">
+							{{ app.user.firstName }}
+							{{ app.user.lastName }}
+							<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="{{ path('user') }}" class="dropdown-item">
+									<i class="fa fa-user-o"></i>
+									Profile</a>
+							</li>
+							<li>
 
-							<div class="flex flex-column">
-								<div class="f5 dark-gray b">{{ app.user.firstName }}
-									{{ app.user.firstName }}</div>
-								<div class="mt3">
-									<div class="dib link blue hover-light-blue mr2"></div>
+								<a href="#" class="dropdown-item">
+									<i class="fa fa-calendar-o"></i>
+									Calendar</a>
+							</li>
+							<li>
+								<a href="#" class="dropdown-item">
+									<i class="fa fa-sliders"></i>
+									Settings</a>
+							</li>
+							<li class="divider dropdown-divider"></li>
+							<li>
+								<a href="{{ path('app_logout') }}" class="dropdown-item">
+									<i class="material-icons">&#xE8AC;</i>
+									Logout</a>
+							</li>
+						</ul>
+					</li>
+				{% else %}
+					<li class="nav-item dropdown">
+						<a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"><img src="{{ asset('uploads/images/avatars/avatar.jpg')}}" class="avatar" alt="Avatar">
+							S'inscrire/Se connecter
+							<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="{{ path ('app_register')}}" class="dropdown-item">
+									<i class="fa fa-user-o"></i>
+									S'inscrire</a>
+							</li>
 
+							<li class="divider dropdown-divider"></li>
+							<li>
+								<a href="{{ path ('app_login')}}" class="dropdown-item">
+									<i class="material-icons">&#xE8AC;</i>
+									Se connecter</a>
+							</li>
+						</ul>
+					</li>
+				{% endif %}
+			</ul>
+		</div>
+	</nav>
 
-								</div>
-
-							</div>
-
-						</li>
-					</ul>
-
-				</a>
-
-			</li>
-
-		{% elseif is_granted('ROLE_ADMIN') %}
-		{% else %}
-
-			<li class="list ml2">
-				<a href="#" class="link h2 w2 white flex flex-column f6 relative user--nav">
-					<div class="flex-auto"></div>
-					<div>
-
-						<div class="br-pill" href="{{ path('user') }}">
-							<i class="fa fa-user"></i>
-						</div>
-					</div>
-					<div class="flex-auto"></div>
-
-					<ul class="user--settings br1 absolute bg-white shadow-2 pa0 top-1 right-0 gray f7 lh-copy">
-						<li class="bb b--light-gray dib w-100 hover-dark-gray flex pa3">
-							<div class="br-pill h3 w3 mr3" href="{{ path('user') }}">
-								<i class="fa fa-user"></i>
-							</div>
-
-
-							<div class="flex flex-column">
-								<div class="mt3">
-									<div class="dib link blue hover-light-blue mr2"></div>
-									<div class="dib link blue hover-light-blue mr2"></div>
-								</div>
-							</div>
-
-						</li>
-
-					</ul>
-
-				</a>
-
-			</li>
-		{% endif %}
-	</ul>
-
-</header>{% endblock %}{% block javascript %}
-
-<script></script>{% endblock %}
+{% endblock %}
+{% block javascript %}{% endblock %}
