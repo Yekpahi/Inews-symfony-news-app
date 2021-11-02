@@ -11,6 +11,7 @@ select {
   padding: 0.5em 3.5em 0.5em 1em;
   /* reset */
   margin: 0;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -33,7 +34,7 @@ select.round:focus {
 }
 
 /* Selected file*/
-label input[type=file] {
+label input[type="file"] {
   display: none;
 }
 
@@ -46,6 +47,7 @@ label input[type=file] {
   display: inline-block !important;
   position: relative;
   padding: 0.5em;
+  -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
@@ -69,29 +71,46 @@ label input[type=file] {
   background: #edebee;
   color: black;
   border: 5px solid black;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   display: none;
-  z-index: 100000000000000010000000000000;
+  z-index: 99999999999999999999999999999;
 }
 
 /* Cadre  */
 #showImg {
   margin-bottom: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-transition: 0.5s;
   transition: 0.5s;
   width: 100%;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   width: 300px;
   height: 100px;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   position: relative;
   top: 20px;
 }
@@ -107,7 +126,8 @@ label input[type=file] {
 }
 
 .b4Remove {
-  transform: translateX(600px);
+  -webkit-transform: translateX(600px);
+          transform: translateX(600px);
   opacity: 0.3;
   background: black !important;
 }
@@ -123,7 +143,8 @@ label input[type=file] {
   position: relative;
   width: 100px;
   height: 300px;
-  box-shadow: 2px 2px 2px #837b7b;
+  -webkit-box-shadow: 2px 2px 2px #837b7b;
+          box-shadow: 2px 2px 2px #837b7b;
   border: 1px solid white;
   border-radius: 20px;
   margin: 5px;
@@ -132,10 +153,15 @@ label input[type=file] {
 }
 
 .civilite {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   border-bottom: 1px solid #272525;
 }
+
 .civilite input {
   margin: 0 10px 20px 10px;
   border-radius: 6px;
@@ -145,11 +171,16 @@ label input[type=file] {
 }
 
 .titre-sous-titre {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   margin: 20px 0 20px 0;
   border-bottom: 1px solid #272525;
 }
+
 .titre-sous-titre input {
   margin: 0 10px 20px 10px;
   border-radius: 6px;
@@ -160,14 +191,21 @@ label input[type=file] {
 
 .categorie {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   margin: 20px 0 20px 0;
   border-bottom: 1px solid #272525;
   display: flex;
   justify-content: center;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .categorie select {
   margin: 10px 20px 10px;
   border-radius: 6px;
@@ -184,17 +222,23 @@ label input[type=file] {
   top: 10px;
   border: 1px solid #d3c5c5;
   border-radius: 5px;
-  box-shadow: 2px 2px 3px #444040;
+  -webkit-box-shadow: 2px 2px 3px #444040;
+          box-shadow: 2px 2px 3px #444040;
 }
 
 .redaction-article {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   margin: 20px 0 20px 0;
   border-bottom: 1px solid #272525;
   text-align: center;
 }
+
 .redaction-article #article {
   border: 1px solid #d3bcbc;
   background-color: whitesmoke;
@@ -232,5 +276,7 @@ label input[type=file] {
   text-align: center;
   border: none;
   background-color: antiquewhite;
-  box-shadow: 1px 1px 1px black;
-}/*# sourceMappingURL=create-article.css.map */
+  -webkit-box-shadow: 1px 1px 1px black;
+          box-shadow: 1px 1px 1px black;
+}
+/*# sourceMappingURL=create-article.css.map */

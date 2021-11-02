@@ -1015,6 +1015,93 @@ a:hover {
 .home-header {
   margin-left: 100px;
   margin-right: 100px;
-  height: 200px;
   background: #f42;
+
+  h5 {
+    color: #ffff;
+    font-size: 35px;
+  }
+  p {
+    text-align: justify;
+    font-size: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+}
+
+// Clignotant
+.flasher {
+  position: relative;
+}
+.flasher .infrared {
+  position: absolute;
+  background-color: #fff;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  right: 28px;
+  bottom: 18px;
+  z-index: 15;
+}
+.flasher .infrared:before,
+.flasher .infrared:after {
+  content: "";
+  position: absolute;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+.flasher .infrared:before {
+  width: 10px;
+  height: 10px;
+  background: #c0c0c0;
+  top: 4px;
+  left: 3px;
+}
+.flasher .infrared:after {
+  width: 6px;
+  height: 6px;
+  background: #8d8d8d;
+  top: 6px;
+  left: 5px;
+}
+.flasher .infrared .flash1 {
+  background-color: #fff;
+  width: 25px;
+  height: 25px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  animation: flash 1s infinite;
+  -webkit-animation: flash 1s infinite;
+}
+
+@keyframes flash {
+  0% {
+    -webkit-transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(3);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes flash {
+  0% {
+    -webkit-transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(3);
+    opacity: 0;
+  }
+}
+
+// Camera
+.share-on {
+  list-style: none;
+  display: flex;
+  background-color: rgb(234, 249, 250);
+
+  li {
+    margin: 10px;
+  }
 }

@@ -1,5 +1,6 @@
 * {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 body {
@@ -24,6 +25,7 @@ body {
   border: 2px solid #f5f5f5;
   border-bottom-color: #cfcfcf;
   border-radius: 2px;
+  -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
 
@@ -34,6 +36,7 @@ body {
   left: 0;
   padding: 0 16px;
   color: rgba(0, 0, 0, 0.38);
+  -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
 
@@ -45,6 +48,7 @@ body {
   border: none;
   background: transparent;
   outline: none;
+  -webkit-transition: all 0.2s;
   transition: all 0.2s;
   font-family: inherit;
 }
@@ -55,6 +59,7 @@ body {
 
 .form-input.focus,
 .form-input.active {
+  -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
 
@@ -67,12 +72,14 @@ body {
   top: 6px;
   color: #2196f3;
   font-size: 12px;
+  -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
 
 .form-input.focus .form-input__input,
 .form-input.active .form-input__input {
   padding-top: 16px;
+  -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
 
@@ -84,6 +91,7 @@ body {
   border-radius: 2px;
   border-bottom-color: #cfcfcf;
   overflow: hidden;
+  -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
 
@@ -96,7 +104,10 @@ body {
   right: 16px;
   content: "";
   background: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjg0LjkgMjg0LjkiIHdpZHRoPSIyODUiIGhlaWdodD0iMjg1IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0yODIuMSA3Ni41bC0xNC4zLTE0LjNjLTEuOS0xLjktNC4xLTIuOS02LjYtMi45IC0yLjUgMC00LjcgMS02LjYgMi45TDE0Mi41IDE3NC40IDMwLjMgNjIuMmMtMS45LTEuOS00LjEtMi45LTYuNi0yLjkgLTIuNSAwLTQuNyAxLTYuNiAyLjlMMi45IDc2LjVDMSA3OC40IDAgODAuNiAwIDgzLjFjMCAyLjUgMSA0LjcgMi45IDYuNmwxMzMgMTMzYzEuOSAxLjkgNC4xIDIuOSA2LjYgMi45czQuNy0xIDYuNi0yLjlMMjgyLjEgODkuNmMxLjktMS45IDIuOC00LjEgMi44LTYuNkMyODQuOSA4MC42IDI4NCA3OC40IDI4Mi4xIDc2LjVaIi8+PC9zdmc+") no-repeat center/contain;
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
   transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
 }
 
 .form-select__label {
@@ -134,8 +145,12 @@ body {
 }
 
 .form-select.open::after {
-  transform: rotateX(180deg);
+  -webkit-transform: rotateX(180deg);
+          transform: rotateX(180deg);
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
   transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
 }
 
 .form-select.active .form-select__label {
@@ -170,13 +185,15 @@ body {
 
 .form-checkbox__text::before {
   display: block;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   width: 20px;
   height: 20px;
   position: absolute;
   top: 0.7em;
   left: 0px;
   margin-top: -10px;
+  -webkit-transition: border-color 0.2s;
   transition: border-color 0.2s;
   content: "";
   border: 2px solid #cfcfcf;
@@ -185,7 +202,8 @@ body {
 
 .form-checkbox__text::after {
   display: block;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   width: 0px;
   height: 24px;
   position: absolute;
@@ -199,6 +217,7 @@ body {
 
 .form-checkbox__input:checked + .form-checkbox__text::after {
   width: 24px;
+  -webkit-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
 }
 
@@ -228,13 +247,15 @@ body {
 
 .form-radio__text::before {
   display: block;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   width: 20px;
   height: 20px;
   position: absolute;
   top: 0.7em;
   left: 0px;
   margin-top: -10px;
+  -webkit-transition: border-color 0.2s;
   transition: border-color 0.2s;
   content: "";
   border: 2px solid #cfcfcf;
@@ -243,7 +264,8 @@ body {
 
 .form-radio__text::after {
   display: block;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   width: 6px;
   height: 6px;
   position: absolute;
@@ -253,12 +275,15 @@ body {
   content: "";
   background: #2196f3;
   border-radius: 1px;
-  transform: scale(0);
+  -webkit-transform: scale(0);
+          transform: scale(0);
 }
 
 .form-radio__input:checked + .form-radio__text::after {
+  -webkit-transition: all 0.1s ease-in;
   transition: all 0.1s ease-in;
-  transform: scale(1);
+  -webkit-transform: scale(1);
+          transform: scale(1);
 }
 
 .btn {
@@ -273,10 +298,13 @@ body {
   font-family: inherit;
   text-align: center;
   text-transform: uppercase;
+  -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
 
 .btn:hover {
   background: #1e88e5;
+  -webkit-transition: all 0.2s;
   transition: all 0.2s;
-}/*# sourceMappingURL=ajoutcategorie.css.map */
+}
+/*# sourceMappingURL=ajoutcategorie.css.map */

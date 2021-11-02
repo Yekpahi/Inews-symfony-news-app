@@ -1,1 +1,9 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"intermediaire.css"}
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "intermediaire.scss"
+    ],
+    "names": [],
+    "file": "intermediaire.css"
+}
