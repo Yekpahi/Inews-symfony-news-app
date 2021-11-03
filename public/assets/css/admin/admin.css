@@ -1,107 +1,82 @@
+@charset "UTF-8";
 @-webkit-keyframes swing {
   0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   10% {
-    -webkit-transform: rotate(10deg);
-            transform: rotate(10deg);
+    transform: rotate(10deg);
   }
   30% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   40% {
-    -webkit-transform: rotate(-10deg);
-            transform: rotate(-10deg);
+    transform: rotate(-10deg);
   }
   50% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   60% {
-    -webkit-transform: rotate(5deg);
-            transform: rotate(5deg);
+    transform: rotate(5deg);
   }
   70% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   80% {
-    -webkit-transform: rotate(-5deg);
-            transform: rotate(-5deg);
+    transform: rotate(-5deg);
   }
   100% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
 }
-
 @keyframes swing {
   0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   10% {
-    -webkit-transform: rotate(10deg);
-            transform: rotate(10deg);
+    transform: rotate(10deg);
   }
   30% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   40% {
-    -webkit-transform: rotate(-10deg);
-            transform: rotate(-10deg);
+    transform: rotate(-10deg);
   }
   50% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   60% {
-    -webkit-transform: rotate(5deg);
-            transform: rotate(5deg);
+    transform: rotate(5deg);
   }
   70% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   80% {
-    -webkit-transform: rotate(-5deg);
-            transform: rotate(-5deg);
+    transform: rotate(-5deg);
   }
   100% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
 }
-
 @-webkit-keyframes sonar {
   0% {
-    -webkit-transform: scale(0.9);
-            transform: scale(0.9);
+    transform: scale(0.9);
     opacity: 1;
   }
   100% {
-    -webkit-transform: scale(2);
-            transform: scale(2);
+    transform: scale(2);
     opacity: 0;
   }
 }
-
 @keyframes sonar {
   0% {
-    -webkit-transform: scale(0.9);
-            transform: scale(0.9);
+    transform: scale(0.9);
     opacity: 1;
   }
   100% {
-    -webkit-transform: scale(2);
-            transform: scale(2);
+    transform: scale(2);
     opacity: 0;
   }
 }
-
 body {
   font-size: 0.9rem;
 }
@@ -117,7 +92,6 @@ body {
 .sidebar-wrapper .sidebar-menu ul li a,
 #show-sidebar,
 #close-sidebar {
-  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 
@@ -148,7 +122,6 @@ body {
     padding-left: 300px;
   }
 }
-
 /*----------------show sidebar button----------------*/
 #show-sidebar {
   position: fixed;
@@ -156,8 +129,7 @@ body {
   top: 10px;
   border-radius: 0 4px 4px 0px;
   width: 35px;
-  -webkit-transition-delay: 0.3s;
-          transition-delay: 0.3s;
+  transition-delay: 0.3s;
 }
 
 .page-wrapper.toggled #show-sidebar {
@@ -200,20 +172,14 @@ body {
 /*--------------------sidebar-brand----------------------*/
 .sidebar-wrapper .sidebar-brand {
   padding: 10px 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 .sidebar-wrapper .sidebar-brand > a {
   text-transform: uppercase;
   font-weight: bold;
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
+  flex-grow: 1;
 }
 
 .sidebar-wrapper .sidebar-brand #close-sidebar {
@@ -310,7 +276,7 @@ body {
 .sidebar-wrapper .sidebar-menu .sidebar-dropdown > a:after {
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  content: "\f105";
+  content: "";
   font-style: normal;
   display: inline-block;
   font-style: normal;
@@ -335,7 +301,7 @@ body {
 }
 
 .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li a:before {
-  content: "\f111";
+  content: "";
   font-family: "Font Awesome 5 Free";
   font-weight: 400;
   font-style: normal;
@@ -366,8 +332,7 @@ body {
 }
 
 .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active > a:after {
-  -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
+  transform: rotate(90deg);
   right: 17px;
 }
 
@@ -376,15 +341,11 @@ body {
   position: absolute;
   width: 100%;
   bottom: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
 .sidebar-footer > a {
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
+  flex-grow: 1;
   text-align: center;
   height: 30px;
   line-height: 30px;
@@ -493,8 +454,7 @@ body {
 .chiller-theme .sidebar-wrapper .sidebar-search input.search-menu,
 .chiller-theme .sidebar-wrapper .sidebar-search .input-group-text {
   border-color: transparent;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
 
 .chiller-theme .sidebar-wrapper .sidebar-header .user-info .user-role,
@@ -524,12 +484,7 @@ body {
 }
 
 .chiller-theme .sidebar-wrapper ul li:hover a i,
-.chiller-theme
-.sidebar-wrapper
-.sidebar-dropdown
-.sidebar-submenu
-li
-a:hover:before,
+.chiller-theme .sidebar-wrapper .sidebar-dropdown .sidebar-submenu li a:hover:before,
 .chiller-theme .sidebar-wrapper .sidebar-search input.search-menu:focus + span,
 .chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active a i {
   color: #16c7ff;
@@ -549,8 +504,7 @@ a:hover:before,
 
 .chiller-theme .sidebar-footer {
   background: #3a3f48;
-  -webkit-box-shadow: 0px -1px 5px #282c33;
-          box-shadow: 0px -1px 5px #282c33;
+  box-shadow: 0px -1px 5px #282c33;
   border-top: 1px solid #464a52;
 }
 
@@ -560,5 +514,4 @@ a:hover:before,
 
 .chiller-theme .sidebar-footer > a:last-child {
   border-right: none;
-}
-/*# sourceMappingURL=admin.css.map */
+}/*# sourceMappingURL=admin.css.map */

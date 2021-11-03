@@ -1013,25 +1013,41 @@ a:hover {
 // Header
 
 .home-header {
-  margin-left: 100px;
-  margin-right: 100px;
-  background: #f42;
+  position: relative;
+  width: 60%;
+  margin: 0 auto;
 
   h5 {
+    margin-left: 100px;
+
     color: #ffff;
     font-size: 35px;
   }
   p {
+    margin-left: 100px;
+    margin-right: 30px;
     text-align: justify;
     font-size: 20px;
-    margin-left: 40px;
-    margin-right: 40px;
+  }
+  .capture {
+    background: #f42;
+    width: 100%;
+    img {
+      height: 65px;
+      width: 65px;
+      margin: 0;
+      position: absolute;
+      top: 10px;
+      left: 1%;
+      border-radius: 50%;
+    }
   }
 }
 
 // Clignotant
 .flasher {
   position: relative;
+  right: 84%;
 }
 .flasher .infrared {
   position: absolute;

@@ -8,7 +8,5 @@ form label {
 
 .table-searchable .is-match {
   background-color: lawngreen;
-  -webkit-transition: background-color 0.5s ease-in;
   transition: background-color 0.5s ease-in;
-}
-/*# sourceMappingURL=all-articles.css.map */
+}/*# sourceMappingURL=all-articles.css.map */

@@ -1,16 +1,10 @@
 /* only for presentation */
 .parent {
   padding: 2em;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
 
 .parent div {
   margin: auto;
-}
-/*# sourceMappingURL=motdepass.css.map */
+}/*# sourceMappingURL=motdepass.css.map */

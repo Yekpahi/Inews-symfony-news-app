@@ -15,8 +15,7 @@
   height: 500px;
   margin: 0 auto;
   background: #fff;
-  -webkit-box-shadow: 2px 4px 4px 2px rgba(44, 99, 200, 0.35);
-          box-shadow: 2px 4px 4px 2px rgba(44, 99, 200, 0.35);
+  box-shadow: 2px 4px 4px 2px rgba(44, 99, 200, 0.35);
   padding: 40px;
   border-radius: 20px;
   position: relative;
@@ -73,15 +72,11 @@ button:hover {
   top: 10%;
 }
 
-input::-webkit-input-placeholder {
+input::-moz-placeholder {
   padding: 5px;
 }
 
 input:-ms-input-placeholder {
-  padding: 5px;
-}
-
-input::-ms-input-placeholder {
   padding: 5px;
 }
 
@@ -132,5 +127,4 @@ input::placeholder {
 .rememberMe {
   position: absolute;
   top: 350px;
-}
-/*# sourceMappingURL=connexion.css.map */
+}/*# sourceMappingURL=connexion.css.map */

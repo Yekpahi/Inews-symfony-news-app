@@ -15,8 +15,7 @@
   height: 600px;
   margin: 0 auto;
   background: #fff;
-  -webkit-box-shadow: 2px 4px 4px 2px rgba(0, 0, 0, 0.35);
-          box-shadow: 2px 4px 4px 2px rgba(0, 0, 0, 0.35);
+  box-shadow: 2px 4px 4px 2px rgba(0, 0, 0, 0.35);
   padding: 40px;
   border-radius: 20px;
 }
@@ -39,10 +38,8 @@
   display: table;
   background-size: cover;
   background-position: center center;
-  -webkit-box-shadow: 5px 5px 5px 2px #bfbfcf;
-          box-shadow: 5px 5px 5px 2px #bfbfcf;
+  box-shadow: 5px 5px 5px 2px #bfbfcf;
 }
-
 #profile label {
   display: table-cell;
   vertical-align: middle;
@@ -51,11 +48,9 @@
   color: grey;
   opacity: 1;
 }
-
 #profile.dragging {
   background-image: none !important;
 }
-
 #profile.dragging .dashes {
   -webkit-animation-duration: 10s;
           animation-duration: 10s;
@@ -67,11 +62,9 @@
           animation-timing-function: linear;
   opacity: 1 !important;
 }
-
 #profile.dragging label {
   opacity: 0.5 !important;
 }
-
 #profile.hasImage .dashes, #profile.hasImage label {
   opacity: 0;
   pointer-events: none;
@@ -82,8 +75,7 @@
 }
 
 #profile:hover {
-  -webkit-box-shadow: 5px 5px 5px 2px #4c4ceb;
-          box-shadow: 5px 5px 5px 2px #4c4ceb;
+  box-shadow: 5px 5px 5px 2px #4c4ceb;
 }
 
 h1 {
@@ -100,14 +92,12 @@ h1 {
   padding-top: 20px;
   border-top: 1px solid #ddd;
 }
-
 .stat .label {
   font-size: 11px;
   font-weight: bold;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
-
 .stat .num {
   font-size: 21px;
   padding: 3px 0;
@@ -116,7 +106,6 @@ h1 {
 .editable {
   position: relative;
 }
-
 .editable i {
   position: absolute;
   top: 10px;
@@ -152,12 +141,8 @@ button:hover {
 }
 
 .civilite {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
 
 .civilite input {
@@ -197,15 +182,11 @@ button:hover {
   top: 10%;
 }
 
-input::-webkit-input-placeholder {
+input::-moz-placeholder {
   padding: 5px;
 }
 
 input:-ms-input-placeholder {
-  padding: 5px;
-}
-
-input::-ms-input-placeholder {
   padding: 5px;
 }
 
@@ -229,5 +210,4 @@ input::placeholder {
   left: 40%;
   bottom: 50px;
   margin-left: 10px;
-}
-/*# sourceMappingURL=inscription.css.map */
+}/*# sourceMappingURL=inscription.css.map */
