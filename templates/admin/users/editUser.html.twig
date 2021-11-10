@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un utilisateur
+{% endblock %}
+
+{% block body %}
+
+	{% block stylesheets %}
+
+		<link rel="stylesheet" type="text/css" href=" {{asset ('assets/css/user/edituser.css')}}"/>
+
+
+	{% endblock %}
+
+
+	<div class="center">
+
+		<h1>Modifier un utilisateur</h1>
+
+
+		{{form(form)}}
+		</div>
+
+
+	{% endblock %}
+	{% block javascript %}{% endblock %}

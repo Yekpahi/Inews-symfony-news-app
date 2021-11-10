@@ -56,11 +56,17 @@ class Categories
      */
     private $launes;
 
+    /**
+     * @ORM\OneToMany(targetEntity=VideoPost::class, mappedBy="categories", orphanRemoval=true)
+     */
+    private $videoPosts;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->articles = new ArrayCollection();
         $this->launes = new ArrayCollection();
+        $this->videoPosts = new ArrayCollection();
     }
 
     public function __toString()
@@ -206,6 +212,36 @@ class Categories
             // set the owning side to null (unless already changed)
             if ($laune->getCategories() === $this) {
                 $laune->setCategories(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|VideoPost[]
+     */
+    public function getVideoPosts(): Collection
+    {
+        return $this->videoPosts;
+    }
+
+    public function addVideoPost(VideoPost $videoPost): self
+    {
+        if (!$this->videoPosts->contains($videoPost)) {
+            $this->videoPosts[] = $videoPost;
+            $videoPost->setCategories($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVideoPost(VideoPost $videoPost): self
+    {
+        if ($this->videoPosts->removeElement($videoPost)) {
+            // set the owning side to null (unless already changed)
+            if ($videoPost->getCategories() === $this) {
+                $videoPost->setCategories(null);
             }
         }
 

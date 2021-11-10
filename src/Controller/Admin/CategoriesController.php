@@ -6,6 +6,7 @@ use App\Entity\Categories;
 use App\Form\CategoriesType;
 use App\Repository\CategoriesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -27,6 +28,7 @@ class CategoriesController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/ajout", name="ajout")
      */
     public function ajoutCategorie(Request $request)
@@ -51,6 +53,7 @@ class CategoriesController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/modifier/{id}", name="modifier")
      */
     public function ModifCategorie(Categories $categorie, Request $request)
@@ -74,6 +77,7 @@ class CategoriesController extends AbstractController
 
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/delete/{id}", name="delete", requirements={"id" = "\d+"})
      */
     public function delete(Request $request, Categories $entity)
@@ -108,6 +112,7 @@ class CategoriesController extends AbstractController
 
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/delete/{id}", name="delete")
      */
     public function deletecategorie(Request $request, Categories $categorie): Response

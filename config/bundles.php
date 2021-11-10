@@ -19,5 +19,5 @@ return [
     FM\ElfinderBundle\FMElfinderBundle::class => ['all' => true],
     Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
     Liip\ImagineBundle\LiipImagineBundle::class => ['all' => true],
-    Vich\UploaderBundle\VichUploaderBundle::class => ['all' => true]
+    Vich\UploaderBundle\VichUploaderBundle::class => ['all' => true],
 ];

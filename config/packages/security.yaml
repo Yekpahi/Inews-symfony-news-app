@@ -30,3 +30,16 @@ security:
 
       # https://symfony.com/doc/current/security/impersonating_user.html
       # switch_user: true
+    # Dans la partie access_control nous définissons les routes protégées
+  access_control:
+    - { path: ^/admin, roles:[ROLE_ADMIN, ROLE_REDACTOR]}
+    - { path: ^/user, roles: ROLE_USER }
+    - { path: ^/contributor, roles: ROLE_CONTRIBUTOR }
+
+    # La partie role_hierarchy contient la hiérarchie des rôles
+    # Un éditeur sera également utilisateur
+    # Un administrateur sera également éditeur et donc utilisateur
+  role_hierarchy:
+    ROLE_CONTRIBUTOR: ROLE_USER
+    ROLE_ADMIN: ROLE_REDACTOR
+    ROLE_REDACTOR: ROLE_CONTRIBUTOR

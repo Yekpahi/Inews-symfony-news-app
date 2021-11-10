@@ -45,13 +45,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @Assert\Regex ("/^(?=\S*?[a-zA-Z])(?=\S*?[0-9]).{5,}\S/")
      * @ORM\Column(type="string")
      * @Assert\Length(max=4096, min="8", minMessage ="Votre mot de passe doit faire au minimum 8 caractères")
-     * @Assert\EqualTo(propertyPath="confirm_password", message ="Vous n'avez pas tapé le même mot de passe")
      */
     private $password;
 
     /**
      * @Assert\Length(max=4096)
-     *  @Assert\EqualTo(propertyPath="password", message ="Vous n'avez pas tapé le même mot de passe")
      */
     private $confirm_password;
 
@@ -117,6 +115,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $launes;
 
+    /**
+     * @ORM\OneToMany(targetEntity=VideoPost::class, mappedBy="users", orphanRemoval=true)
+     */
+    private $videoPosts;
+
     public function __toString()
     {
         return $this->lastName . $this->firstName;
@@ -130,6 +133,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->comments = new ArrayCollection();
         $this->likes = new ArrayCollection();
         $this->launes = new ArrayCollection();
+        $this->videoPosts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -463,6 +467,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($laune->getUsers() === $this) {
                 $laune->setUsers(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|VideoPost[]
+     */
+    public function getVideoPosts(): Collection
+    {
+        return $this->videoPosts;
+    }
+
+    public function addVideoPost(VideoPost $videoPost): self
+    {
+        if (!$this->videoPosts->contains($videoPost)) {
+            $this->videoPosts[] = $videoPost;
+            $videoPost->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVideoPost(VideoPost $videoPost): self
+    {
+        if ($this->videoPosts->removeElement($videoPost)) {
+            // set the owning side to null (unless already changed)
+            if ($videoPost->getUsers() === $this) {
+                $videoPost->setUsers(null);
             }
         }
 

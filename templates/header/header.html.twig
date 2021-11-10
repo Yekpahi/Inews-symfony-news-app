@@ -5,7 +5,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" type="text/css" href=" {{ asset('assets/css/header/header2.css') }}"/>
+		<link rel="stylesheet" type="text/css" href=" {{ asset('assets/css/header/header.css') }}"/>
 
 
 	{% endblock %}
@@ -34,14 +34,14 @@
 			<ul class="nav navbar-nav navbar-right ml-auto">
 				<li class="nav-item active">
 					<a href="{{ path ('app_home')}}" class="nav-link">
-						<i class="fa fa-home"></i>
+						<i class="fa fa-home" style="font-size:24px;color:black"></i>
 						<span>Home</span>
 					</a>
 				</li>
 				<li class="nav-item">
 					<a href="#" class="nav-link">
-						<i class="fa fa-gears"></i>
-						<span>Projects</span>
+						<i class="fa fa-gears" style="font-size:24px;color:black"></i>
+						<span>Debat</span>
 					</a>
 				</li>
 				<li class="nav-item">
@@ -74,11 +74,21 @@
 						<span>Notifications</span>
 					</a>
 				</li>
-				{% if is_granted('ROLE_ADMIN') %}
+				{% if is_granted('ROLE_REDACTOR') %}
 					<li class="nav-item dropdown">
 						<a href="{{ path('user') }}" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"><img src="{{asset(('uploads/images/avatar/' ~ app.user.avatar)|imagine_filter('avatar')) }}" class="avatar" alt="photo de {{ app.user.firstName }} {{ app.user.firstName }}">
 							{{ app.user.firstName }}
 							{{ app.user.lastName }}
+							|
+							{% if app.user.roles[0] == "ROLE_USER" %}
+								Visiteur
+							{% elseif app.user.roles[0] == "ROLE_REDACTOR" %}
+								Rédacteur
+							{% elseif app.user.roles[0] == "ROLE_ADMIN" %}
+								Administrateur
+							{% elseif app.user.roles[0] == "ROLE_CONTRIBUTOR" %}
+								Contributeur
+							{% endif %}
 							<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu">
@@ -91,12 +101,6 @@
 								<a href="{{ path ('admin_home')}}" class="dropdown-item">
 									<i class="fa fa-calendar-o"></i>
 									Admin</a>
-							</li>
-
-							<li>
-								<a href="#" class="dropdown-item">
-									<i class="fa fa-sliders"></i>
-									Settings</a>
 							</li>
 							<li class="divider dropdown-divider"></li>
 							<li>
@@ -112,6 +116,16 @@
 						<a href="{{ path('user') }}" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"><img src="{{asset(('uploads/images/avatar/' ~ app.user.avatar)|imagine_filter('avatar')) }}" class="avatar" alt="photo de {{ app.user.firstName }} {{ app.user.firstName }}">
 							{{ app.user.firstName }}
 							{{ app.user.lastName }}
+							|
+							{% if app.user.roles[0] == "ROLE_USER" %}
+								Visiteur
+							{% elseif app.user.roles[0] == "ROLE_REDACTOR" %}
+								Rédacteur
+							{% elseif app.user.roles[0] == "ROLE_ADMIN" %}
+								Administrateur
+							{% elseif app.user.roles[0] == "ROLE_CONTRIBUTOR" %}
+								Contributeur
+							{% endif %}
 							<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu">
@@ -142,7 +156,11 @@
 				{% else %}
 					<li class="nav-item dropdown">
 						<a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"><img src="{{ asset('uploads/images/avatars/avatar.jpg')}}" class="avatar" alt="Avatar">
-							S'inscrire/Se connecter
+
+							Anonyme
+																																																																												
+																																																																						|
+																																																																													S'inscrire/Se connecter
 							<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu">

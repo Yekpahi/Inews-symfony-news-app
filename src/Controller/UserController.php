@@ -8,6 +8,7 @@ use App\Entity\Images;
 use App\Form\ArticlesType;
 use App\Form\EditProfileType;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,10 +16,11 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\HttpFoundation\Response;
 
+
 class UserController extends AbstractController
 {
     /**
-     * @Route("/user", name="user")
+     * @Route("/userprofile", name="user")
      */
     public function index()
     {
@@ -26,6 +28,7 @@ class UserController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_CONTRIBUTOR")
      * @Route("/user/articles/ajout", name="user_articles_ajout", methods={"GET","POST"})
      */
     public function ajoutarticle(Request $request): Response
@@ -61,7 +64,7 @@ class UserController extends AbstractController
             $entityManager->persist($article);
             $entityManager->flush();
 
-            return $this->redirectToRoute('user');
+            return $this->redirectToRoute('userprofile');
         }
         return $this->render('user/articles/ajouter-article.html.twig', [
             'article' => $article,
@@ -72,6 +75,7 @@ class UserController extends AbstractController
 
 
     /**
+     * @IsGranted("ROLE_CONTRIBUTOR")
      * @Route("/user/articles/edit/{id}", name="users_articles_edit")
      */
     public function editarticle(Articles $article, Request $request, EntityManagerInterface $em)
@@ -84,7 +88,7 @@ class UserController extends AbstractController
             $em->persist($article);
             $em->flush();
             $this->addFlash('success', 'Article Created! Knowledge is power!');
-            return $this->redirectToRoute('user', [
+            return $this->redirectToRoute('userprofile', [
                 'id' => $article->getId()
             ]);
         }
@@ -95,6 +99,7 @@ class UserController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_CONTRIBUTOR")
      * @Route("/user/articles/delete/{id}", name="users_articles_delete")
      */
     public function deleteArticle(int $id): Response
@@ -104,7 +109,7 @@ class UserController extends AbstractController
         $entityManager->remove($article);
         $entityManager->flush();
 
-        return $this->redirectToRoute("user");
+        return $this->redirectToRoute("userprofile");
     }
 
 
@@ -156,7 +161,7 @@ class UserController extends AbstractController
             $em->flush();
             $this->addFlash('notice', 'Votre mot de passe à bien été changé !');
 
-            return $this->redirectToRoute('user');
+            return $this->redirectToRoute('userprofile');
         }
 
         return $this->render('password/index.html.twig', array(

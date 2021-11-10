@@ -9,6 +9,7 @@ use App\Form\CommentsType;
 use App\Form\LauneType;
 use App\Repository\LauneRepository;
 use DateTime;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,6 +24,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class LauneController extends AbstractController
 {
     /**
+     * 
      * @Route("/", name="home")
      */
     public function index(LauneRepository $launeRepo)
@@ -84,6 +86,7 @@ class LauneController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/activer/{id}", name="activer")
      */
     public function activer(Laune $laune)
@@ -98,6 +101,7 @@ class LauneController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/supprimer/{id}", name="supprimer")
      */
     public function supprimer(Laune $laune)
@@ -127,6 +131,7 @@ class LauneController extends AbstractController
 
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/ajout", name="ajout", methods={"GET","POST"})
      */
     public function ajoutune(Request $request): Response
@@ -173,6 +178,7 @@ class LauneController extends AbstractController
 
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/edit/{id}", name="edit")
      */
     public function editune(Laune   $laune, Request $request, EntityManagerInterface $em)
@@ -196,6 +202,7 @@ class LauneController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/delete/{id}", name="delete")
      */
     public function deleteune(int $id): Response

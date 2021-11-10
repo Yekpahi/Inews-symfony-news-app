@@ -95,10 +95,10 @@
 									<p>date</p>
 									<p>
 										tincidunt mauris ultricies justo feugiat, in ultricies sem venenatis. Etiam
-																																																		                                        sodales
-																																																		                                        leo
-																																																		                                        in
-																																																		                                        iaculis
+																																																												                                        sodales
+																																																												                                        leo
+																																																												                                        in
+																																																												                                        iaculis
 									</p>
 									<p>read more</p>
 								</div>
@@ -118,10 +118,10 @@
 									<p>date</p>
 									<p>
 										tincidunt mauris ultricies justo feugiat, in ultricies sem venenatis. Etiam
-																																																		                                        sodales
-																																																		                                        leo
-																																																		                                        in
-																																																		                                        iaculis
+																																																												                                        sodales
+																																																												                                        leo
+																																																												                                        in
+																																																												                                        iaculis
 									</p>
 									<p>read more</p>
 								</div>
@@ -141,10 +141,10 @@
 									<p>date</p>
 									<p>
 										tincidunt mauris ultricies justo feugiat, in ultricies sem venenatis. Etiam
-																																																		                                        sodales
-																																																		                                        leo
-																																																		                                        in
-																																																		                                        iaculis
+																																																												                                        sodales
+																																																												                                        leo
+																																																												                                        in
+																																																												                                        iaculis
 									</p>
 									<p>read more</p>
 								</div>
@@ -158,8 +158,11 @@
 
 	<br>
 	<br>
-	<script src="{{asset('assets/script/home/homeCenter.js')}}"></script>
+	{% block jascripts %}
+		<script src="{{asset('assets/script/home/homeCenter.js')}}"></script>
 
-	<script src=" {{asset ('assets/script/comment/comment.js')}}"></script>
+		<script src=" {{asset ('assets/script/comment/comment.js')}}"></script>
+
+	{% endblock %}
 
 {% endblock %}

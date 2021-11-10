@@ -37,7 +37,17 @@
 							{% endif %}
 						</div>
 						<div class="mt-1 d-flex justify-content-center">
-							<button class="btn btn-primary btn-sm mt-3">Modifier la photo de profil</button>
+							<button class="btn btn-primary btn-sm mt-3">
+								{% if app.user.roles[0] == "ROLE_USER" %}
+									Visiteur
+								{% elseif app.user.roles[0] == "ROLE_REDACTOR" %}
+									Rédacteur
+								{% elseif app.user.roles[0] == "ROLE_ADMIN" %}
+									Administrateur
+								{% elseif app.user.roles[0] == "ROLE_CONTRIBUTOR" %}
+									Contributeur
+								{% endif %}
+							</button>
 						</div>
 						<div class="detail clearfix">
 							<ul class="list-group list-group-flush">

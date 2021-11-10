@@ -70,6 +70,11 @@ class Comments
      */
     private $launes;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=VideoPost::class, inversedBy="comments")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $videoPosts;
 
 
     public function __construct()
@@ -204,6 +209,18 @@ class Comments
     public function setLaunes(?Laune $launes): self
     {
         $this->launes = $launes;
+
+        return $this;
+    }
+
+    public function getVideoPosts(): ?VideoPost
+    {
+        return $this->videoPosts;
+    }
+
+    public function setVideoPosts(?VideoPost $videoPosts): self
+    {
+        $this->videoPosts = $videoPosts;
 
         return $this;
     }
