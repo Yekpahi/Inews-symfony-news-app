@@ -39,3 +39,11 @@ liip_imagine:
         thumbnail:
           size: [300, 300]
           mode: outbound
+    videopics:
+      quality: 80
+      filters:
+        upscale:
+          min: [1400, 1000]
+        thumbnail:
+          size: [1400, 1000]
+          mode: outbound

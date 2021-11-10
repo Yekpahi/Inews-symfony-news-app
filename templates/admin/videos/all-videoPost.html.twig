@@ -109,7 +109,7 @@
 		<h2>Recommended</h2>
 		{% for video in videoPost %}
 			<div class="video">
-				<img class="thumbnail" src="https://source.unsplash.com/290x163/?new&zealand" alt="">
+				<img class="thumbnail" src="{{ asset('uploads/videos/pics/' ~ video.videoPics)|imagine_filter('videopics') }}" width="224" height="224" alt="{{ video.title }}">
 				<img class="avatar" src="https://image.flaticon.com/icons/svg/145/145843.svg" width="224" height="224" alt="Man free icon" title="Man free icon">
 				<a href="{{ path('admin_videoPost_details', {slug: video.slug})}}" class="title">Home - Day30 - Journey |
 					{{ video.title|striptags|u.truncate(50, '...') }}</a>

@@ -41,6 +41,10 @@ class VideoPostType extends AbstractType
                     'Triste' => ['data-color' => 'black'],
                 ],
             ])
+            ->add('videoPicsFile', FileType::class, [
+                'required' => true
+            ])
+
             ->add('Valider', SubmitType::class);
             ;
     }

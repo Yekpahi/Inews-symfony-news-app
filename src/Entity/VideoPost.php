@@ -10,12 +10,15 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints\MinLength;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Mime\MimeTypes;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=VideoPostRepository::class)
  * @ORM\Table(name="videoPost", indexes={@ORM\Index(columns={"title", "content", "description"}, flags={"fulltext"})})
+ * @Vich\Uploadable
  */
 
 class VideoPost
@@ -31,6 +34,19 @@ class VideoPost
      * @ORM\Column(type="string", length=255)
      */
     private $title;
+
+     /**
+     * @ORM\Column(type="string", length=255)
+     * 
+     * @var string|null
+     */
+    private $videoPics;
+
+    /**
+     * @Vich\UploadableField(mapping="video_pics", fileNameProperty="videoPics")
+     * @var File|null
+     */
+    private $videoPicsFile;
 
   /**
      * @Assert\File(
@@ -278,6 +294,39 @@ class VideoPost
         }
 
         return $this;
+    }
+
+    public function setVideoPicsFile(File $videoPics = null)
+    {
+        $this->videoPicsFile = $videoPics;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($videoPics) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getVideoPicsFile(): ?File
+    {
+        return $this->videoPicsFile;
+    }
+
+    /**
+     *
+     * @param File|UploadedFile $image
+     */
+    public function setVideoPics($videoPics)
+    {
+        $this->videoPics = $videoPics;
+        return $this->videoPics;
+    }
+
+    public function getVideoPics()
+    {
+        return $this->videoPics;
     }
     
 }

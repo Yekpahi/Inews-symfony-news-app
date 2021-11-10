@@ -44,10 +44,16 @@
 
 			</div>
 			<div class="url-article">
-				{{ form_widget(form.file, {'attr' : {'type' : 'file', 'row': '4', 'style' : "height:auto", 'id' : 'article', 'class' : 'form-input', 'placeholder' : "Redigez votre article",'data-rule-required':'true'}}) }}
+				<label for="scales" style=" margin: .4rem">Video ici
+				</label>
+				{{ form_widget(form.file, {'attr' : {'type' : 'file', 'row': '4', 'style' : "height:auto", 'id' : 'article', 'class' : 'form-input','data-rule-required':'true'}}) }}
 			</div>
 			<!--Charger fichier-->
-
+			<div class="url-article">
+				<label for="scales" style=" margin: .4rem">Votre image :
+				</label>
+				{{ form_widget(form.videoPicsFile, {'attr' : {'type' : 'file', 'row': '4', 'style' : "height:auto", 'id' : 'article', 'class' : 'form-input', 'data-rule-required':'true'}}) }}
+			</div>
 
 			<!--Fin charger fichier-->
 			{{ form_widget(form.Valider, {'attr' : {'type' : 'submit', 'row': '4', 'style' : "height:auto", 'id' : 'article', 'class' : 'button-poster-article'}}) }}
