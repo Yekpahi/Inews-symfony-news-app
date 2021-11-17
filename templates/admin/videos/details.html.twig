@@ -7,7 +7,7 @@
 {% block body %}
 
 	{% block stylesheets %}
-		<link href="https://cdn.plyr.io/3.4.6/plyr.css" rel="stylesheet">
+
 		<style>
 			/* This is purely for the demo */
 			.container {
@@ -19,80 +19,30 @@
 				margin-bottom: 15px;
 			}
 		</style>
+
 	{% endblock %}
 
 	<!-- Debut  header bar -->
 
 	<!-- Fin  header bar -->
 	<div class="container">
+		<h1>{{video.title}}</h1>
+		<div align="center" class="embed-responsive embed-responsive-16by9">
 
-		<video
-			controls crossorigin playsinline poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg" id="player">
-			<!-- Video files -->
-			<source
 
-			src="{{videoPost.path}}" type="video/mp4" size="576">
+			<video id='video' autoplay loop controls='true'>
+				<source src="{{ asset('uploads/videos/' ~ video.videoFilename) }}" type="video/mp4" alt="{{ video.title }}">
 
-			<!-- Caption files -->
-			<track kind="captions" label="English" srclang="en" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt" default>
-				<track
-					kind="captions" label="Français" srclang="fr" src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.fr.vtt">
 
-					<!-- Fallback for browsers that don't support the <video> element -->
-					<a href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" download>Download</a>
-				</video>
+			</video>
 
-				<div class="actions">
-					<button type="button" class="btn js-play">Play</button>
-					<button type="button" class="btn js-pause">Pause</button>
-					<button type="button" class="btn js-stop">Stop</button>
-					<button type="button" class="btn js-rewind">Rewind</button>
-					<button type="button" class="btn js-forward">Forward</button>
-				</div>
 
-				<p>{{videoPost.content}}</p>
-			</div>
+		</div>
 
-		{% endblock %}
-		{% block javascripts %}
+		<hr>
 
-			<script>
-				document.addEventListener('DOMContentLoaded', () => { // This is the bare minimum JavaScript. You can opt to pass no arguments to setup.
-const player = new Plyr('#player');
+		<p>{{video.content |raw}}</p>
+	</div>
 
-// Expose
-window.player = player;
-
-// Bind event listener
-function on(selector, type, callback) {
-document.querySelector(selector).addEventListener(type, callback, false);
-}
-
-// Play
-on('.js-play', 'click', () => {
-player.play();
-});
-
-// Pause
-on('.js-pause', 'click', () => {
-player.pause();
-});
-
-// Stop
-on('.js-stop', 'click', () => {
-player.stop();
-});
-
-// Rewind
-on('.js-rewind', 'click', () => {
-player.rewind();
-});
-
-// Forward
-on('.js-forward', 'click', () => {
-player.forward();
-});
-});
-			</script>
-			<script src="https://cdn.plyr.io/3.4.6/plyr.js"></script>
-		{% endblock %}
+{% endblock %}
+{% block javascripts %}{% endblock %}

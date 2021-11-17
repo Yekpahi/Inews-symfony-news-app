@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
 
 class VideoPostType extends AbstractType
 {
@@ -27,7 +28,28 @@ class VideoPostType extends AbstractType
                 'class' => Categories::class
             ])
             ->add('active', CheckboxType::class)
-            ->add('file')
+            ->add('video', FileType::class, [
+                
+                // unmapped means that this field is not associated to any entity property
+                'mapped' => false,
+
+                // make it optional so you don't have to re-upload the PDF file
+                // every time you edit the Product details
+                'required' => true,
+                'constraints' => [
+                  new File([ 
+                    'mimeTypes' => [ // We want to let upload only txt, csv or Excel files
+                      'video/mp4', 
+                      'video/ogg', 
+                      'video/x-msvideo',
+                      'ideo/mpeg',
+                      'video/webm',
+                    ],
+                    'mimeTypesMessage' => "This document isn't valid.",
+                  ])
+                ],
+              ])
+
             ->add('statut', ChoiceType::class, [
                 'choices' => [
                     " " => 0,

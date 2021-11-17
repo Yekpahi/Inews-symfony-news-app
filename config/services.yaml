@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
   images_directory: "%kernel.project_dir%/public/uploads/images/articles"
+  videos_directory: "%kernel.project_dir%/public/uploads/videos"
   profile_images: /uploads/images/profiles
 
 services:
@@ -22,6 +23,8 @@ services:
       - "../src/Entity/"
       - "../src/Kernel.php"
       - "../src/Tests/"
-
+  App\Service\FileUploader:
+    arguments:
+      $targetDirectory: "%videos_directory%"
   # add more service definitions when explicit configuration is needed
   # please note that last definitions always *replace* previous ones

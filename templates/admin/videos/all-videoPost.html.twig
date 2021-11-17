@@ -107,13 +107,15 @@
 
 	<section class="videos">
 		<h2>Recommended</h2>
-		{% for video in videoPost %}
+
+		{% for vde in video %}
 			<div class="video">
-				<img class="thumbnail" src="{{ asset('uploads/videos/pics/' ~ video.videoPics)|imagine_filter('videopics') }}" width="224" height="224" alt="{{ video.title }}">
-				<img class="avatar" src="https://image.flaticon.com/icons/svg/145/145843.svg" width="224" height="224" alt="Man free icon" title="Man free icon">
-				<a href="{{ path('admin_videoPost_details', {slug: video.slug})}}" class="title">Home - Day30 - Journey |
-					{{ video.title|striptags|u.truncate(50, '...') }}</a>
-				<p class="channel">{{ video.content|striptags|u.truncate(50, '...') }}</p>
+				<img class="thumbnail" src="{{ asset('uploads/videos/pics/' ~ vde.videoPics)|imagine_filter('videopics') }}" width="224" height="224" alt="{{ vde.title }}">
+				<img class="avatar" alt="photo de {{ app.user.firstName }} {{ app.user.firstName }}" src="{{asset ('uploads/images/avatar/' ~ app.user.avatar)|imagine_filter('avatar') }}">
+
+				<a href="{{ path('admin_videoPost_details', {slug: vde.slug})}}">{{ vde.title|striptags|u.truncate(50, '...') }}</a>
+				<a href="{{ asset('uploads/videos/' ~ vde.videoFilename) }}">Voire la video</a>
+				<p class="channel">{{ vde.content |striptags|u.truncate(150, '...') |raw  }}</p>
 				<p class="details">2K views - 11 hours ago</p>
 			</div>
 		{% endfor %}

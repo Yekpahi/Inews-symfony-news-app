@@ -2,10 +2,10 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Comments;
 use App\Entity\VideoPost;
 use App\Form\VideoPostType;
 use App\Repository\VideoPostRepository;
+use App\Service\FileUploader;
 use DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Doctrine\ORM\EntityManagerInterface;
@@ -15,8 +15,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\String\Slugger\SluggerInterface;
+
 /**
- * @Route("/admin/video-post", name="admin_videoPost_")
+ * @Route("/admin/videos", name="admin_videoPost_")
  * @package App\Controller\Admin
  */
 class VideoPostController extends AbstractController
@@ -28,7 +31,7 @@ class VideoPostController extends AbstractController
     public function index(VideoPostRepository $videoPostRepo)
     {
         return $this->render('admin/videos/all-videoPost.html.twig', [
-            'videoPost' => $videoPostRepo->findAll()
+            'video' => $videoPostRepo->findAll()
         ]);
     }
 
@@ -37,14 +40,14 @@ class VideoPostController extends AbstractController
      */
     public function details($slug, VideoPostRepository $videoPostRepo, Request $request)
     {
-        $videoPost = $videoPostRepo->findOneBy(['slug' => $slug]);
+        $video = $videoPostRepo->findOneBy(['slug' => $slug]);
         $user = $this->getUser();
-        if (!$videoPost) {
+        if (!$video) {
             throw new NotFoundHttpException('Pas d\'une trouvé');
         }
 
         return $this->render('admin/videos/details.html.twig', [
-            'videoPost' =>  $videoPost
+            'video' =>  $video
         ]);
     }
 
@@ -78,34 +81,75 @@ class VideoPostController extends AbstractController
         return $this->redirectToRoute('admin_videoPost_home');
     }
 
+    /**
+     *@Route("/ajout", name="ajout", methods={"GET","POST"})
+     */
+    public function ajoutvideoPost(Request $request, FileUploader $fileUploader) : Response
+    {
+        $video = new VideoPost();
+        $form = $this->createForm(VideoPostType::class, $video);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $brochureFile */
+            $video->setUsers($this->getUser());
+            $video->setActive(false);
+            $videoFile = $form->get('video')->getData();
+            if ($videoFile) {
+                $videoFileName = $fileUploader->upload($videoFile);
+                $video->setVideoFilename($videoFileName);
+            }
+    
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($video);
+            $entityManager->flush();
+            return $this->redirectToRoute('admin_videoPost_home');
+        }
+        return $this->render('admin/videos/ajoutvideoPost.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
 
     /**
      * @IsGranted("ROLE_ADMIN")
      * @Route("/ajout", name="ajout", methods={"GET","POST"})
      */
-    public function ajoutvideoPost(Request $request): Response
+    /* public function ajoutvideoPost(Request $request): Response
     {
-        $videoPost = new videoPost();
-        $form = $this->createForm(VideoPostType::class, $videoPost);
+        $video = new VideoPost();
+        $form = $this->createForm(VideoPostType::class, $video);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             // On récupère les images transmises
-            $videoPost->setUsers($this->getUser());
-            $videoPost->setActive(false);
-           
+            $video->setUsers($this->getUser());
+            $video->setActive(false);
+            $video = $form->get('file')->getData();
+
+            // On boucle sur les images
+            foreach ($video as $vde) {
+                // On génère un nouveau nom de fichier
+                $fichier = md5(uniqid()) . '.' . $vde->guessExtension();
+
+                // On copie le fichier dans le dossier uploads
+                $vde->move(
+                    $this->getParameter('video_directory'),
+                    $fichier
+                );
+            }
 
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($videoPost);
+            $entityManager->persist($video);
             $entityManager->flush();
 
             return $this->redirectToRoute('admin_videoPost_home');
         }
         return $this->render('admin/videos/ajoutvideoPost.html.twig', [
-            'videoPost' => $videoPost,
+            'video' => $video,
             'form' => $form->createView(),
         ]);
     }
+*/
 
 
 

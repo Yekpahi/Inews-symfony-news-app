@@ -35,7 +35,7 @@ class VideoPost
      */
     private $title;
 
-     /**
+    /**
      * @ORM\Column(type="string", length=255)
      * 
      * @var string|null
@@ -48,23 +48,11 @@ class VideoPost
      */
     private $videoPicsFile;
 
-  /**
-     * @Assert\File(
-     * 
-     *     maxSize = "500M",
-     *     mimeTypesMessage = "ce format de video est inconnu",
-     *     uploadIniSizeErrorMessage = "uploaded file is larger than the upload_max_filesize PHP.ini setting",
-     *     uploadFormSizeErrorMessage = "uploaded file is larger than allowed by the HTML file input field",
-     *     uploadErrorMessage = "uploaded file could not be uploaded for some unknown reason",
-     *     maxSizeMessage = "fichier trop volumineux"
-     * )
-     */
-    public $file;
     /**
-     * @Assert\NotBlank(groups={"file_required"}, message="movie.file.not_blank")
-     * @ORM\Column(type="string", length=255, nullable=true)
+
+     * @ORM\Column(type="string")
      */
-    private $path;
+    private $videoFilename;
 
     /**
      * @Gedmo\Timestampable(on="create")
@@ -111,8 +99,8 @@ class VideoPost
      */
     private $categories;
 
-  
-     /**
+
+    /**
      * @ORM\Column(type="string", length=1, nullable=true)
      */
     private $statut;
@@ -126,7 +114,7 @@ class VideoPost
     {
         $this->comments = new ArrayCollection();
     }
- 
+
 
     public function getId(): ?int
     {
@@ -328,5 +316,16 @@ class VideoPost
     {
         return $this->videoPics;
     }
-    
+
+    public function getVideoFilename()
+    {
+        return $this->videoFilename;
+    }
+
+    public function setVideoFilename($videoFilename)
+    {
+        $this->videoFilename = $videoFilename;
+
+        return $this;
+    }
 }
