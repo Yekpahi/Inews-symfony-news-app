@@ -30,8 +30,11 @@ class VideoPostController extends AbstractController
      */
     public function index(VideoPostRepository $videoPostRepo)
     {
+        
+        $video = $videoPostRepo->findAll();
+
         return $this->render('admin/videos/all-videoPost.html.twig', [
-            'video' => $videoPostRepo->findAll()
+            'video' =>  $video
         ]);
     }
 
