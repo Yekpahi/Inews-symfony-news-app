@@ -7,6 +7,7 @@ use App\Form\CommentsType;
 use App\Form\SearchArticleType;
 use App\Repository\ArticlesRepository;
 use App\Repository\LauneRepository;
+use App\Repository\VideoPostRepository;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,8 +19,9 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="app_home")
      */
-    public function index(ArticlesRepository $articlesRepo, LauneRepository $launeRepo, Request $request)
+    public function index(ArticlesRepository $articlesRepo, LauneRepository $launeRepo, Request $request, VideoPostRepository $videoPostRepo)
     {
+        $video = $videoPostRepo->findAll();
         $articles = $articlesRepo->findBy(['active' => true], ['created_at' => 'desc'], 5);
         $laune = $launeRepo->findBy(['active' => true], ['created_at' => 'desc'], 5);
         $article = $articlesRepo->findOneBy([]);
@@ -78,6 +80,7 @@ class MainController extends AbstractController
             'article' => $article,
             'articles' => $articles,
             'laune' => $laune,
+            'video' => $video,
             'une' => $une,
             'form' => $form->createView()
         ]);

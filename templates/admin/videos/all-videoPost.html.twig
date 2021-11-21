@@ -15,6 +15,7 @@
   integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
   crossorigin="anonymous"
 />
+<link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
 {% endblock %}
 
 <!-- Debut  header bar -->
@@ -23,12 +24,12 @@
 {% block header %} {% include "header/header.html.twig" %} {% endblock %}
 <main class="main-content">
   <div class="container">
-    <aside class="videos">
+    <aside class="les-videos">
       {% for vde in video %}
-      <div class="video">
+      <div class="une-video">
         <div class="img-play-time">
           <img
-            class="image-video"
+            class="image-une-video"
             src="{{ asset('uploads/videos/pics/' ~ vde.videoPics)|imagine_filter('videopics') }}"
             width="224"
             height="224"
@@ -43,10 +44,10 @@
               style="font-size: 66px; color: white"
             ></i>
           </a>
-          <span class="video-duration">00:00</span>
+          <span class="une-video-duration">00:00</span>
         </div>
 
-        <div class="video-title">
+        <div class="une-video-title">
           <i class="fa fa-newspaper-o" style="font-size: 20px"></i>
           <a href="{{ path('admin_videoPost_details', { slug: vde.slug }) }}">{{ vde.title
 						|striptags|u.truncate(150, '...') |raw }}</a>
@@ -55,7 +56,7 @@
           <i class="fa fa-eye" style="font-size: 20px"> </i> <span>2K</span> -
           11 hours ago
         </div>
-        <div class="video-avatar">
+        <div class="une-video-avatar">
           <a href="">
             <img
               class="user-avatar"
@@ -71,58 +72,81 @@
       {% endfor %}
     </aside>
     <section class="video-a-la-une">
-      <div id="video__container">
-        <!-- Video -->
-        <video
-          preload="auto"
-          width="450"
-          data-cld-transformation='{ "width": 400, "crop": "limit" }'
-          id="video"
-          poster="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-        >
-          <source
-            src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-            type="video/mp4"
-          />
-        </video>
-        <div id="video__controls__container">
-          <div
-            id="video__play__centerButton"
-            class="fa fa-play-circle-o fa-5x"
-          ></div>
-          <div id="video__controls">
-            <button
-              type="button"
-              id="play-pause"
-              class="controls play fa fa-play"
-            ></button>
-            <input type="range" id="seek-bar" value="0" class="controls" />
-            <button
-              type="button"
-              id="mute"
-              class="controls fa fa-volume-off"
-            ></button>
-            <input
-              type="range"
-              id="volume-bar"
-              class="controls"
-              min="0"
-              max="1"
-              step="0.1"
-            />
-            <button
-              type="button"
-              id="full-screen"
-              class="controls fa fa-arrows-alt"
-            ></button>
+      <!-- Video content-->
+      <div class='player-container'>
+        <div class='player'>
+        <video width="450" id='video' src='https://player.vimeo.com/external/271851475.sd.mp4?s=1a5c9b2541b420c133ded968b7c042fda26a8c0e&profile_id=165' autoplay playsinline></video>
+          <div class='play-btn-big'></div>
+          <div class='controls'>
+            <div class="time"><span class="time-current"></span><span class="time-total"></span></div>
+            <div class='progress'>
+              <div class='progress-filled'></div>
+            </div>
+            <div class='controls-main'>
+              <div class='controls-left'>
+                <div class='volume'>
+                  <div class='volume-btn loud'>
+                    <svg width="26" height="24" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6.75497 17.6928H2C0.89543 17.6928 0 16.7973 0 15.6928V8.30611C0 7.20152 0.895431 6.30611 2 6.30611H6.75504L13.9555 0.237289C14.6058 -0.310807 15.6 0.151473 15.6 1.00191V22.997C15.6 23.8475 14.6058 24.3098 13.9555 23.7617L6.75497 17.6928Z" transform="translate(0 0.000518799)" fill="white"/>
+                      <path id="volume-low" d="M0 9.87787C2.87188 9.87787 5.2 7.66663 5.2 4.93893C5.2 2.21124 2.87188 0 0 0V2C1.86563 2 3.2 3.41162 3.2 4.93893C3.2 6.46625 1.86563 7.87787 0 7.87787V9.87787Z" transform="translate(17.3333 7.44955)" fill="white"/>
+      
+                      <path id="volume-high" d="M0 16.4631C4.78647 16.4631 8.66667 12.7777 8.66667 8.23157C8.66667 3.68539 4.78647 0 0 0V2C3.78022 2 6.66667 4.88577 6.66667 8.23157C6.66667 11.5773 3.78022 14.4631 0 14.4631V16.4631Z" transform="translate(17.3333 4.15689)" fill="white"/> 
+                  <path id="volume-off" d="M1.22565 0L0 1.16412L3.06413 4.0744L0 6.98471L1.22565 8.14883L4.28978 5.23853L7.35391 8.14883L8.57956 6.98471L5.51544 4.0744L8.57956 1.16412L7.35391 0L4.28978 2.91031L1.22565 0Z" transform="translate(17.3769 8.31403)" fill="white"/>
+                    </svg>
+      
+                  </div>
+                  <div class='volume-slider'>
+                    <div class='volume-filled'></div>
+                  </div>
+                </div>
+              </div>
+              <div class='play-btn paused'></div>
+              <div class="controls-right">
+                <div class='speed'>
+                  <ul class='speed-list'>
+                    <li class='speed-item' data-speed='0.5'>0.5x</li>
+                    <li class='speed-item' data-speed='0.75'>0.75x</li>
+                    <li class='speed-item' data-speed='1' class='active'>1x</li>
+                    <li class='speed-item' data-speed='1.5'>1.5x</li>
+                    <li class='speed-item' data-speed='2'>2x</li>
+                  </ul>
+                </div>
+                <div class='fullscreen'>
+                  <svg width="30" height="22" viewBox="0 0 30 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 0V-1.5H-1.5V0H0ZM0 18H-1.5V19.5H0V18ZM26 18V19.5H27.5V18H26ZM26 0H27.5V-1.5H26V0ZM1.5 6.54545V0H-1.5V6.54545H1.5ZM0 1.5H10.1111V-1.5H0V1.5ZM-1.5 11.4545V18H1.5V11.4545H-1.5ZM0 19.5H10.1111V16.5H0V19.5ZM24.5 11.4545V18H27.5V11.4545H24.5ZM26 16.5H15.8889V19.5H26V16.5ZM27.5 6.54545V0H24.5V6.54545H27.5ZM26 -1.5H15.8889V1.5H26V-1.5Z" transform="translate(2 2)" fill="white"/>
+        </svg>
+      
+        </svg>
+      
+      
+        </div>
+              </div>
           </div>
         </div>
       </div>
+      <!-- Desc title -->
       <div class="title-desc">
-        <a>title des ange</a>
-        <p>description des choses</p>
-        <span> date de publication et vue</span>
-        <a href=""><img src="" alt="" /> avatar </a>
+        <a href="#">title des ange en con egdgd Nous leur demandons pardons de pasitonner</a>
+        <p class="descript" >description des choses Lorem ipsum dolor sit 
+          temporibus, nostrum fuga illo, 
+          nesciunt ad facilis similique, laborum unde quisquam.
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas 
+        
+        </p>
+          <p class="vuetime"><i class="fa fa-eye" style="font-size: 20px"> </i> <span>2K</span> -
+          11 hours ago</p>
+          <div class="title-desc-avatar-container">
+            <a href="">
+              <img
+                class="title-desc-avatar"
+                alt="photo de {{ app.user.firstName }} {{ app.user.lastName }}"
+                src="{{asset ('uploads/images/avatar/' ~ app.user.avatar)|imagine_filter('avatar') }}"
+              />
+              |
+              {{ app.user.firstName }}
+              {{ app.user.lastName }}
+            </a>
+          </div>
       </div>
     </section>
   </div>
@@ -146,186 +170,146 @@
 <!--- Video player -->
 
 <script>
-  // Video
-  var VideoPlayer = {
-    init: function () {
-      video.volume = 0.0;
-      // Buttons
-      var playButton = document.getElementById("play-pause");
-      var muteButton = document.getElementById("mute");
-      var fullScreenButton = document.getElementById("full-screen");
-      video = document.getElementById("video");
-      // Sliders
-      var seekBar = document.getElementById("seek-bar");
-      var volumeBar = document.getElementById("volume-bar");
-      volumeBar.value = video.volume;
-      // Controls
-      videoControls = document.getElementById("video__controls");
-      playCenterButton = document.getElementById("video__play__centerButton");
-      caption = document.getElementById("video__caption");
-      // Event listener for the play/pause button
-      VideoPlayer.hideControls();
-      //display control on mousemove
-      document
-        .getElementById("video__container")
-        .addEventListener("mousemove", function () {
-          VideoPlayer.showControls();
-        });
-      videoControls.addEventListener("mouseover", function () {
-        VideoPlayer.showControls();
-        clearTimeout(hideControl);
-      });
-      playButton.addEventListener("click", function () {
-        playVideo();
-      });
-      playCenterButton.addEventListener("click", function () {
-        playVideo();
-      });
-      function playVideo() {
-        if (video.paused == true) {
-          // Play the video
-          video.play();
-          // Update the button text to 'Pause'
-          playButton.classList.toggle("fa-play");
-          playButton.classList.toggle("fa-pause");
-          playCenterButton.classList.toggle("fa-play-circle-o");
-          playCenterButton.classList.toggle("fa-pause");
-          playCenterButton.style.opacity = 0;
-        } else {
-          // Pause the video
-          video.pause();
-          // Update the button text to 'Play'
-          playButton.classList.toggle("fa-play");
-          playButton.classList.toggle("fa-pause");
-          playCenterButton.classList.toggle("fa-play-circle-o");
-          playCenterButton.classList.toggle("fa-pause");
-          playCenterButton.style.opacity = 0.8;
-        }
-      }
+  //ELEMENT SELECTORS
+  var player = document.querySelector(".player");
+  var video = document.querySelector("#video");
+  var playBtn = document.querySelector(".play-btn");
+  var volumeBtn = document.querySelector(".volume-btn");
+  var volumeSlider = document.querySelector(".volume-slider");
+  var volumeFill = document.querySelector(".volume-filled");
+  var progressSlider = document.querySelector(".progress");
+  var progressFill = document.querySelector(".progress-filled");
+  var textCurrent = document.querySelector(".time-current");
+  var textTotal = document.querySelector(".time-total");
+  var speedBtns = document.querySelectorAll(".speed-item");
+  var fullscreenBtn = document.querySelector(".fullscreen");
 
-      // Event listener for the mute button
-      muteButton.addEventListener("click", function () {
-        if (video.muted == false) {
-          // Mute the video
-          video.muted = true;
-          // Update the volume Bar
-          volumeBar.value = 0;
-        } else {
-          // Unmute the video
-          video.muted = false;
-          // Update the volume Bar
-          volumeBar.value = video.volume;
-        }
-      });
+  //GLOBAL VARS
+  let lastVolume = 1;
+  let isMouseDown = false;
 
-      // Checks if the document is currently in fullscreen mode
-      var isFullScreen = function () {
-        return !!(
-          document.fullScreen ||
-          document.webkitIsFullScreen ||
-          document.mozFullScreen ||
-          document.msFullscreenElement ||
-          document.fullscreenElement
-        );
-      };
+  //PLAYER FUNCTIONS
+  function togglePlay() {
+    if (video.paused) {
+      video.play();
+    } else {
+      video.pause();
+    }
+    playBtn.classList.toggle("paused");
+  }
+  function togglePlayBtn() {
+    playBtn.classList.toggle("playing");
+  }
 
-      // Fullscreen
-      fullScreenButton.addEventListener("click", function () {
-        // If fullscreen mode is active...
-        if (isFullScreen()) {
-          // ...exit fullscreen mode
-          // (Note: this can only be called on document)
-          if (document.exitFullscreen) document.exitFullscreen();
-          else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
-          else if (document.webkitCancelFullScreen)
-            document.webkitCancelFullScreen();
-          else if (document.msExitFullscreen) document.msExitFullscreen();
-        } else {
-          if (video.requestFullscreen) video.requestFullscreen();
-          else if (video.mozRequestFullScreen) video.mozRequestFullScreen();
-          else if (video.webkitRequestFullScreen) {
-            video.webkitRequestFullScreen();
-          } else if (video.msRequestFullscreen) video.msRequestFullscreen();
-          VideoPlayer.hideControls();
-        }
-      });
-
-      // Event listener for the seek bar
-      var seekBarActive = false;
-      seekBar.addEventListener("mousedown", function () {
-        seekBarActive = true;
-        clearTimeout(hideControl);
-      });
-      seekBar.addEventListener("mouseup", function () {
-        seekBarActive = false;
-        VideoPlayer.hideControls();
-      });
-      seekBar.addEventListener("mousemove", function () {
-        if (seekBarActive == true) {
-          // Calculate the new time
-          var time = video.duration * (seekBar.value / 100);
-          // Update the video time
-          video.currentTime = time;
-          clearTimeout(hideControl);
-        }
-      });
-
-      // Update the seek bar as the video plays
-      video.addEventListener("timeupdate", function () {
-        // Calculate the slider value
-        var value = (100 / video.duration) * video.currentTime;
-        // Update the slider value
-        seekBar.value = value;
-      });
-
-      // Event listener for the volume bar
-      var volumeBarActive = false;
-      volumeBar.addEventListener("mousedown", function () {
-        volumeBarActive = true;
-        clearTimeout(hideControl);
-      });
-      volumeBar.addEventListener("mouseup", function () {
-        volumeBarActive = false;
-      });
-      volumeBar.addEventListener("mousemove", function () {
-        if (volumeBarActive == true) {
-          video.volume = volumeBar.value;
-          clearTimeout(hideControl);
-        }
-      });
-    },
-    hideControls: function () {
-      hideControl = setTimeout(function () {
-        videoControls.style.opacity = 0.0;
-        playCenterButton.style.opacity = 0.0;
-        caption.style.opacity = 0.0;
-        [].forEach.call(
-          document.getElementsByClassName("controls"),
-          function (el) {
-            el.style.visibility = "hidden";
-          }
-        );
-      }, 2000);
-    },
-    showControls: function () {
-      //Hide Display Control Bar
-      videoControls.style.opacity = 0.8;
-      playCenterButton.style.opacity = 0.8;
-      caption.style.opacity = 0.8;
-      [].forEach.call(
-        document.getElementsByClassName("controls"),
-        function (el) {
-          el.style.visibility = "visible";
-        }
-      );
-      clearTimeout(hideControl);
-      VideoPlayer.hideControls();
-    },
-  };
-
-  document.addEventListener("DOMContentLoaded", function () {
-    VideoPlayer.init();
+  function toggleMute() {
+    if (video.volume) {
+      lastVolume = video.volume;
+      video.volume = 0;
+      volumeBtn.classList.add("muted");
+      volumeFill.style.width = 0;
+    } else {
+      video.volume = lastVolume;
+      volumeBtn.classList.remove("muted");
+      volumeFill.style.width = `${lastVolume * 100}%`;
+    }
+  }
+  function changeVolume(e) {
+    volumeBtn.classList.remove("muted");
+    let volume = e.offsetX / volumeSlider.offsetWidth;
+    volume < 0.1 ? (volume = 0) : (volume = volume);
+    volumeFill.style.width = `${volume * 100}%`;
+    video.volume = volume;
+    if (volume > 0.7) {
+      volumeBtn.classList.add("loud");
+    } else if (volume < 0.7 && volume > 0) {
+      volumeBtn.classList.remove("loud");
+    } else if (volume == 0) {
+      volumeBtn.classList.add("muted");
+    }
+    lastVolume = volume;
+  }
+  function neatTime(time) {
+    // var hours = Math.floor((time % 86400)/3600)
+    var minutes = Math.floor((time % 3600) / 60);
+    var seconds = Math.floor(time % 60);
+    seconds = seconds > 9 ? seconds : `0${seconds}`;
+    return `${minutes}:${seconds}`;
+  }
+  function updateProgress(e) {
+    progressFill.style.width = `${(video.currentTime / video.duration) * 100}%`;
+    textCurrent.innerHTML = `${neatTime(video.currentTime)} / ${neatTime(
+      video.duration
+    )}`;
+    // textTotal.innerHTML = neatTime(video.duration);
+    // console.log(progressFill.style.width);
+  }
+  function setProgress(e) {
+    const newTime = e.offsetX / progressSlider.offsetWidth;
+    progressFill.style.width = `${newTime * 100}%`;
+    video.currentTime = newTime * video.duration;
+  }
+  function launchIntoFullscreen(element) {
+    if (element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if (element.mozRequestFullScreen) {
+      element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullscreen) {
+      element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) {
+      element.msRequestFullscreen();
+    }
+  }
+  function exitFullscreen() {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    }
+  }
+  var fullscreen = false;
+  function toggleFullscreen() {
+    fullscreen ? exitFullscreen() : launchIntoFullscreen(player);
+    fullscreen = !fullscreen;
+  }
+  function setSpeed(e) {
+    console.log(parseFloat(this.dataset.speed));
+    video.playbackRate = this.dataset.speed;
+    speedBtns.forEach((speedBtn) => speedBtn.classList.remove("active"));
+    this.classList.add("active");
+  }
+  function handleKeypress(e) {
+    switch (e.key) {
+      case " ":
+        togglePlay();
+      case "ArrowRight":
+        video.currentTime += 5;
+      case "ArrowLeft":
+        video.currentTime -= 5;
+      default:
+        return;
+    }
+  }
+  //EVENT LISTENERS
+  playBtn.addEventListener("click", togglePlay);
+  video.addEventListener("click", togglePlay);
+  video.addEventListener("play", togglePlayBtn);
+  video.addEventListener("pause", togglePlayBtn);
+  video.addEventListener("ended", togglePlayBtn);
+  video.addEventListener("timeupdate", updateProgress);
+  video.addEventListener("canplay", updateProgress);
+  volumeBtn.addEventListener("click", toggleMute);
+  window.addEventListener("mousedown", () => (isMouseDown = true));
+  window.addEventListener("mouseup", () => (isMouseDown = false));
+  // volumeSlider.addEventListener('mouseover', changeVolume);
+  volumeSlider.addEventListener("click", changeVolume);
+  progressSlider.addEventListener("click", setProgress);
+  fullscreenBtn.addEventListener("click", toggleFullscreen);
+  speedBtns.forEach((speedBtn) => {
+    speedBtn.addEventListener("click", setSpeed);
   });
+  window.addEventListener("keydown", handleKeypress);
 </script>
 
 {% endblock %}
