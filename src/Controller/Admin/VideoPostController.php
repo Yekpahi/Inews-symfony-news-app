@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\User;
 use App\Entity\VideoPost;
 use App\Form\VideoPostType;
 use App\Repository\VideoPostRepository;
@@ -26,15 +27,17 @@ class VideoPostController extends AbstractController
 {
     /**
      * 
-     * @Route("/", name="home")
+     * @Route("/{users}", name="home")
      */
-    public function index(VideoPostRepository $videoPostRepo)
+    public function index(VideoPostRepository $videoPostRepo, $users)
     {
         
         $video = $videoPostRepo->findAll();
-
+        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['users' => $users]);
+        
         return $this->render('admin/videos/all-videoPost.html.twig', [
-            'video' =>  $video
+            'video' =>$video,
+            'user' => $user
         ]);
     }
 

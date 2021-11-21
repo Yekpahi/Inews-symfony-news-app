@@ -38,10 +38,10 @@ class ArticlesController extends AbstractController
         $filters = $request->get("categories");
 
         // On récupère les annonces de la page en fonction du filtre
-        $articles = $articlesRepo->getPaginatedAnnonces($page, $limit, $filters);
+        $articles = $articlesRepo->getPaginatedArticles($page, $limit, $filters);
 
         // On récupère le nombre total d'annonces
-        $total = $articlesRepo->getTotalAnnonces($filters);
+        $total = $articlesRepo->getTotalArticles($filters);
 
         // On vérifie si on a une requête Ajax
         if ($request->get('ajax')) {

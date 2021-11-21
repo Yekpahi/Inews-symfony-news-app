@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Articles;
 use App\Entity\ChangePassword;
 use App\Entity\Images;
+use App\Entity\User;
 use App\Form\ArticlesType;
 use App\Form\EditProfileType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -20,11 +21,16 @@ use Symfony\Component\HttpFoundation\Response;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/userprofile", name="user")
+     * @Route("/{firstName}", name="user")
      */
-    public function index()
-    {
-        return $this->render('user/user.html.twig');
+    public function index(string $firstName) : response
+    {   
+       // On récupère l'article correspondant au slug
+    $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['firstName' => $firstName]);
+  
+        return $this->render('user/user.html.twig', [
+            'user' => $user
+        ]); 
     }
 
     /**

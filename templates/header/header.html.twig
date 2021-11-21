@@ -76,7 +76,7 @@
 				</li>
 				{% if is_granted('ROLE_REDACTOR') %}
 					<li class="nav-item dropdown">
-						<a href="{{ path('user') }}" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"><img src="{{asset(('uploads/images/avatar/' ~ app.user.avatar)|imagine_filter('avatar')) }}" class="avatar" alt="photo de {{ app.user.firstName }} {{ app.user.firstName }}">
+						<a href="{{ path('user', {'firstName': app.user.firstName }) }}" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"><img src="{{asset(('uploads/images/avatar/' ~ app.user.avatar)|imagine_filter('avatar')) }}" class="avatar" alt="photo de {{ app.user.firstName }} {{ app.user.firstName }}">
 							{{ app.user.firstName }}
 							{{ app.user.lastName }}
 							|
@@ -93,12 +93,12 @@
 						</a>
 						<ul class="dropdown-menu">
 							<li>
-								<a href="{{ path('user') }}" class="dropdown-item">
+								<a href="{{ path('user', {'firstName': app.user.firstName }) }} }}" class="dropdown-item">
 									<i class="fa fa-user-o"></i>
 									Profile</a>
 							</li>
 							<li>
-								<a href="{{ path ('admin_home')}}" class="dropdown-item">
+								<a href="{{ path('user', {'firstName': app.user.firstName }) }}}}" class="dropdown-item">
 									<i class="fa fa-calendar-o"></i>
 									Admin</a>
 							</li>
@@ -113,7 +113,7 @@
 				{% elseif app.user %}
 
 					<li class="nav-item dropdown">
-						<a href="{{ path('user') }}" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"><img src="{{asset(('uploads/images/avatar/' ~ app.user.avatar)|imagine_filter('avatar')) }}" class="avatar" alt="photo de {{ app.user.firstName }} {{ app.user.firstName }}">
+						<a href="{{ path('user', {'firstName': app.user.firstName }) }}" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"><img src="{{asset(('uploads/images/avatar/' ~ app.user.avatar)|imagine_filter('avatar')) }}" class="avatar" alt="photo de {{ app.user.firstName }} {{ app.user.firstName }}">
 							{{ app.user.firstName }}
 							{{ app.user.lastName }}
 							|
@@ -130,7 +130,7 @@
 						</a>
 						<ul class="dropdown-menu">
 							<li>
-								<a href="{{ path('user') }}" class="dropdown-item">
+								<a href="{{ path('user', {'firstName': app.user.firstName }) }}" class="dropdown-item">
 									<i class="fa fa-user-o"></i>
 									Profile</a>
 							</li>
@@ -158,9 +158,9 @@
 						<a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"><img src="{{ asset('uploads/images/avatars/avatar.jpg')}}" class="avatar" alt="Avatar">
 
 							Anonyme
-																																																																																			
-																																																																													|
-																																																																																				S'inscrire/Se connecter
+																																																																																																																																											
+																																																																																																																																					|
+																																																																																																																																												S'inscrire/Se connecter
 							<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu">

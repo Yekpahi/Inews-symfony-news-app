@@ -26,7 +26,7 @@
 						<img class="img-responsive img-rounded" src="{{asset(('uploads/images/avatar/' ~ app.user.avatar)|imagine_filter('avatar')) }}" alt="User picture"/>
 					</div>
 					<div class="user-info">
-						<a href="{{ path ('user')}}" class="user-name">
+						<a href="{{ path('user', {'firstName': app.user.firstName }) }}" class="user-name">
 							{{app.user.firstName}}
 
 							<strong>
