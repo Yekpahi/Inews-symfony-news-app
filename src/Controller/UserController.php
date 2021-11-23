@@ -8,6 +8,7 @@ use App\Entity\Images;
 use App\Entity\User;
 use App\Form\ArticlesType;
 use App\Form\EditProfileType;
+use App\Repository\VideoPostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,13 +24,16 @@ class UserController extends AbstractController
     /**
      * @Route("/{firstName}", name="user")
      */
-    public function index(string $firstName) : response
+    public function index(string $firstName, VideoPostRepository $videoPostRepo) : response
     {   
        // On récupère l'article correspondant au slug
+       $video = $videoPostRepo->findAll();
+       $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
     $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['firstName' => $firstName]);
   
         return $this->render('user/user.html.twig', [
-            'user' => $user
+            'user' => $user,
+            'video' => $video
         ]); 
     }
 

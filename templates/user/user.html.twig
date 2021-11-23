@@ -20,18 +20,11 @@
 
 
 	<!--- Fin Header -->
-	{% if app.user %}
-		{% block myprofile %}
-			{% include "user/myprofile.html.twig" %}
-		{% endblock %}
-	{% elseif user %}
-		{% block visiteur %}
-			{% include "user/visiteur.html.twig" %}
-		{% endblock %}
-	{% else %}
-		<h2>
-			Connectez vous d'aborder pour voir ce profil</h2>
-	{% endif %}
+
+	{% block visiteur %}
+		{% include "user/visiteur.html.twig" %}
+	{% endblock %}
+
 
 {% endblock %}
 {% block javascripts %}{% endblock %}
