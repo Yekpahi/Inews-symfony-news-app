@@ -22,7 +22,7 @@
 		<aside class="asidede">
 			<h4>Related videos</h4>
 			<div
-				class="scroller Flipped">
+				class="scroll-box Flipped">
 				<!-- One item-->
 				<div class="asidwem">
 
@@ -84,18 +84,29 @@
 					<source src="{{ asset('uploads/videos/' ~ video.videoFilename) }}" type="video/mp4" alt="{{ video.title }}" type="video/mp4">
 
 				</video>
+				<i class="fab fa-stumbleupon logotv" style="font-size:40px;color:white "></i>
+				<ul class="like-dislike-share">
+
+					<li>
+						<i class="fab fa-gratipay" style="font-size:30px;color:red"></i>
+						<span>100k</span>
+					</li>
+					<li>
+						<i class="fas fa-heart-broken" style="font-size:30px;color:black"></i>
+						<span>100k</span>
+					</li>
+					<li>
+						<i class="far fa-comment-dots" style="font-size:30px;color:black"></i>
+						<span>100k</span>
+					</li>
+					<li>
+						<i class="fas fa-share-alt-square" style="font-size:30px;color:blue"></i>
+						<span>100k</span>
+					</li>
+				</ul>
 				<div class="under-video">
 					<h2>{{video.title}}</h2>
-					<ul>
-						<li>
-							300k vues</li>
-						<li>
-							100k like</li>
-						<li>2k dislike</li>
-						<li>
-							200 partages
-						</li>
-					</ul>
+
 					<span>14 janvier 2021</span>
 					<div>
 						<img src="" alt="">
