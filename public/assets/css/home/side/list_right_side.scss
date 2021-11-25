@@ -1,0 +1,179 @@
+div,
+blockquote,
+img,
+label,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+form,
+a,
+fieldset,
+input,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+}
+
+h1 {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+}
+
+html {
+  background-color: #dbe2ec;
+  font-family: "Roboto Slab", serif;
+}
+
+.containera,
+.blog-container {
+  margin: 50px auto;
+  width: 380px;
+  height: 700px;
+  padding: 1.5em;
+  box-sizing: border-box;
+  background-color: #fff;
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.2);
+}
+
+.containera {
+  overflow: hidden;
+  position: relative;
+  bottom: 490px;
+  left: 38%;
+}
+.containera:hover {
+  overflow-y: scroll;
+}
+
+.comments-header {
+  text-align: center;
+}
+.comments-header h1 {
+  display: inline-block;
+}
+.comments-header .fa-close {
+  float: right;
+  font-size: 1.4em;
+}
+.comments-header .fa-close:hover {
+  cursor: pointer;
+  color: gray;
+}
+
+.comments-inner-container {
+  margin-top: 2.5em;
+}
+
+.comment-object {
+  display: flex;
+  justify-content: space-around;
+  font-size: 90%;
+  line-height: 1.7em;
+  margin-bottom: 2em;
+  padding: 0 2em 0 0.5em;
+  box-sizing: border-box;
+}
+.comment-object:last-of-type {
+  margin-bottom: 0;
+}
+.comment-object > .image-container > img {
+  width: 50px;
+  border-radius: 50%;
+}
+.comment-object > .comment-text {
+  width: 250px;
+  color: #626a73;
+  padding-left: 1em;
+}
+.comment-object > .comment-text > h2 {
+  margin-bottom: 0.2em;
+  color: #2c3137;
+}
+.comment-object > .comment-text > h2 > .muted {
+  color: #c2c3c4;
+  font-weight: 100;
+}
+
+.blog {
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.leadCharacter {
+  color: black;
+  font-size: 4em;
+  margin-right: 0.5em;
+  float: left;
+}
+
+.inner-container {
+  padding: 1.7em;
+  padding-right: 1.8em;
+  color: #626a73;
+  overflow: hidden;
+}
+.inner-container:hover {
+  overflow-y: scroll;
+}
+.inner-container .blog-text {
+  margin-bottom: 1em;
+}
+
+.navigation {
+  background: #fff;
+  font-size: 1.2em;
+}
+.navigation > nav > ul {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.navigation > nav > ul > li {
+  padding: 1.2em 1em;
+  display: inline-block;
+  width: 22.4%;
+  text-align: center;
+}
+.navigation > nav > ul > li:hover {
+  color: gray;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.5);
+}

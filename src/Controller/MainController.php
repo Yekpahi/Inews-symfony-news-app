@@ -86,6 +86,23 @@ class MainController extends AbstractController
         ]);
     }
 
+     /**
+     * @Route("/videos/details/{slug}", name="video_details")
+     */
+    public function details($slug, VideoPostRepository $videoPostRepo, Request $request)
+    {
+        $video = $videoPostRepo->findOneBy(['slug' => $slug]);
+        $user = $this->getUser();
+        if (!$video) {
+            throw new NotFoundHttpException('Pas d\'une trouvé');
+        }
+
+        return $this->render('main/videos/details.html.twig', [
+            'video' =>  $video
+        ]);
+    }
+
+
     /**
      * @Route("/mentions/legales", name="mentions")
      */

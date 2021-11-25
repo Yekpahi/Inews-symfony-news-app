@@ -27,35 +27,18 @@ class VideoPostController extends AbstractController
 {
     /**
      * 
-     * @Route("/{users}", name="home")
+     * @Route("/", name="home")
      */
-    public function index(VideoPostRepository $videoPostRepo, $users)
+    public function index(VideoPostRepository $videoPostRepo)
     {
         
-        $video = $videoPostRepo->findAll();
-        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['users' => $users]);
-        
+        $video = $videoPostRepo->findAll();        
         return $this->render('admin/videos/all-videoPost.html.twig', [
             'video' =>$video,
-            'user' => $user
         ]);
     }
 
-    /**
-     * @Route("/details/{slug}", name="details")
-     */
-    public function details($slug, VideoPostRepository $videoPostRepo, Request $request)
-    {
-        $video = $videoPostRepo->findOneBy(['slug' => $slug]);
-        $user = $this->getUser();
-        if (!$video) {
-            throw new NotFoundHttpException('Pas d\'une trouvé');
-        }
-
-        return $this->render('admin/videos/details.html.twig', [
-            'video' =>  $video
-        ]);
-    }
+   
 
     /**
      * @IsGranted("ROLE_ADMIN")
