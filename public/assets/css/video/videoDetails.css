@@ -9,13 +9,12 @@ ol.new li {
 
 .videocontainer {
   position: relative;
-  bottom: -60px;
+  bottom: -10px;
 }
 .videocontainer .videoctn {
   width: 70%;
 }
 .videocontainer .videoctn .under-video {
-  padding-left: 20px;
   padding-top: 12px;
   padding-bottom: 12px;
 }
@@ -50,29 +49,58 @@ ol.new li {
   top: 230px;
 }
 
-.scroll-box {
+.aside-container {
   height: 700px;
-  padding-left: 20px;
+  padding-left: 5px;
   overflow-y: hidden;
   scrollbar-color: rebeccapurple green;
   scrollbar-width: thin;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: -20%;
+  top: 10px;
+  width: 20%;
+}
+.aside-container .aside-card {
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+  width: 100%;
+  margin-bottom: 10px;
+  /* This property print the content
+              from left to right */
+  direction: ltr;
+}
+.aside-container .aside-card img {
+  width: 100%;
+}
+.aside-container .aside-card .img-posteur {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+}
+.aside-container .aside-card .durationtime {
+  position: relative;
+  background-color: black;
+  color: white;
+  opacity: 0.8;
+  bottom: 50px;
 }
 
-.scroll-box:hover {
+.aside-container:hover {
   overflow-y: scroll;
 }
 
-.scroll-box::-webkit-scrollbar {
+.aside-container::-webkit-scrollbar {
   width: 0.4em;
 }
 
-.scroll-box::-webkit-scrollbar,
-.scroll-box::-webkit-scrollbar-thumb {
+.aside-container::-webkit-scrollbar,
+.aside-container::-webkit-scrollbar-thumb {
   overflow: visible;
   border-radius: 4px;
 }
 
-.scroll-box::-webkit-scrollbar-thumb {
+.aside-container::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.2);
 }
 
@@ -82,107 +110,51 @@ ol.new li {
   direction: rtl;
 }
 
-.asidede {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  left: 8%;
-  top: 110px;
-  width: 12%;
-}
-.asidede .asidwem {
-  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
-  width: 100%;
-  margin-bottom: 10px;
-  /* This property print the content
-              from left to right */
-  direction: ltr;
-}
-.asidede .asidwem img {
-  width: 100%;
-}
-.asidede .asidwem .img-posteur {
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-}
-.asidede .asidwem .durationtime {
-  position: relative;
-  background-color: black;
-  color: white;
-  opacity: 0.8;
-  bottom: 50px;
-}
-
-@media (max-width: 700px) {
-  .scroll-box {
-    display: flex;
-    flex-direction: column;
-    background-color: red;
-    height: 700px;
-    overflow-y: hidden;
-    scrollbar-color: rebeccapurple green;
-  }
-
-  .scroll-box:hover {
-    overflow-y: scroll;
-  }
-
-  .scroll-box::-webkit-scrollbar {
-    width: 0.4em;
-  }
-
-  /*This cause the division content
-        to be displayed from right to left */
-  .Flipped {
-    direction: rtl;
-  }
-
-  .asidede {
+@media (max-width: 580px) {
+  .aside-container {
     position: relative;
-    top: 650px;
+    top: -50px;
+    width: 100%;
+    left: 0%;
+    padding: 0;
+  }
+  .aside-container .aside-card {
     width: 100%;
   }
-  .asidede .asidwem {
-    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
-    /* This property print the content
-              from left to right */
-    direction: ltr;
-  }
-  .asidede .asidwem img {
+  .aside-container .aside-card img {
     width: 100%;
-    margin: 0 auto;
-    text-align: center;
   }
-  .asidede .asidwem .img-posteur {
+  .aside-container .aside-card .img-posteur {
     height: 20px;
     width: 20px;
     border-radius: 50%;
   }
-  .asidede .asidwem .durationtime {
+  .aside-container .aside-card .durationtime {
     position: relative;
-    background-color: black;
-    color: white;
-    opacity: 0.8;
     bottom: 50px;
   }
 }
-@media (max-width: 700px) {
+@media (max-width: 580px) {
   .videocontainer {
-    background-color: red;
     position: relative;
-    bottom: 750px;
+    top: 0;
   }
   .videocontainer .videoctn {
     width: 100%;
   }
   .videocontainer .videoctn .under-video {
-    padding-left: 20px;
     padding-top: 12px;
     padding-bottom: 12px;
   }
   .videocontainer video {
     width: 100%;
     border: 2px solid black;
+  }
+}
+@media (min-width: 1000px) and (max-width: 650) {
+  .videoctn {
+    background-color: red;
+    position: absolute;
+    left: 50%;
   }
 }/*# sourceMappingURL=videoDetails.css.map */

@@ -1,0 +1,168 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Details page
+{% endblock %}
+
+{% block body %}
+
+	{% block stylesheets %}
+		<link
+		href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+		<!--load all styles -->
+		<link rel="stylesheet" type="text/css" href=" {{asset ('assets/css/details/details.css')}}"/>
+
+
+	{% endblock %}
+
+
+	<!-- Debut header-->
+	{% block header %}
+		{% include "header/header.html.twig" %}
+	{% endblock %}
+
+	<br>
+	<br>
+
+	<div class="section-news-detail">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="#">Home</a>
+						</li>
+						<li class="breadcrumb-item active" aria-current="page">Library</li>
+					</ol>
+
+
+					<div class="news-block">
+						{% for image in article.images %}
+							<img src="{{asset(('uploads/images/articles/' ~ image.name)|imagine_filter('banniere')) }}" alt="{{ article.title }}">
+
+						{% endfor %}
+						<h3>
+							{{ article.title}}
+						</h3>
+						<p>16 sep 2020
+						</p>
+						<p>
+							{{ article.content |raw}}</p>
+
+					</div>
+					<div class="clear"></div>
+
+					<div class="footer-news">
+						<div class="row"></div>
+						<p>Source link:
+							<a href="">Lorem ipsum dolor s</a>
+
+							<span class="pl-5">
+								Share :
+								<img src="https://pngimg.com/uploads/twitter/twitter_PNG29.png" alt="" class="sosmed">
+								<img src="https://pngimg.com/uploads/twitter/twitter_PNG29.png" alt="" class="sosmed">
+								<img src="https://pngimg.com/uploads/twitter/twitter_PNG29.png" alt="" class="sosmed">
+							</span>
+
+						</p>
+
+					</div>
+
+					<div class="related-new">
+						<h3>Related News</h3>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="section-related-news">
+
+		<div class="container mt-4">
+			<div class="row">
+
+				<div class="col-lg-4 col-md-4 col-sm-12">
+					<div class="card">
+						<div class="card-body card-news">
+							<div class="row">
+								<div class="col-5">
+									<img src="https://www.iconfinder.com/data/icons/interface-elements-iv/512/Square-512.png" alt="">
+								</div>
+								<div class="col-7">
+									<h5>judul ebnwjehw hewj</h5>
+									<p>date</p>
+									<p>
+										tincidunt mauris ultricies justo feugiat, in ultricies sem venenatis. Etiam
+																																																																						                                        sodales
+																																																																						                                        leo
+																																																																						                                        in
+																																																																						                                        iaculis
+									</p>
+									<p>read more</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-12">
+					<div class="card">
+						<div class="card-body card-news">
+							<div class="row">
+								<div class="col-5">
+									<img src="https://www.iconfinder.com/data/icons/interface-elements-iv/512/Square-512.png" alt="">
+								</div>
+								<div class="col-7">
+									<h5>judul ebnwjehw hewj</h5>
+									<p>date</p>
+									<p>
+										tincidunt mauris ultricies justo feugiat, in ultricies sem venenatis. Etiam
+																																																																						                                        sodales
+																																																																						                                        leo
+																																																																						                                        in
+																																																																						                                        iaculis
+									</p>
+									<p>read more</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-12">
+					<div class="card">
+						<div class="card-body card-news">
+							<div class="row">
+								<div class="col-5">
+									<img src="https://www.iconfinder.com/data/icons/interface-elements-iv/512/Square-512.png" alt="">
+								</div>
+								<div class="col-7">
+									<h5>judul ebnwjehw hewj</h5>
+									<p>date</p>
+									<p>
+										tincidunt mauris ultricies justo feugiat, in ultricies sem venenatis. Etiam
+																																																																						                                        sodales
+																																																																						                                        leo
+																																																																						                                        in
+																																																																						                                        iaculis
+									</p>
+									<p>read more</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<br>
+	<br>
+	{% block jascripts %}
+		<script src="{{asset('assets/script/home/homeCenter.js')}}"></script>
+
+		<script src=" {{asset ('assets/script/comment/comment.js')}}"></script>
+
+	{% endblock %}
+
+{% endblock %}
