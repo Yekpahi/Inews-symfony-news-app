@@ -51,11 +51,19 @@
 
 					<small>
 						{% if video.createdAt %}
-							{% if time_diff(video.createdAt) < 15  %}
-								{{time_diff(video.createdAt)}}
+							{% if time_diff(video.createdAt) <31  %}
+								{% if time_diff(video.createdAt) <7 %}
+									{{ time_diff(video.createdAt)}}
+									{% elseif time_diff(video.createdAt) =< 0 %}
+								{% endif %}
+
+
 							{% else %}
 								{{ video.createdAt|format_datetime('medium', 'none', locale='fr') }}
 							{% endif %}
+
+						{% else %}
+							(unpublished)
 						{% endif %}
 					</small>
 					<div>

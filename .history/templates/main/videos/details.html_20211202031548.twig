@@ -50,12 +50,13 @@
 					<h2>{{video.title}}</h2>
 
 					<small>
-						{% if video.createdAt %}
-							{% if time_diff(video.createdAt) < 15  %}
-								{{time_diff(video.createdAt)}}
-							{% else %}
-								{{ video.createdAt|format_datetime('medium', 'none', locale='fr') }}
-							{% endif %}
+
+						{% if time_diff(video.createdAt) < 7  %}
+							{{ time_diff(video.createdAt) }}
+						{% endif %}
+
+						{% if time_diff(video.createdAt) >= 31 %}
+							{{ video.createdAt|format_datetime('medium', 'none', locale='fr') }}
 						{% endif %}
 					</small>
 					<div>

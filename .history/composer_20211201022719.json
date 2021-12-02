@@ -28,7 +28,6 @@
     "symfony/form": "5.3.*",
     "symfony/framework-bundle": "5.3.*",
     "symfony/http-client": "5.3.*",
-    "symfony/intl": "5.3.*",
     "symfony/mailer": "5.3.*",
     "symfony/mime": "5.3.*",
     "symfony/monolog-bundle": "^3.1",
@@ -49,8 +48,6 @@
     "symfony/yaml": "5.3.*",
     "symfonycasts/reset-password-bundle": "^1.8",
     "symfonycasts/verify-email-bundle": "^1.5",
-    "twig/extra-bundle": "^3.3",
-    "twig/intl-extra": "^3.3",
     "twig/string-extra": "^3.3",
     "twig/twig": "^2.12|^3.0",
     "vich/uploader-bundle": "^1.18"

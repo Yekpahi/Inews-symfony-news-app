@@ -49,15 +49,8 @@
 				<div class="under-video">
 					<h2>{{video.title}}</h2>
 
-					<small>
-						{% if video.createdAt %}
-							{% if time_diff(video.createdAt) < 15  %}
-								{{time_diff(video.createdAt)}}
-							{% else %}
-								{{ video.createdAt|format_datetime('medium', 'none', locale='fr') }}
-							{% endif %}
-						{% endif %}
-					</small>
+					<span>
+						{{video.created_at}}</span>
 					<div>
 						<img src="" alt="">
 						<span>
@@ -69,8 +62,8 @@
 				{% if video.nbVue == 1 %}
 					<span>{{video.nbVue}}
 						vue</span>
-
-
+					| publié
+					{{video.created_at}}
 				{% else %}
 					<span>{{video.nbVue}}
 						vues</span>

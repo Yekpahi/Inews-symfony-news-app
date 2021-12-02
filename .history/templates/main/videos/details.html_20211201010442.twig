@@ -51,11 +51,12 @@
 
 					<small>
 						{% if video.createdAt %}
-							{% if time_diff(video.createdAt) < 15  %}
-								{{time_diff(video.createdAt)}}
-							{% else %}
-								{{ video.createdAt|format_datetime('medium', 'none', locale='fr') }}
-							{% endif %}
+
+							<br>
+
+							{{ time_diff(video.createdAt)|date("d/m/Y")}}
+						{% else %}
+							(unpublished)
 						{% endif %}
 					</small>
 					<div>
@@ -69,7 +70,7 @@
 				{% if video.nbVue == 1 %}
 					<span>{{video.nbVue}}
 						vue</span>
-
+					| publié
 
 				{% else %}
 					<span>{{video.nbVue}}

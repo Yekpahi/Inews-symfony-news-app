@@ -51,8 +51,11 @@
 
 					<small>
 						{% if video.createdAt %}
-							{% if time_diff(video.createdAt) < 15  %}
-								{{time_diff(video.createdAt)}}
+							{% if time_diff(video.createdAt) <31  %}
+								{% if time_diff(video.createdAt) < 7 %}
+									<p>It's a nice day for a walk in the park.</p>
+								{% endif %}
+
 							{% else %}
 								{{ video.createdAt|format_datetime('medium', 'none', locale='fr') }}
 							{% endif %}

@@ -51,8 +51,20 @@
 
 					<small>
 						{% if video.createdAt %}
-							{% if time_diff(video.createdAt) < 15  %}
-								{{time_diff(video.createdAt)}}
+							{% if time_diff(video.createdAt) <61  %}
+								{% if time_diff(video.createdAt) > 7 %}
+									{{ time_diff(video.createdAt)}}
+								{% elseif time_diff(video.createdAt) >= 7 and time_diff(video.createdAt) < 14 %}
+									<span>
+										Il y a une semaine</span>
+								{% elseif time_diff(video.createdAt) >= 14 and time_diff(video.createdAt) < 21 %}
+									Il y a deux semaines
+								{% elseif time_diff(video.createdAt) >= 21 and time_diff(video.createdAt) < 28 %}
+									Il y a trois semaines
+								{% elseif time_diff(video.createdAt) >= 28 and time_diff(video.createdAt) < 60 %}
+									Il y un mois
+								{% endif %}
+
 							{% else %}
 								{{ video.createdAt|format_datetime('medium', 'none', locale='fr') }}
 							{% endif %}
