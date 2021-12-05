@@ -1,4 +1,7 @@
 {
+    "aeon-php/calendar": {
+        "version": "1.0.1"
+    },
     "antishov/doctrine-extensions-bundle": {
         "version": "1.4",
         "recipe": {
@@ -13,6 +16,9 @@
     },
     "behat/transliterator": {
         "version": "v1.3.0"
+    },
+    "coduo/php-humanizer": {
+        "version": "4.0.2"
     },
     "composer/package-versions-deprecated": {
         "version": "1.11.99.2"

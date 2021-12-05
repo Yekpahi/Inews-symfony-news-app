@@ -353,12 +353,19 @@ body {
 }
 
 .video-a-la-une {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
   position: relative;
   bottom: -20px;
   left: 40%;
   width: 450px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  border-bottom: 1px solid black;
+  border-radius: 10px;
+  border: 1px solid #f1e3e3;
+}
+
+.vde {
+  border-radius: 10px;
 }
 
 .player-container {
@@ -373,7 +380,6 @@ body {
   padding-bottom: 56.25%;
   position: relative;
   overflow: hidden;
-  background: #000000;
 }
 
 .player:fullscreen {
@@ -591,7 +597,7 @@ button:focus {
 }
 
 .title-desc-avatar-container .title-desc-avatar {
-  height: 30px;
-  width: 30px;
+  height: 60px;
+  width: 60px;
   border-radius: 50%;
 }
