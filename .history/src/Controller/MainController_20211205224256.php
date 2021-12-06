@@ -77,6 +77,32 @@ class MainController extends AbstractController
             return $this->redirectToRoute('app_home', ['slug' => $article->getSlug()]);
         }
 
+        preg_match_all('/(\d+)/', $youtube_time, $parts);
+
+        // Put in zeros if we have less than 3 numbers.
+        if (count($parts[0]) == 1) {
+            array_unshift($parts[0], "0", "0");
+        } elseif (count($parts[0]) == 2) {
+            array_unshift($parts[0], "0");
+        }
+
+        $sec_init = $parts[0][2];
+        $seconds = $sec_init % 60;
+        $seconds_overflow = floor($sec_init / 60);
+
+        $min_init = $parts[0][1] + $seconds_overflow;
+        $minutes = ($min_init) % 60;
+        $minutes_overflow = floor(($min_init) / 60);
+
+        $hours = $parts[0][0] + $minutes_overflow;
+
+        if ($hours != 0)
+            return $hours . ':' . $minutes . ':' . $seconds;
+        else
+            return $minutes . ':' . $seconds;
+
+
+
         return $this->render('main/home.html.twig', [
             'commentForm' => $commentForm->createView(),
             'article' => $article,
@@ -85,7 +111,6 @@ class MainController extends AbstractController
             'video' => $video,
             'une' => $une,
             'form' => $form->createView()
-            
         ]);
     }
 

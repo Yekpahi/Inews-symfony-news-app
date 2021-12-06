@@ -17,14 +17,13 @@
 	{% block header %}
 		{% include "header/header.html.twig" %}
 	{% endblock %}
-
-	<main onload="getDur">
+	<main>
 
 
 		<section class="container videocontainer">
-			<div class="videoctn">
+			<div class="videoctn" onload="get">
 				<video id="vid" height="350" controls>
-					<source src="{{ asset('uploads/videos/' ~ video.videoFilename) }}" preload="metadata" type="video/mp4" alt="{{ video.title }}" type="video/mp4">
+					<source src="{{ asset('uploads/videos/' ~ video.videoFilename) }}" type="video/mp4" alt="{{ video.title }}" type="video/mp4">
 
 				</video>
 				<i class="fab fa-stumbleupon logotv" style="font-size:40px;color:white "></i>
@@ -32,9 +31,8 @@
 
 					<li>
 						<i class="fab fa-gratipay" style="font-size:30px;color:red"></i>
-						<span id="dur">
-							{{ video.duration|date('i:s') }}
-						</span>
+						<span class="dur">
+							00:00</span>
 					</li>
 					<li>
 						<i class="fas fa-heart-broken" style="font-size:30px;color:black"></i>

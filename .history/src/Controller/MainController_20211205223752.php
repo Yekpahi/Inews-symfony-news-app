@@ -31,6 +31,27 @@ class MainController extends AbstractController
         $une = $launeRepo->findOneBy([]);
         $form = $this->createForm(SearchArticleType::class);
         $search = $form->handleRequest($request);
+
+        $em = $this->getDoctrine()->getManager();
+        $dure = $video->getDuration();
+       $delimiter  = ':';
+        $seconds = $duration % 60;
+        $minutes = floor($duration/60);
+        $hours   = floor($duration/3600);
+
+        $seconds = str_pad($seconds, 2, "0", STR_PAD_LEFT);
+        $minutes = str_pad($minutes, 2, "0", STR_PAD_LEFT).$delimiter;
+
+        if($hours > 0)
+        {
+            $hours = str_pad($hours, 2, "0", STR_PAD_LEFT).$delimiter;
+        }
+        else
+        {
+            $hours = '';
+        }
+        $video->setDuration($nbVue + 1);
+        $em->flush();
         if ($form->isSubmitted() && $form->isValid()) {
             // On recherche les articles correspondant aux mots clés
             $articles = $articlesRepo->search(
@@ -76,7 +97,6 @@ class MainController extends AbstractController
             $this->addFlash('message', 'Votre commentaire a bien été envoyé');
             return $this->redirectToRoute('app_home', ['slug' => $article->getSlug()]);
         }
-
         return $this->render('main/home.html.twig', [
             'commentForm' => $commentForm->createView(),
             'article' => $article,
@@ -85,18 +105,17 @@ class MainController extends AbstractController
             'video' => $video,
             'une' => $une,
             'form' => $form->createView()
-            
         ]);
     }
 
-    /**
+     /**
      * @Route("/videos/details/{slug}", name="video_details")
      */
     public function details($slug, VideoPostRepository $videoPostRepo, $precision = 1)
     {
         $video = $videoPostRepo->findOneBy(['slug' => $slug]);
-
-
+        
+       
         if (!$video) {
             throw new NotFoundHttpException('Pas d\'une trouvé');
         }
@@ -123,21 +142,21 @@ class MainController extends AbstractController
             $n_format = number_format($nbVue / 1000000000000, $precision);
             $suffix = ' T';
         }
-        // Remove unecessary zeroes after decimal. "1.0" -> "1"; "1.00" -> "1"
-        // Intentionally does not affect partials, eg "1.50" -> "1.50"
-        if ($precision > 0) {
-            $dotzero = '.' . str_repeat('0', $precision);
-            $n_format = str_replace($dotzero, ' ', $n_format);
+      // Remove unecessary zeroes after decimal. "1.0" -> "1"; "1.00" -> "1"
+      // Intentionally does not affect partials, eg "1.50" -> "1.50"
+        if ( $precision > 0 ) {
+            $dotzero = '.' . str_repeat( '0', $precision );
+            $n_format = str_replace( $dotzero, ' ', $n_format );
         }
         $vuConv = $n_format . $suffix;
 
         $video->setNbVue($nbVue + 1);
         $em->flush();
-
+     
         return $this->render('main/videos/details.html.twig', [
-            'video' =>  $video,
-            'vuConv' => $vuConv
-        ]);
+            'video' =>  $video, 
+            'vuConv' =>$vuConv     
+       ]);
     }
 
 

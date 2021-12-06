@@ -76,6 +76,25 @@ class MainController extends AbstractController
             $this->addFlash('message', 'Votre commentaire a bien été envoyé');
             return $this->redirectToRoute('app_home', ['slug' => $article->getSlug()]);
         }
+      
+        preg_match_all('/(\d+)/', $duration, $parts);
+
+        // Put in zeros if we have less than 3 numbers.
+        if (count($parts[0]) == 1) {
+            array_unshift($parts[0], "0", "0");
+        } elseif (count($parts[0]) == 2) {
+            array_unshift($parts[0], "0");
+        }
+
+        $sec_init = $parts[0][2];
+        $seconds = $sec_init % 60;
+        $seconds_overflow = floor($sec_init / 60);
+
+        $min_init = $parts[0][1] + $seconds_overflow;
+        $minutes = ($min_init) % 60;
+        $duree = $minutes . ':' . $seconds;
+
+
 
         return $this->render('main/home.html.twig', [
             'commentForm' => $commentForm->createView(),
@@ -84,6 +103,7 @@ class MainController extends AbstractController
             'laune' => $laune,
             'video' => $video,
             'une' => $une,
+            'duree' =>$duree,
             'form' => $form->createView()
             
         ]);

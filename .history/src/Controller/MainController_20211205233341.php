@@ -76,6 +76,18 @@ class MainController extends AbstractController
             $this->addFlash('message', 'Votre commentaire a bien été envoyé');
             return $this->redirectToRoute('app_home', ['slug' => $article->getSlug()]);
         }
+        $durations = $video->getDuration();
+        $total = 0;
+        foreach($durations as $duration) {
+           $duration = explode(':', $duration);
+           $total += $duration[0] * 60;
+           $total += $duration[1];
+        }
+        $mins = $total / 60;
+        $secs = $total % 60;
+        $duree =  $mins.':'.$secs;
+
+
 
         return $this->render('main/home.html.twig', [
             'commentForm' => $commentForm->createView(),
@@ -84,6 +96,7 @@ class MainController extends AbstractController
             'laune' => $laune,
             'video' => $video,
             'une' => $une,
+            'duree' =>$duree,
             'form' => $form->createView()
             
         ]);

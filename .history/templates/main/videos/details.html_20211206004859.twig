@@ -18,13 +18,13 @@
 		{% include "header/header.html.twig" %}
 	{% endblock %}
 
-	<main onload="getDur">
+	<main onlo>
 
 
 		<section class="container videocontainer">
 			<div class="videoctn">
 				<video id="vid" height="350" controls>
-					<source src="{{ asset('uploads/videos/' ~ video.videoFilename) }}" preload="metadata" type="video/mp4" alt="{{ video.title }}" type="video/mp4">
+					<source src="{{ asset('uploads/videos/' ~ video.videoFilename) }}" type="video/mp4" alt="{{ video.title }}" type="video/mp4">
 
 				</video>
 				<i class="fab fa-stumbleupon logotv" style="font-size:40px;color:white "></i>

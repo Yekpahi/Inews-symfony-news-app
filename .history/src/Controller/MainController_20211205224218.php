@@ -77,6 +77,32 @@ class MainController extends AbstractController
             return $this->redirectToRoute('app_home', ['slug' => $article->getSlug()]);
         }
 
+   preg_match_all('/(\d+)/',$youtube_time,$parts);
+
+    // Put in zeros if we have less than 3 numbers.
+    if (count($parts[0]) == 1) {
+        array_unshift($parts[0], "0", "0");
+    } elseif (count($parts[0]) == 2) {
+        array_unshift($parts[0], "0");
+    }
+
+    $sec_init = $parts[0][2];
+    $seconds = $sec_init%60;
+    $seconds_overflow = floor($sec_init/60);
+
+    $min_init = $parts[0][1] + $seconds_overflow;
+    $minutes = ($min_init)%60;
+    $minutes_overflow = floor(($min_init)/60);
+
+    $hours = $parts[0][0] + $minutes_overflow;
+
+    if($hours != 0)
+        return $hours.':'.$minutes.':'.$seconds;
+    else
+        return $minutes.':'.$seconds;
+
+
+
         return $this->render('main/home.html.twig', [
             'commentForm' => $commentForm->createView(),
             'article' => $article,
@@ -85,18 +111,17 @@ class MainController extends AbstractController
             'video' => $video,
             'une' => $une,
             'form' => $form->createView()
-            
         ]);
     }
 
-    /**
+     /**
      * @Route("/videos/details/{slug}", name="video_details")
      */
     public function details($slug, VideoPostRepository $videoPostRepo, $precision = 1)
     {
         $video = $videoPostRepo->findOneBy(['slug' => $slug]);
-
-
+        
+       
         if (!$video) {
             throw new NotFoundHttpException('Pas d\'une trouvé');
         }
@@ -123,21 +148,21 @@ class MainController extends AbstractController
             $n_format = number_format($nbVue / 1000000000000, $precision);
             $suffix = ' T';
         }
-        // Remove unecessary zeroes after decimal. "1.0" -> "1"; "1.00" -> "1"
-        // Intentionally does not affect partials, eg "1.50" -> "1.50"
-        if ($precision > 0) {
-            $dotzero = '.' . str_repeat('0', $precision);
-            $n_format = str_replace($dotzero, ' ', $n_format);
+      // Remove unecessary zeroes after decimal. "1.0" -> "1"; "1.00" -> "1"
+      // Intentionally does not affect partials, eg "1.50" -> "1.50"
+        if ( $precision > 0 ) {
+            $dotzero = '.' . str_repeat( '0', $precision );
+            $n_format = str_replace( $dotzero, ' ', $n_format );
         }
         $vuConv = $n_format . $suffix;
 
         $video->setNbVue($nbVue + 1);
         $em->flush();
-
+     
         return $this->render('main/videos/details.html.twig', [
-            'video' =>  $video,
-            'vuConv' => $vuConv
-        ]);
+            'video' =>  $video, 
+            'vuConv' =>$vuConv     
+       ]);
     }
 
 
