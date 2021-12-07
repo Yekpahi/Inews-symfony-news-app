@@ -24,16 +24,53 @@ class UserController extends AbstractController
     /**
      * @Route("/{firstName}", name="user")
      */
-    public function index(string $firstName, VideoPostRepository $videoPostRepo) : response
+    public function index(string $firstName, VideoPostRepository $videoPostRepo, Request $request) : response
     {   
+        //Redigez l'articles
+        $article = new Articles();
+        $form = $this->createForm(articlesType::class, $article);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // On récupère les images transmises
+            $article->setUsers($this->getUser());
+            $article->setActive(false);
+            $images = $form->get('images')->getData();
+
+            // On boucle sur les images
+            foreach ($images as $image) {
+                // On génère un nouveau nom de fichier
+                $fichier = md5(uniqid()) . '.' . $image->guessExtension();
+
+                // On copie le fichier dans le dossier uploads
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $fichier
+                );
+
+                // On stocke l'image dans la base de données (son nom)
+                $img = new Images();
+                $img->setName($fichier);
+                $article->addImage($img);
+            }
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($article);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('userprofile');
+        }
+        //Fin rediger l'article
        // On récupère l'article correspondant au slug
+
        $video = $videoPostRepo->findAll();
        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
     $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['firstName' => $firstName]);
   
         return $this->render('user/user.html.twig', [
             'user' => $user,
-            'video' => $video
+            'video' => $video,
+            'form' => $form->createView(),
         ]); 
     }
 
@@ -76,7 +113,7 @@ class UserController extends AbstractController
 
             return $this->redirectToRoute('userprofile');
         }
-        return $this->render('user/articles/ajouter-article.html.twig', [
+        return $this->render('user/user.html.twig', [
             'article' => $article,
             'form' => $form->createView(),
         ]);

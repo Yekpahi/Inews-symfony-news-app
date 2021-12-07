@@ -56,7 +56,7 @@ class VideoPost
 
     /**
      * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="time")
      */
     private $duration;
 
@@ -109,6 +109,7 @@ class VideoPost
      * @ORM\OneToMany(targetEntity=Comments::class, mappedBy="videoPosts", orphanRemoval=true)
      */
     private $comments;
+
     /**
      * @var string $nbVue
      *
@@ -151,12 +152,12 @@ class VideoPost
         return $this;
     }
 
-    public function getDuration(): ?int
+    public function getDuration() :?\DateTimeInterface
     {
         return $this->duration;
     }
 
-    public function setDuration(int $duration): self
+    public function setDuration(\DateTimeInterface $duration): self
     {
         $this->duration = $duration;
 
