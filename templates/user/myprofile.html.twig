@@ -106,133 +106,121 @@
 							</div>
 							<!-- sbody -->
 						</div>
-						<a href="{{ path ('user_articles_ajout')}}" type="button" class="btn btn-primary mb-5">Créer un
-																										article</a>
-						<button type="button" class="btn btn-outline-secondary mb-5 ">Galerie Photo</button>
-						<button type="button" class="btn btn-outline-success mb-5">Galerie Vidéo</button>
+						<!-- Rediger l'article-->
+						<div
+							class="redaction-article">
+							<!-- Modal -->
+							<div id="input-modal">
+								<input id="open" placeholder="Redigez un article" type="text">
+							</div>
 
-						<!-- Modal -->
-						<div id="input-modal">
-							<input id="open" placeholder="Redigez un article" type="text">
+
+							<div id="mask" class="hidden"></div>
+							<section id="modal" class="hidden">
+
+								<div class="labelo-close">
+									<h5>Créer Votre article</h5>
+									<button id="close" style="font-size:24px">
+										<i class="fa fa-close fermer"></i>
+									</button>
+								</div>
+
+								{{ form_start(form, {'attr': {'class': 'articlecomplete'}}) }}
+
+								{{ form_widget(form.title, {'attr' : {'type' : 'text', 'class' : 'title-article', "placeholder" : "Titre de l'article",'data-rule-required':'true' }}) }}
+								{{ form_widget(form.description, {'attr' : {'type' : 'text', 'class' : 'description-article', "placeholder" : "Sous-titre de l'article",'data-rule-required':'true' }}) }}
+								{{ form_widget(form.content, {'attr' : {'type' : 'textarea', 'row': '4', 'style' : "height:auto", 'id' : 'article', 'class' : 'content-article', 'placeholder' : "Redigez votre article",'data-rule-required':'true'}}) }}
+
+								<div class="cat-statut">
+									{{ form_widget(form.categories, {'attr' : {'type' : 'dropdown', 'row': '4', 'style' : "height:auto", 'id' : 'redact', 'class' : 'round', 'placeholder' : "Redigez votre article",'data-rule-required':'true'}}) }}
+									{{ form_widget(form.statut, {'attr' : {'type' : 'dropdown', 'row': '4', 'style' : "height:auto", 'id' : 'redact', 'class' : 'round'}}) }}
+
+								</div>
+								<div class="browse">
+									<div class='upload-field-customized'>
+										{{ form_widget(form.images, {'attr': {'type' : 'file', 'name' : 'file', 'id' : 'file_upload'}}) }}
+
+										<span>
+											<img src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/cloud-upload-32.png" alt=""/>
+										</span>
+									</div>
+									<div class="checkbox">
+										<label class="checkbox__container">
+											{{ form_widget(form.active, {'attr' : {'type' : 'submit', 'row': '4', 'style' : "height:auto", 'id' : 'article', 'class' : 'checkbox__toggle'}}) }}
+											<span class="checkbox__checker"></span>
+											<span class="checkbox__cross"></span>
+											<span class="checkbox__ok"></span>
+											<svg class="checkbox__bg" space="preserve" style="enable-background:new 0 0 110 43.76;" version="1.1" viewbox="0 0 110 43.76">
+												<path class="shape" d="M88.256,43.76c12.188,0,21.88-9.796,21.88-21.88S100.247,0,88.256,0c-15.745,0-20.67,12.281-33.257,12.281,S38.16,0,21.731,0C9.622,0-0.149,9.796-0.149,21.88s9.672,21.88,21.88,21.88c17.519,0,20.67-13.384,33.263-13.384,S72.784,43.76,88.256,43.76z"></path>
+											</svg>
+										</label>
+									</div>
+
+								</div>
+
+								<!--Fin charger fichier-->
+								{{ form_widget(form.Valider, {'attr' : {'type' : 'submit', 'row': '4', 'style' : "height:auto", 'id' : 'article', 'class' : 'button-poster-article'}}) }}
+
+
+								{{ form_end(form) }}
+
+							</section>
 						</div>
+						<!--- Les posts -->
+						{% for article in app.user.articles %}
+							<div id="wrapper">
 
+								<header class="cf">
+									<img src="http://2016.igem.org/wiki/images/e/e0/Uclascrolldown.png" class="arrow"/>
+									<a href="#"><img class='profile-pic' src="{{asset(('uploads/images/avatar/' ~ article.users.avatar)|imagine_filter('avatar')) }}"></a>
+									<h1 class="name">
+										<a href="#">{{article.users.firstName}}</a>
+									</h1>
+									<p class="date">{{article.createdAt|date}}</p>
+								</header>
 
-						<div id="mask" class="hidden"></div>
-						<section id="modal" class="hidden">
+								<p class="status">{{article.title}}</p>
+								<img class="img-content" src="{{ asset('uploads/images/articles/' ~ article.images[0].name)|imagine_filter('square') }}"/>
 
-							<div class="labelo-close">
-								<h5>Créer Votre article</h5>
-								<button id="close" style="font-size:24px">
-									<i class="fa fa-close fermer"></i>
-								</button>
-							</div>
+								<div class="action">
+									<div class="like">
+										<a href="{{path('users_articles_delete',{id:article.id})}}">
+											<span class="g-action fa fa-trash"></span>
+										</a>
+									</div>
 
-							{{ form_start(form, {'attr': {'class': 'articlecomplete'}}) }}
+									<div class="comment">
+										<a href="{{path('users_articles_edit',{id:article.id})}}">
+											<i class="fas fa-edit"></i>
+										</a>
+									</div>
 
-							{{ form_widget(form.title, {'attr' : {'type' : 'text', 'class' : 'title-article', "placeholder" : "Titre de l'article",'data-rule-required':'true' }}) }}
-							{{ form_widget(form.description, {'attr' : {'type' : 'text', 'class' : 'description-article', "placeholder" : "Sous-titre de l'article",'data-rule-required':'true' }}) }}
-							{{ form_widget(form.content, {'attr' : {'type' : 'textarea', 'row': '4', 'style' : "height:auto", 'id' : 'article', 'class' : 'content-article', 'placeholder' : "Redigez votre article",'data-rule-required':'true'}}) }}
+									<div class="share">
+										<a href="#">
+											{% if article.active %}
+												<span class="badge badge-pill badge-success">Activé</span>
 
-							<div class="cat-statut">
-								{{ form_widget(form.categories, {'attr' : {'type' : 'dropdown', 'row': '4', 'style' : "height:auto", 'id' : 'redact', 'class' : 'round', 'placeholder' : "Redigez votre article",'data-rule-required':'true'}}) }}
-								{{ form_widget(form.statut, {'attr' : {'type' : 'dropdown', 'row': '4', 'style' : "height:auto", 'id' : 'redact', 'class' : 'round'}}) }}
+											{% else %}
+												<span class="badge badge-pill badge-danger">Desactivé</span>
+											{% endif %}
+										</a>
+									</div>
 
-							</div>
-							<div class="browse">
-								<div class="image-input">
-									<input type="file" accept="image/*" id="imageInput">
-									<label for="imageInput" class="image-button">
-										<i class="far fa-image"></i>
-										Choose image</label>
-									<img src="" class="image-preview">
-									<span class="change-image">Choose different image</span>
 								</div>
 
-
-								{{ form_widget(form.images, {'attr': {'type' : 'file', 'class' : 'browse-file', 'id' : 'imageInput'}}) }}
-
-
-								{{ form_widget(form.active, {'attr' : {'type' : 'checkbox', 'name': 'scales', 'style' : "height:auto", 'id' : 'scales'}}) }}
-
 							</div>
-
-							<!--Fin charger fichier-->
-							{{ form_widget(form.Valider, {'attr' : {'type' : 'submit', 'row': '4', 'style' : "height:auto", 'id' : 'article', 'class' : 'button-poster-article'}}) }}
+						{% endfor %}
 
 
-							{{ form_end(form) }}
-
-						</section>
-						<!-- dashbox -->
-						<div class="dashborad-box">
-							<h4 class="title">Tableau</h4>
-							<div class="section-body">
-
-								<div class="table-responsive">
-									<table class="table table-striped">
-										<thead>
-											<th>Titre de l'article</th>
-											<th>Statut</th>
-											<th>catégorie</th>
-											<th>Date création</th>
-											<th>Action</th>
-											<th>Etat</th>
-											<th>Images</th>
-										</thead>
-										{% for article in app.user.articles %}
-											<tbody>
-												<tr>
-													<td>
-														{{ article.title}}</td>
-													<td>
-
-														{% if article.active %}
-															<span class="badge badge-pill badge-success">Activé</span>
-
-														{% else %}
-															<span class="badge badge-pill badge-danger">Desactivé</span>
-														{% endif %}
-
-
-													</td>
-													<td>
-														<span class="g-auteur">
-															{{ article.categories.name}}</span>
-														<br/>
-
-													</td>
-													<td>{{article.createdAt|date}}</td>
-													<td>
-														<a href="{{path('users_articles_delete',{id:article.id})}}">
-															<span class="g-action fa fa-trash"></span>
-														</a>
-														<a href="{{path('users_articles_edit',{id:article.id})}}">
-															<i class="fas fa-edit"></i>
-														</a>
-
-													</td>
-													<td>
-														{{ article.statut }}
-													</td>
-
-												</tr>
-											</tbody>
-										{% endfor %}
-									</table>
-								</div>
-							</div>
-						</h4>
+						<!-- Fin post -->
 					</div>
-
-					<!-- Dbox -->
 				</div>
 			</div>
-		</div>
-	</section>
-{% endblock %}
-{% block javascripts %}
-	<script>
-		$('#imageInput').on('change', function () {
+		</section>
+	{% endblock %}
+	{% block javascripts %}
+		<script>
+			$('#imageInput').on('change', function () {
 $input = $(this);
 if ($input.val().length > 0) {
 fileReader = new FileReader();
@@ -255,6 +243,6 @@ $preview.css('display', 'none');
 $control.css('display', 'none');
 $('.image-button').css('display', 'block');
 });
-	</script>
-
-{% endblock %}
+		</script>
+		<script></script>
+	{% endblock %}
