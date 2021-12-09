@@ -32,72 +32,47 @@
 						<div class="detail clearfix">
 							<ul class="list-group list-group-flush">
 								<a href="" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-									Projets à valider
-									<span class="badge badge-light badge-pill">14</span>
+
+									<span class="badge badge-light badge-pill">{{app.user.email}}</span>
 								</a>
 								<a href="" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-									<strong>Tous les projets</strong>
-									<span class="badge badge-light badge-pill">14</span>
+									<i class="fas fa-mobile-alt fa-fw"></i>
+									{% if app.user.sex == 0%}
+										<span>
+											Sexe : Homme</span>
+									{% else %}
+										<span>Sexe : Femme</span>
+									{% endif %}
 								</a>
 								<a href="" class="active list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-									<strong>Tous les financements</strong>
-									<span class="badge badge-light badge-pill">14</span>
+
+									<span class="badge badge-light badge-pill">Ivoirien</span>
 								</a>
 							</div>
 							<!-- Détail-->
 						</div>
+
+
 						<!-- User profile box-->
 					</div>
+
+
 					<div class="col-lg-8 col-md-7 col-xs-12">
 						<div class="dashborad-box">
-							<h4 class="title">Les informations sur
-								{{app.user.firstName}}
-								{{app.user.lastName}}
-							</h4>
+
 							<div class="section-body">
 								<section class="about mb-3">
 									<div class="card mx-auto">
 										<div class="card-header">
 											<i class="fas fa-user mr-3"></i>
+											Biographie de :
 											<span>{{app.user.firstName}}
 												{{app.user.lastName}}</span>
 										</div>
 										<div class="card-body">
-											<ul class="list-group list-group-flush" data-target="personal-info">
-												<li class="list-group-item">
-													<i class="fas fa-envelope fa-fw"></i>
-													<span>{{app.user.email}}</span>
-												</li>
-
-												<li class="list-group-item">
-													<i class="fas fa-mobile-alt fa-fw"></i>
-													{% if app.user.sex == 0%}
-														<span>
-															Sexe : Homme</span>
-													{% else %}
-														<span>Sexe : Femme</span>
-													{% endif %}
-												</li>
-
-												<li class="list-group-item">
-													<i class="fas fa-map-marker-alt fa-fw"></i>
-													<span>1064 glendale st</span>
-												</li>
-
-												<li class="list-group-item">
-													<i class="fas fa-birthday-cake fa-fw"></i>
-													<span>1973/06/04</span>
-												</li>
-
-											</ul>
-											{% if app.user %}
-
-												{% else %}
-													<a href="" type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
-														Tous va bien
-													</a>
-											{% endif %}
-
+											Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae tempore quia similique tenetur, 
+																																																																																																																																																									porro expedita sed nihil id placeat molestias ullam 
+																																																																																																																																																									voluptatibus nobis corrupti laborum, nisi omnis magni provident ab.
 										</div>
 									</div>
 								</section>
@@ -136,14 +111,15 @@
 									{{ form_widget(form.statut, {'attr' : {'type' : 'dropdown', 'row': '4', 'style' : "height:auto", 'id' : 'redact', 'class' : 'round'}}) }}
 
 								</div>
-								<div class="browse">
-									<div class='upload-field-customized'>
-										{{ form_widget(form.images, {'attr': {'type' : 'file', 'name' : 'file', 'id' : 'file_upload'}}) }}
+								<div
+									class="browse">
+									<!-- Upload pics -->
+									<div class="pics" id="opena">
+										<i id="opena" class="fa fa-image button" style="font-size:48px;color:red"></i>
 
-										<span>
-											<img src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/cloud-upload-32.png" alt=""/>
-										</span>
 									</div>
+
+									<!-- Active -->
 									<div class="checkbox">
 										<label class="checkbox__container">
 											{{ form_widget(form.active, {'attr' : {'type' : 'submit', 'row': '4', 'style' : "height:auto", 'id' : 'article', 'class' : 'checkbox__toggle'}}) }}
@@ -157,9 +133,23 @@
 									</div>
 
 								</div>
+								<div class="modala" id="modala">
+									<button id="closea">X</button>
 
+									<div class="browser">
+
+										{{form_row(form.images, {'attr' : {'type' : 'file', 'class' : 'file-input'}})}}
+										<div class="browser-file-img">
+											<p class="texte-ajouter-image">Ajouter image(s)</p>
+											<img src="https://icon-library.com/images/icon-photos/icon-photos-8.jpg" alt=""/>
+										</div>
+									</div>
+									<div id="preview"></div>
+
+								</div>
 								<!--Fin charger fichier-->
-								{{ form_widget(form.Valider, {'attr' : {'type' : 'submit', 'row': '4', 'style' : "height:auto", 'id' : 'article', 'class' : 'button-poster-article'}}) }}
+
+								{{ form_widget(form.Valider, {'attr' : {'type' : 'submit', 'row': '4', 'style' : "height:auto", 'id' : 'article', 'class' : 'button-valider-article'}}) }}
 
 
 								{{ form_end(form) }}
@@ -244,5 +234,55 @@ $control.css('display', 'none');
 $('.image-button').css('display', 'block');
 });
 		</script>
-		<script></script>
+
+		<!-- Modal image upload -->
+
+
+		<script>
+			var btnOpen = document.getElementById("opena");
+var btnClose = document.getElementById("closea");
+var modal = document.getElementById("modala");
+
+btnOpen.onclick = function () {
+modal.style.display = "block";
+}
+
+btnClose.onclick = function () {
+modal.style.display = "none";
+}
+		</script>
+
+		<!-- Contenu du modal upload image -->
+		<script>
+			function previewImages() {
+
+var preview = document.querySelector('#preview');
+
+if (this.files) {
+[].forEach.call(this.files, readAndPreview);
+}
+
+function readAndPreview(file) { // Make sure `file.name` matches our extensions criteria
+if (!/\.(jpe?g|png|gif)$/i.test(file.name)) {
+return alert(file.name + " is not an image");
+} // else...
+
+var reader = new FileReader();
+
+reader.addEventListener("load", function () {
+var image = new Image();
+image.height = 100;
+image.title = file.name;
+image.src = this.result;
+preview.appendChild(image);
+});
+
+reader.readAsDataURL(file);
+
+}
+
+}
+
+document.querySelector('.file-input').addEventListener("change", previewImages);
+		</script>
 	{% endblock %}

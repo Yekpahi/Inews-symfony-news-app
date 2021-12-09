@@ -835,6 +835,16 @@ a:not([href]):not([tabindex]):hover {
   margin-bottom: 20px;
 }
 // Modal
+.button-valider-article {
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background: #0796f5;
+  color: white;
+  padding: 5px;
+}
+
 #input-modal {
   cursor: pointer;
   width: 100%;
@@ -954,43 +964,18 @@ a:not([href]):not([tabindex]):hover {
   display: none;
 }
 
-// upload et active
+// container upload and active
 .browse {
-  padding-left: 100px;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
   display: flex;
   flex-direction: row;
+  padding-left: 280px;
+  margin: 10px;
 }
-#scales {
-  background-color: #3557f1;
-}
-.upload-field-customized {
-  width: 50px;
-  position: relative;
-  cursor: pointer;
-
-  input[type="file"] {
-    position: absolute;
-    width: 100%;
-    height: 50px;
-    opacity: 0;
-    cursor: pointer;
-    left: 0px;
-    top: 0px;
-    z-index: 10;
-  }
-
-  span {
-    text-align: center;
-    width: 100%;
-    display: block;
-    height: 50px;
-    line-height: 50px;
-
-    img {
-      margin-top: 10px;
-      opacity: 0.9;
-    }
-  }
+// upload
+.pics {
+  margin: 10px;
 }
 // active
 
@@ -1038,8 +1023,8 @@ a:not([href]):not([tabindex]):hover {
 
 //checkbox
 .checkbox {
-  width: 100px;
-  margin: 0 auto 30px auto;
+  margin: 10px;
+  width: 80px;
   &__container {
     display: block;
     position: relative;
@@ -1231,4 +1216,79 @@ main .status {
 
 .cf:after {
   clear: both;
+}
+
+// Modal Picture
+#closea {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  color: white;
+  font-size: 10px;
+  background-color: rgb(226, 86, 86);
+  border: none;
+  margin: 5px;
+}
+.modala {
+  position: absolute;
+  right: 200px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  bottom: 200px;
+  width: 600px;
+  height: 450px;
+  margin: auto auto;
+  padding: 20px;
+  z-index: 12;
+  display: none;
+  border-radius: 20px;
+}
+
+.modala button {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.preview {
+  width: 600px;
+  height: 450px;
+  display: flex;
+}
+
+//custom file input
+.file-input {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  text-align: right;
+  opacity: 0;
+  z-index: 2;
+}
+.browser {
+  display: inline-block;
+  position: relative;
+  left: 80%;
+  top: 350px;
+  top: 272px;
+  left: 60%;
+}
+
+.browser-file-img {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+
+  border-radius: 20px;
+  padding: 12px;
+  z-index: 1;
+  img {
+    width: 50px;
+    height: 50px;
+    margin: 15px;
+  }
+  .texte-ajouter-image {
+    margin: 15px;
+  }
 }
